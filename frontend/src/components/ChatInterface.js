@@ -1,6 +1,46 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useApi } from '../hooks/useApi';
 
+// 任务执行消息组件
+const TaskExecutionMessage = ({ taskData }) => {
+  if (!taskData || !taskData.steps) {
+    return <div>任务数据加载失败</div>;
+  }
+
+  return (
+    <div className="task-execution-message">
+      <div className="task-header">
+        <h4>{taskData.task_name}</h4>
+        <p className="task-description">{taskData.description}</p>
+      </div>
+      <div className="task-steps">
+        <h5>操作步骤：</h5>
+        <ol>
+          {taskData.steps.map((step, index) => (
+            <li key={index} className="task-step">
+              <div className="step-content">
+                <strong>步骤 {step.step}：</strong> {step.step_name}
+                {step.screenshot_path && (
+                  <div className="step-screenshot">
+                    <img 
+                      src={`http://localhost:8000/tasks/screenshots/${step.screenshot_path}`} 
+                      alt={`步骤 ${step.step} 截图`}
+                      className="step-image"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+};
+
 const ChatInterface = () => {
   const [messages, setMessages] = useState([
     {
@@ -47,22 +87,36 @@ const ChatInterface = () => {
       });
 
       // 根据后端响应类型处理消息内容
-      let content = '抱歉，我现在无法处理你的请求。';
+      let assistantMessage;
       
       if (response.response_type === 'task_execution') {
-        // 任务执行响应
-        content = response.data?.message || response.data?.response || '任务已开始执行';
+        // 任务执行响应 - 结构化数据
+        assistantMessage = {
+          id: Date.now() + 1,
+          type: 'assistant',
+          responseType: 'task_execution',
+          taskData: response.data,
+          timestamp: new Date()
+        };
       } else if (response.response_type === 'open_qa') {
-        // RAG问答响应
-        content = response.data?.answer || response.data?.response || '抱歉，我无法回答这个问题。';
+        // RAG问答响应 - 纯文本
+        assistantMessage = {
+          id: Date.now() + 1,
+          type: 'assistant',
+          responseType: 'open_qa',
+          content: response.data?.answer || response.data?.response || '抱歉，我无法回答这个问题。',
+          timestamp: new Date()
+        };
+      } else {
+        // 默认响应
+        assistantMessage = {
+          id: Date.now() + 1,
+          type: 'assistant',
+          responseType: 'default',
+          content: '抱歉，我现在无法处理你的请求。',
+          timestamp: new Date()
+        };
       }
-
-      const assistantMessage = {
-        id: Date.now() + 1,
-        type: 'assistant',
-        content: content,
-        timestamp: new Date()
-      };
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (err) {
@@ -93,7 +147,11 @@ const ChatInterface = () => {
         {messages.map((message) => (
           <div key={message.id} className={`message ${message.type}`}>
             <div className="message-content">
-              {message.content}
+              {message.responseType === 'task_execution' ? (
+                <TaskExecutionMessage taskData={message.taskData} />
+              ) : (
+                message.content
+              )}
             </div>
             <div className="message-time">
               {formatTime(message.timestamp)}

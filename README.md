@@ -1,30 +1,237 @@
 
+# 🤖 AI 助手工具
+
+一个基于 Docker 的智能助手系统，集成了大语言模型(LLM)、向量数据库和知识检索功能，为用户提供智能问答和任务引导服务。
+
+## ✨ 功能特性
+
+- 🧠 **智能问答**: 基于 RAG (检索增强生成) 的知识问答系统
+- 📋 **任务引导**: 结构化的操作步骤指导，支持图片展示
+- 🔍 **意图识别**: 自动识别用户意图，智能路由到相应功能
+- 💬 **对话界面**: 现代化的 Web 聊天界面
+- 🐳 **容器化部署**: 完全基于 Docker 的一键部署
+- 🔄 **实时响应**: 支持流式对话和实时状态更新
+
+## 🏗️ 系统架构
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   前端 (React)   │────│   后端 (Flask)   │────│  Ollama (LLM)   │
+│   端口: 3000    │    │   端口: 8000    │    │   端口: 11434   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                    ┌─────────┼─────────┐
+                    │                   │
+            ┌───────────────┐   ┌───────────────┐
+            │ PostgreSQL    │   │   Weaviate    │
+            │ (任务数据)     │   │  (向量数据库)  │
+            │ 端口: 5432    │   │  端口: 8080   │
+            └───────────────┘   └───────────────┘
+```
+
+### 核心组件
+
+- **前端**: React + 现代化 UI，提供聊天界面和任务展示
+- **后端**: Flask API，处理意图识别、任务路由和数据管理
+- **Ollama**: 本地 LLM 服务，支持 Llama3 和 BGE-M3 模型
+- **PostgreSQL**: 存储任务数据、步骤信息和用户界面元素
+- **Weaviate**: 向量数据库，支持语义搜索和 RAG 功能
+
+## 📋 目录
+
+- [快速开始](#-快速开始)
+- [使用指南](#-使用指南)
+- [开发指南](#-开发指南)
+- [数据库操作](#-数据库操作)
+- [测试验证](#-测试验证)
+- [API 接口](#-api-接口)
+- [配置说明](#️-配置说明)
+- [高级用法](#-高级用法)
+- [故障排除](#-故障排除)
+- [贡献指南](#-贡献指南)
+
+## 🚀 快速开始
+
+### 系统要求
+
+- Docker 和 Docker Compose
+- 至少 8GB 内存 (推荐 16GB)
+- 10GB 可用磁盘空间
+
+### 一键部署
+
+1. **克隆项目**
+```bash
+git clone <repository-url>
+cd ai_assistant_tool
+```
+
+2. **启动所有服务**
+```bash
+docker-compose up -d
+```
+
+3. **等待服务初始化** (首次启动约需 5-10 分钟)
+```bash
+# 查看启动状态
+docker-compose ps
+
+# 查看日志
+docker-compose logs -f
+```
+
+4. **下载 AI 模型**
+```bash
+# 下载 Llama3 模型 (用于对话生成)
+docker exec -it ollama_host ollama pull llama3
+
+# 下载 BGE-M3 模型 (用于向量化)
+docker exec -it ollama_host ollama pull bge-m3
+```
+
+5. **导入初始数据**
+```bash
+# Windows
+run_data_import.bat
+
+# Linux/Mac
+docker exec -it ai_assistant_backend python ingest_data_simple.py
+```
+
+6. **访问应用**
+- 前端界面: http://localhost:3000
+- 后端 API: http://localhost:8000
+- Weaviate 控制台: http://localhost:8080
+
+## 📖 使用指南
+
+### 基本对话
+
+在前端界面中，你可以：
+
+1. **提问知识相关问题**
+   - "如何安装软件？"
+   - "数据采集的步骤是什么？"
+   - "FFT分析怎么做？"
+
+2. **请求任务指导**
+   - "请给我从采集到FFT分析的全流程"
+   - "我想进行数据分析"
+
+### API 使用
+
+```bash
+# 发送问题到 AI 助手
+curl -X POST http://localhost:8000/assistant \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "如何进行FFT分析？"}'
+
+# 获取可用任务列表
+curl http://localhost:8000/tasks
+```
+
+### 响应类型
+
+系统支持两种响应类型：
+
+1. **任务执行** (`task_execution`): 返回结构化的操作步骤
+2. **开放问答** (`open_qa`): 返回基于知识库的文本回答
+
 ## 🔧 开发指南
+
+### 环境配置
+
+1. **复制环境配置文件**
+```bash
+cp .env.example .env
+```
+
+2. **修改配置** (可选)
+```bash
+# 编辑 .env 文件，调整端口和其他配置
+POSTGRES_PORT=5432
+WEAVIATE_PORT=8080
+OLLAMA_PORT=11434
+```
 
 ### 后端开发
 
-1. 安装 Python 依赖：
+1. **安装 Python 依赖**
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
-2. 本地运行后端：
+2. **配置数据库连接**
 ```bash
+# 确保 PostgreSQL 和 Weaviate 服务运行
+docker-compose up -d postgres_db weaviate
+```
+
+3. **本地运行后端**
+```bash
+# 设置环境变量
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+
+# 启动后端服务
 python app.py
+```
+
+4. **导入测试数据**
+```bash
+python ingest_data_simple.py
 ```
 
 ### 前端开发
 
-1. 安装 Node.js 依赖：
+1. **安装 Node.js 依赖**
 ```bash
 cd frontend
 npm install
 ```
 
-2. 启动开发服务器：
+2. **启动开发服务器**
 ```bash
 npm start
+```
+
+3. **构建生产版本**
+```bash
+npm run build
+```
+
+### 调试指南
+
+1. **查看后端日志**
+```bash
+# 容器模式
+docker-compose logs -f backend
+
+# 本地开发模式
+tail -f backend/app.log
+```
+
+2. **测试 API 端点**
+```bash
+# 健康检查
+curl http://localhost:8000/health
+
+# 测试助手接口
+curl -X POST http://localhost:8000/assistant \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "测试消息"}'
+```
+
+3. **数据库调试**
+```bash
+# 连接 PostgreSQL
+docker exec -it postgres_db psql -U assistant_user -d assistant_db
+
+# 查看表结构
+\d tasks
+\d task_steps
+\d ui_elements
 ```
 
 ### 数据库操作

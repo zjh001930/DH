@@ -5,12 +5,14 @@ services:
   postgres:
     image: postgres:13
     container_name: ai_assistant_postgres
+    env_file:
+      - .env
     environment:
-      POSTGRES_DB: ai_assistant
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${POSTGRES_DB:-ai_assistant}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -24,8 +26,10 @@ services:
   ollama_service:
     image: ollama/ollama:latest
     container_name: ollama_host
+    env_file:
+      - .env
     ports:
-      - "11434:11434"
+      - "${OLLAMA_PORT:-11434}:11434"
     volumes:
       - ollama_models:/root/.ollama
     # 移除自定义命令，让容器使用默认启动方式
@@ -35,8 +39,10 @@ services:
   weaviate:
     image: semitechnologies/weaviate:latest
     container_name: ai_assistant_weaviate
+    env_file:
+      - .env
     ports:
-      - "8080:8080"
+      - "${WEAVIATE_PORT:-8080}:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_APIKEY_ENABLED: 'false'
@@ -50,12 +56,21 @@ services:
       context: ./backend
       dockerfile: Dockerfile.backend
     container_name: ai_assistant_backend
+    env_file:
+      - .env
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:8000"
     environment:
-      DATABASE_URL: postgresql://postgres:password@postgres:5432/ai_assistant
-      OLLAMA_API_URL: http://ollama_service:11434
-      WEAVIATE_HOST: http://weaviate:8080
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:password@postgres:5432/ai_assistant}
+      OLLAMA_API_URL: ${OLLAMA_API_URL:-http://ollama_service:11434}
+      WEAVIATE_HOST: ${WEAVIATE_HOST:-weaviate:8080}
+      LLM_MODEL_NAME: ${LLM_MODEL_NAME:-llama3}
+      EMBEDDING_MODEL_NAME: ${EMBEDDING_MODEL_NAME:-bge-m3}
+      INTENT_CONFIDENCE_THRESHOLD: ${INTENT_CONFIDENCE_THRESHOLD:-0.75}
+      IMAGE_STORAGE_PATH: ${IMAGE_STORAGE_PATH:-/app/data/images}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      FLASK_DEBUG: ${FLASK_DEBUG:-0}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
     depends_on:
       postgres:
         condition: service_healthy
@@ -72,10 +87,12 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.frontend
     container_name: ai_assistant_frontend
+    env_file:
+      - .env
     ports:
-      - "3000:3000"
+      - "${FRONTEND_PORT:-3000}:3000"
     environment:
-      REACT_APP_BACKEND_URL: http://localhost:8000
+      REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL:-http://localhost:8000}
     depends_on:
       - backend
     volumes:
