@@ -1,4 +1,20 @@
+version: '3.8'
+
 services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:13
+    container_name: ai_assistant_postgres
+    environment:
+      POSTGRES_DB: ai_assistant
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Ollama 服务
   # 1. Ollama 服务 (LLM 和 Embedding)
   ollama_service:
     image: ollama/ollama:latest
@@ -7,79 +23,53 @@ services:
       - "11434:11434"
     volumes:
       - ollama_models:/root/.ollama
+    command: /bin/bash -c "ollama serve & sleep 10 && ollama pull llama3 && ollama pull bge-m3 && wait"
     restart: always
 
-  # 2. Weaviate 向量数据库服务
+  # Weaviate 向量数据库
   weaviate:
-    image: semitechnologies/weaviate:1.24.2
-    container_name: weaviate_db
+    image: semitechnologies/weaviate:latest
+    container_name: ai_assistant_weaviate
     ports:
       - "8080:8080"
     environment:
+      QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_APIKEY_ENABLED: 'false'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
     volumes:
       - weaviate_data:/var/lib/weaviate
-    restart: always
 
-  # 3. PostgreSQL 关系型数据库服务
-  db:
-    image: postgres:15-alpine
-    container_name: postgres_db
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: assistant_user
-      POSTGRES_PASSWORD: strong_password
-      POSTGRES_DB: assistant_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: always
-
-  # 4. 后端核心应用服务
-  assistant_app:
+  # 后端服务
+  backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile.backend
-    container_name: ai_assistant_service
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: ai_assistant_backend
     ports:
       - "8000:8000"
     environment:
-      OLLAMA_API_URL: http://ollama_service:11434
-      WEAVIATE_HOST: weaviate:8080
-      DB_HOST: db
-      POSTGRES_USER: assistant_user
-      POSTGRES_PASSWORD: strong_password
-      POSTGRES_DB: assistant_db
-      LLM_MODEL_NAME: llama3
-      EMBEDDING_MODEL_NAME: bge-large
-      IMAGE_STORAGE_PATH: /app/data/images
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/ai_assistant
+      OLLAMA_HOST: http://ollama_service:11434
+      WEAVIATE_HOST: http://weaviate:8080
     depends_on:
+      - postgres
       - ollama_service
       - weaviate
-      - db
     volumes:
-      - task_images_volume:/app/data/images
-    restart: always
+      - ./backend:/app
 
-  # 5. React 前端服务
+  # 前端服务
   frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile.frontend
-    container_name: react_frontend
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: ai_assistant_frontend
     ports:
-      - "80:80"
+      - "3000:3000"
     environment:
-      - REACT_APP_API_URL=http://localhost:8000
+      REACT_APP_BACKEND_URL: http://localhost:8000
     depends_on:
-      - assistant_app
-    restart: always
-
-# 卷定义
-volumes:
-  ollama_models:
-  weaviate_data:
-  postgres_data:
-  task_images_volume:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
