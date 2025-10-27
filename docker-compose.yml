@@ -13,6 +13,11 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Ollama 服务
   # 1. Ollama 服务 (LLM 和 Embedding)
@@ -23,7 +28,7 @@ services:
       - "11434:11434"
     volumes:
       - ollama_models:/root/.ollama
-    command: /bin/bash -c "ollama serve & sleep 10 && ollama pull llama3 && ollama pull bge-m3 && wait"
+    # 移除自定义命令，让容器使用默认启动方式
     restart: always
 
   # Weaviate 向量数据库
@@ -49,12 +54,15 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://postgres:password@postgres:5432/ai_assistant
-      OLLAMA_HOST: http://ollama_service:11434
+      OLLAMA_API_URL: http://ollama_service:11434
       WEAVIATE_HOST: http://weaviate:8080
     depends_on:
-      - postgres
-      - ollama_service
-      - weaviate
+      postgres:
+        condition: service_healthy
+      ollama_service:
+        condition: service_started
+      weaviate:
+        condition: service_started
     volumes:
       - ./backend:/app
 
@@ -73,3 +81,12 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+
+# 定义持久化存储卷
+volumes:
+  postgres_data:
+    driver: local
+  ollama_models:
+    driver: local
+  weaviate_data:
+    driver: local
