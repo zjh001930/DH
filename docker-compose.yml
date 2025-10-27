@@ -1,0 +1,85 @@
+services:
+  # 1. Ollama 服务 (LLM 和 Embedding)
+  ollama_service:
+    image: ollama/ollama:latest
+    container_name: ollama_host
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    restart: always
+
+  # 2. Weaviate 向量数据库服务
+  weaviate:
+    image: semitechnologies/weaviate:1.24.2
+    container_name: weaviate_db
+    ports:
+      - "8080:8080"
+    environment:
+      AUTHENTICATION_APIKEY_ENABLED: 'false'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+    restart: always
+
+  # 3. PostgreSQL 关系型数据库服务
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: assistant_user
+      POSTGRES_PASSWORD: strong_password
+      POSTGRES_DB: assistant_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # 4. 后端核心应用服务
+  assistant_app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.backend
+    container_name: ai_assistant_service
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_API_URL: http://ollama_service:11434
+      WEAVIATE_HOST: weaviate:8080
+      DB_HOST: db
+      POSTGRES_USER: assistant_user
+      POSTGRES_PASSWORD: strong_password
+      POSTGRES_DB: assistant_db
+      LLM_MODEL_NAME: llama3
+      EMBEDDING_MODEL_NAME: bge-large
+      IMAGE_STORAGE_PATH: /app/data/images
+    depends_on:
+      - ollama_service
+      - weaviate
+      - db
+    volumes:
+      - task_images_volume:/app/data/images
+    restart: always
+
+  # 5. React 前端服务
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.frontend
+    container_name: react_frontend
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - assistant_app
+    restart: always
+
+# 卷定义
+volumes:
+  ollama_models:
+  weaviate_data:
+  postgres_data:
+  task_images_volume:

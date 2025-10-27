@@ -1,0 +1,49 @@
+{
+  "task_id": "task_full_fft_analysis",
+  "task_name": "从采集到FFT分析的全流程",
+  "description": "引导用户从数据采集开始，经过保存，最终完成FFT分析的完整操作流程。",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入测量视图",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step1_click_measure"
+    },
+    {
+      "step": 2,
+      "step_name": "开始数据采集",
+      "element_id": "btn_measure_acquire",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step2_click_acquire"
+    },
+    {
+      "step": 3,
+      "step_name": "停止数据采集",
+      "element_id": "btn_measure_stop",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step3_click_stop"
+    },
+    {
+      "step": 4,
+      "step_name": "保存工程文件",
+      "element_id": "dlg_save_project",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step4_click_save"
+    },
+    {
+      "step": 5,
+      "step_name": "进入分析视图",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step5_click_analysis"
+    },
+    {
+      "step": 6,
+      "step_name": "添加FFT图表",
+      "element_id": "btn_analysis_add_fft",
+      "action": "click",
+      "dialogue_copy_id": "fft_full_step6_click_fft"
+    }
+  ]
+}

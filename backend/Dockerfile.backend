@@ -1,0 +1,25 @@
+# -------------------- Dockerfile.backend --------------------
+
+# 阶段 1: 基础镜像
+FROM python:3.11-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制并安装依赖
+# 优先复制依赖文件，利用 Docker 缓存机制
+COPY backend/requirements.txt .
+# 使用国内镜像加速器，解决下载超时问题
+RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 复制整个后端项目代码
+COPY backend/ /app/
+
+# 暴露您的应用端口 (Flask/FastAPI 默认端口)
+EXPOSE 8000
+
+# 启动命令：假设您的主入口文件是 app.py
+# 使用 gunicorn 或 uWSGI 更适合生产环境，但这里用 python 简便启动
+CMD ["python", "app.py"]
+
+# -----------------------------------------------------------
