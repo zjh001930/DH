@@ -1,0 +1,41 @@
+{
+  "task_id": "task_signal_delete_spectrum_analysis",
+  "task_name": "删除分析方法",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入测量模式",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_measurement_mode"
+    },
+    {
+      "step": 2,
+      "step_name": "进入信号处理界面",
+      "element_id": "btn_subnav_signal_processing",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_enter_signal_processing"
+    },
+    {
+      "step": 3,
+      "step_name": "点击信号处理",
+      "element_id": "btn_measure_subnav_signal_processing",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_enter_measure_subnav_signal_processing"
+    },
+    {
+      "step": 4,
+      "step_name": "右击你所需要操作的分析方法",
+      "element_id": "btn_select_analyze",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_select_analyze"
+    },
+    {
+      "step": 5,
+      "step_name": "点击删除",
+      "element_id": "btn_delete_spectrum_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step5_btn_delete_spectrum_analysis"
+    }
+  ]
+}

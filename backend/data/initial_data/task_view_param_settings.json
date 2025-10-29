@@ -1,0 +1,20 @@
+{
+  "task_id": "task_view_param_settings",
+  "task_name": "查看参数设置",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入测量模式",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_measurement_mode"
+    },
+    {
+      "step": 2,
+      "step_name": "进入参数管理界面，查看之前保存的设置参数",
+      "element_id": "btn_subnav_param_management",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_enter_param_management"
+    }
+  ]
+}

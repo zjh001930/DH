@@ -1,0 +1,34 @@
+{
+  "task_id": "task_add_cable_force_information",
+  "task_name": "添加索信息",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入测量模式",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_measurement_mode"
+    },
+    {
+      "step": 2,
+      "step_name": "进入信号处理界面",
+      "element_id": "btn_subnav_signal_processing",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_enter_signal_processing"
+    },
+    {
+      "step": 3,
+      "step_name": "点击索力分析",
+      "element_id": "btn_cable_force_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_cable_force_analysis"
+    },
+    {
+      "step": 4,
+      "step_name": "点击添加",
+      "element_id": "btn_add_cable_force_information",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_add_cable_force_information"
+    }
+  ]
+}

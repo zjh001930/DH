@@ -1,0 +1,27 @@
+{
+  "task_id": "task_open_project",
+  "task_name": "打开工程",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入工程管理视图",
+      "element_id": "btn_nav_project_management",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_project_management"
+    },
+    {
+      "step": 2,
+      "step_name": "选择工程文件",
+      "element_id": "btn_select project",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_btn_select_project"
+    },
+    {
+      "step": 3,
+      "step_name": "打开已有工程",
+      "element_id": "btn_toolbar_open_project",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_open_existing_project"
+    }
+  ]
+}

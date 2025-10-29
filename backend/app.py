@@ -47,17 +47,33 @@ def initialize_modules():
     """初始化所有后端模块"""
     global intent_recognizer, workflow_engine, rag_handler, modules_initialized
     
+    # 1. 尝试初始化数据库连接（可选）
+    db_initialized = False
     try:
-        # 1. 初始化数据库连接
         from db.sql_repo import initialize_db
-        if not initialize_db():
-            raise Exception("PostgreSQL 数据库初始化失败")
-        print("✓ PostgreSQL 数据库连接成功")
-        
-        # 2. 初始化核心模块
+        if initialize_db():
+            print("✓ PostgreSQL 数据库连接成功")
+            db_initialized = True
+        else:
+            print("⚠️ PostgreSQL 数据库连接失败，但继续初始化其他模块")
+    except Exception as e:
+        print(f"⚠️ 数据库初始化失败: {e}，但继续初始化其他模块")
+    
+    # 2. 初始化核心模块（即使数据库失败也要继续）
+    try:
         intent_recognizer = IntentRecognizer()
+        print("✓ IntentRecognizer 初始化成功")
+        
         workflow_engine = WorkflowEngine()
-        rag_handler = RAGHandler()
+        print("✓ WorkflowEngine 初始化成功")
+        
+        # RAG Handler 可能需要向量数据库，如果失败就跳过
+        try:
+            rag_handler = RAGHandler()
+            print("✓ RAGHandler 初始化成功")
+        except Exception as e:
+            print(f"⚠️ RAGHandler 初始化失败: {e}")
+            rag_handler = None
         
         modules_initialized = True
         print("✓ Backend modules initialized successfully.")
@@ -152,6 +168,115 @@ def assistant_interface():
         # 捕获其他运行时错误
         print(f"Unhandled Error processing request: {e}")
         return jsonify({"error": "Internal Server Error during processing."}), 500
+
+
+@app.route('/chat', methods=['POST'])
+def chat_interface():
+    """聊天接口 - 使用意图识别决定返回任务步骤还是RAG问答"""
+    try:
+        # 暂时跳过模块初始化检查，直接使用意图识别
+        # if not modules_initialized:
+        #     return jsonify({'error': 'Backend modules not initialized'}), 503
+            
+        data = request.get_json()
+        user_input = data.get('user_input', '').strip()
+        
+        if not user_input:
+            return jsonify({'error': 'Missing user_input'}), 400
+        
+        # 进行意图识别
+        from workflow.intent_recognizer import IntentRecognizer
+        recognizer = IntentRecognizer()
+        intent_result = recognizer.recognize_intent(user_input)
+        task_id = intent_result.get('task_id')
+        confidence = intent_result.get('confidence', 0.0)
+        
+        print(f"Intent recognition - Task ID: {task_id}, Confidence: {confidence}")
+        
+        # 置信度阈值设为0.5（降低阈值以提高任务识别率）
+        confidence_threshold = 0.5
+        
+        if confidence >= confidence_threshold and task_id:
+            # 高置信度：返回任务步骤
+            try:
+                # 直接从意图识别器获取任务数据
+                task_data = recognizer.task_data.get(task_id, {})
+                
+                if not task_data:
+                    return jsonify({
+                        'response_type': 'open_qa',
+                        'recognized_task_id': task_id,
+                        'confidence': confidence,
+                        'data': {
+                            'answer': f'抱歉，找不到任务ID为 {task_id} 的相关信息。'
+                        }
+                    })
+                
+                # 构建任务引导响应
+                task_name = task_data.get('name', '未知任务')
+                steps = task_data.get('steps', [])
+                
+                if steps:
+                    steps_text = "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
+                    response_text = f"我来帮你完成「{task_name}」任务。\n\n具体步骤如下：\n{steps_text}"
+                else:
+                    response_text = f"我找到了「{task_name}」任务，但暂时没有详细步骤信息。"
+                
+                return jsonify({
+                    'response_type': 'task_execution',
+                    'recognized_task_id': task_id,
+                    'confidence': confidence,
+                    'data': {
+                        'task_name': task_name,
+                        'description': task_data.get('description', ''),
+                        'steps': steps
+                    }
+                })
+                
+            except Exception as e:
+                print(f"Error getting task data: {e}")
+                return jsonify({
+                    'response_type': 'open_qa',
+                    'recognized_task_id': task_id,
+                    'confidence': confidence,
+                    'data': {
+                        'answer': f'找到了相关任务（置信度: {confidence:.2f}），但获取详细信息时出现错误。'
+                    }
+                })
+        else:
+            # 低置信度：使用RAG问答
+            try:
+                from rag.handler import RAGHandler
+                rag_handler = RAGHandler()
+                rag_result = rag_handler.answer_question(user_input)
+                
+                answer = rag_result.get('answer', '抱歉，我无法找到相关信息。')
+                sources = rag_result.get('sources', [])
+                
+                return jsonify({
+                    'response_type': 'open_qa',
+                    'recognized_task_id': task_id,
+                    'confidence': confidence,
+                    'data': {
+                        'answer': answer,
+                        'sources': sources
+                    }
+                })
+                
+            except Exception as e:
+                print(f"RAG processing error: {e}")
+                return jsonify({
+                    'response_type': 'open_qa',
+                    'recognized_task_id': task_id,
+                    'confidence': confidence,
+                    'data': {
+                        'answer': f'抱歉，我对你的请求理解不够清楚（置信度: {confidence:.2f}）。请尝试更具体地描述你想要完成的任务，或者检查AI服务是否正常运行。'
+                    }
+                })
+        
+    except Exception as e:
+        print(f"Chat endpoint error: {e}")
+        return jsonify({'error': str(e)}), 500
 
 
 # --- 5.2.2. 获取任务列表接口: /tasks ---

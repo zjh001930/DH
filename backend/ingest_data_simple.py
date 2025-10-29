@@ -61,59 +61,91 @@ class SimpleDataIngester:
         """导入任务数据到 PostgreSQL"""
         logger.info("开始导入任务数据...")
         
-        task_file = os.path.join(self.initial_data_dir, "task_full_fft_analysis.json")
-        if not os.path.exists(task_file):
-            logger.warning(f"任务数据文件不存在: {task_file}")
+        # 扫描所有任务文件
+        task_files = []
+        try:
+            for filename in os.listdir(self.initial_data_dir):
+                if filename.startswith('task_') and filename.endswith('.json'):
+                    task_files.append(filename)
+        except Exception as e:
+            logger.error(f"扫描任务文件失败: {e}")
             return False
         
-        try:
-            with open(task_file, 'r', encoding='utf-8') as f:
-                task_data = json.load(f)
-            
-            # 插入任务基本信息
-            task_success = insert_task({
-                'task_id': task_data['task_id'],
-                'task_name': task_data['task_name'],
-                'description': task_data['description']
-            })
-            
-            if not task_success:
-                logger.error("插入任务基本信息失败")
-                return False
-            
-            # 处理任务步骤
-            steps_data = []
-            for step in task_data['steps']:
-                # 查找对应的截图文件
-                screenshot_path = None
-                if 'element_id' in step:
-                    screenshot_file = f"{step['element_id']}.png"
-                    screenshot_full_path = os.path.join(self.images_dir, screenshot_file)
-                    if os.path.exists(screenshot_full_path):
-                        screenshot_path = f"/data/images/{screenshot_file}"
-                
-                steps_data.append({
-                    'step': step['step'],
-                    'step_name': step['step_name'],
-                    'element_id': step.get('element_id'),
-                    'action': step.get('action'),
-                    'dialogue_copy_id': step.get('dialogue_copy_id'),
-                    'screenshot_path': screenshot_path
-                })
-            
-            # 插入任务步骤
-            steps_success = insert_task_steps(task_data['task_id'], steps_data)
-            
-            if steps_success:
-                logger.info("✓ 任务数据导入成功")
-                return True
-            else:
-                logger.error("✗ 任务步骤导入失败")
-                return False
-            
-        except Exception as e:
-            logger.error(f"✗ 导入任务数据失败: {e}")
+        if not task_files:
+            logger.warning(f"在 {self.initial_data_dir} 中未找到任务文件")
             return False
+        
+        logger.info(f"找到 {len(task_files)} 个任务文件")
+        
+        success_count = 0
+        total_count = len(task_files)
+        
+        for task_filename in task_files:
+            task_file = os.path.join(self.initial_data_dir, task_filename)
+            logger.info(f"处理任务文件: {task_filename}")
+            
+            try:
+                with open(task_file, 'r', encoding='utf-8') as f:
+                    task_data = json.load(f)
+                
+                # 检查必要字段
+                if 'task_id' not in task_data:
+                    logger.warning(f"跳过文件 {task_filename}: 缺少 task_id")
+                    continue
+                
+                # 插入任务基本信息
+                task_info = {
+                    'task_id': task_data['task_id'],
+                    'task_name': task_data.get('task_name', task_data['task_id']),
+                    'description': task_data.get('description', '')
+                }
+                
+                task_success = insert_task(task_info)
+                
+                if not task_success:
+                    logger.error(f"插入任务基本信息失败: {task_filename}")
+                    continue
+                
+                # 处理任务步骤（如果存在）
+                if 'steps' in task_data and task_data['steps']:
+                    steps_data = []
+                    for step in task_data['steps']:
+                        # 查找对应的截图文件
+                        screenshot_path = None
+                        if 'element_id' in step:
+                            screenshot_file = f"{step['element_id']}.png"
+                            screenshot_full_path = os.path.join(self.images_dir, screenshot_file)
+                            if os.path.exists(screenshot_full_path):
+                                screenshot_path = f"/tasks/screenshots/{screenshot_file}"
+                        
+                        steps_data.append({
+                            'step': step.get('step', 0),
+                            'step_name': step.get('step_name', ''),
+                            'element_id': step.get('element_id'),
+                            'action': step.get('action'),
+                            'dialogue_copy_id': step.get('dialogue_copy_id'),
+                            'screenshot_path': screenshot_path
+                        })
+                    
+                    # 插入任务步骤
+                    steps_success = insert_task_steps(task_data['task_id'], steps_data)
+                    
+                    if steps_success:
+                        logger.info(f"✓ 任务数据导入成功: {task_filename}")
+                        success_count += 1
+                    else:
+                        logger.error(f"✗ 任务步骤导入失败: {task_filename}")
+                else:
+                    # 没有步骤数据，但任务基本信息已导入
+                    logger.info(f"✓ 任务基本信息导入成功: {task_filename} (无步骤数据)")
+                    success_count += 1
+                
+            except Exception as e:
+                logger.error(f"✗ 处理任务文件失败 {task_filename}: {e}")
+                continue
+        
+        logger.info(f"任务数据导入完成: {success_count}/{total_count} 成功")
+        return success_count > 0
     
     def ingest_ui_elements(self) -> bool:
         """导入 UI 元素数据"""

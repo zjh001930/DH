@@ -1,0 +1,27 @@
+{
+  "task_id": "task_set_vehicle_ride_comfort",
+  "task_name": "设置汽车平顺性参数",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量导航",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击信号处理",
+      "element_id": "btn_subnav_signal_processing",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_signal_processing"
+    },
+    {
+      "step": 3,
+      "step_name": "点击汽车平顺性",
+      "element_id": "btn_vehicle_ride_comfort",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_vehicle_ride_comfort"
+    }
+  ]
+}

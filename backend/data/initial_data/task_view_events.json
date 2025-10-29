@@ -1,0 +1,20 @@
+{
+  "task_id": "task_view_events",
+  "task_name": "查看存储事件列表",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "切换到分析模式",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis_nav"
+    },
+    {
+      "step": 2,
+      "step_name": "点击子导航-事件",
+      "element_id": "btn_analysis_subnav_event",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_event_subnav"
+    }
+  ]
+}

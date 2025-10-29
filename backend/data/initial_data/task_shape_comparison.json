@@ -1,0 +1,27 @@
+{
+  "task_id": "task_shape_comparison",
+  "task_name": "振形对比",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击模态",
+      "element_id": "btn_nav_modality",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_modality"
+    },
+    {
+      "step": 2,
+      "step_name": "点击振型",
+      "element_id": "btn_modal_shape",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_modal_shape"
+    },
+    {
+      "step": 3,
+      "step_name": "点击振形对比",
+      "element_id": "btn_shape_comparison",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_shape_comparison"
+    }
+  ]
+}

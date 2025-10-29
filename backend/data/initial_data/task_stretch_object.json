@@ -1,0 +1,41 @@
+{
+  "task_id": "task_stretch_object",
+  "task_name": "拉伸对象",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击模态",
+      "element_id": "btn_nav_modality",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_modality"
+    },
+    {
+      "step": 2,
+      "step_name": "点击模型",
+      "element_id": "btn_model",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_model"
+    },
+    {
+      "step": 3,
+      "step_name": "选中子结构",
+      "element_id": "btn_select_substructure",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_select_substructure"
+    },
+    {
+      "step": 4,
+      "step_name": "点击拉伸对象",
+      "element_id": "btn_stretch_object",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_stretch_object"
+    },
+    {
+      "step": 5,
+      "step_name": "设定拉伸参数",
+      "element_id": "dlg_set_stretch_params",
+      "action": "input",
+      "dialogue_copy_id": "task_step5_set_stretch_params"
+    }
+  ]
+}

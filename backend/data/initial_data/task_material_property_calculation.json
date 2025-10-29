@@ -1,0 +1,27 @@
+{
+  "task_id": "task_material_property_calculation",
+  "task_name": "材料特性计算",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击分析模式",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis_nav"
+    },
+    {
+      "step": 2,
+      "step_name": "点击分析",
+      "element_id": "btn_subnav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_analysis"
+    },
+    {
+      "step": 3,
+      "step_name": "点击材料特性计算",
+      "element_id": "btn_analysis_material_calculation",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_material_calculation"
+    }
+  ]
+}

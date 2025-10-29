@@ -1,0 +1,27 @@
+{
+  "task_id": "task_change_animation_speed",
+  "task_name": "改变动画播放速度",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击减速按钮",
+      "element_id": "btn_slow_down",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_slow_down"
+    },
+    {
+      "step": 2,
+      "step_name": "点击加速按钮",
+      "element_id": "btn_speed_up",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_speed_up"
+    },
+    {
+      "step": 3,
+      "step_name": "点击恢复按钮",
+      "element_id": "btn_recover",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_recover"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "task_id": "task_rotor_balancer",
+  "task_name": "使用现场动平衡",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量导航",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击测量",
+      "element_id": "btn_subnav_measure",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_measure"
+    },
+    {
+      "step": 3,
+      "step_name": "点击现场动平衡",
+      "element_id": "btn_rotor_balancer",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_rotor_balancer"
+    }
+  ]
+}

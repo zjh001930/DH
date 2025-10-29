@@ -1,0 +1,27 @@
+{
+  "task_id": "task_2d_graph_display",
+  "task_name": "2D图谱展示",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击测量",
+      "element_id": "btn_subnav_measure",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_measurement"
+    },
+    {
+      "step": 3,
+      "step_name": "点击2D图谱图标",
+      "element_id": "btn_add_2d_graph",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_2d_graph"
+    }
+  ]
+}

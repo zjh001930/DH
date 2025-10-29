@@ -1,0 +1,49 @@
+{
+  "task_id": "task_modal_animation_controls",
+  "task_name": "模态动画控制与显示设置",
+  "description": "包括动静对比、矢量图、云图操作",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击模态",
+      "element_id": "btn_nav_modality",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_modality"
+    },
+    {
+      "step": 2,
+      "step_name": "点击振型",
+      "element_id": "btn_modal_shape",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_modal_shape"
+    },
+    {
+      "step": 3,
+      "step_name": "播放动画",
+      "element_id": "btn_animation_play",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_play_animation"
+    },
+    {
+      "step": 4,
+      "step_name": "切换动静对比",
+      "element_id": "btn_static_dynamic_comparison",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_toggle_static_dynamic"
+    },
+    {
+      "step": 5,
+      "step_name": "显示矢量图",
+      "element_id": "btn_vector_display",
+      "action": "click",
+      "dialogue_copy_id": "task_step5_show_vector_display"
+    },
+    {
+      "step": 6,
+      "step_name": "显示彩色云图",
+      "element_id": "btn_colormap_display",
+      "action": "click",
+      "dialogue_copy_id": "task_step6_show_colormap"
+    }
+  ]
+}

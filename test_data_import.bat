@@ -31,7 +31,7 @@ echo.
 echo 3. 测试 Ollama 模型...
 curl -s -X POST http://localhost:11434/api/generate ^
   -H "Content-Type: application/json" ^
-  -d "{\"model\": \"llama3\", \"prompt\": \"你好，请简单介绍一下自己\", \"stream\": false}"
+  -d "{\"model\": \"qwen2.5:3b-instruct\", \"prompt\": \"你好，请简单介绍一下自己\", \"stream\": false}"
 
 echo.
 echo.

@@ -1,0 +1,42 @@
+{
+  "task_id": "task_realtime_measurement",
+  "task_name": "实时测量",
+  "description": "引导用户进行实时采集测量数据",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击测量",
+      "element_id": "btn_subnav_measure",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_measurement"
+    },
+    {
+      "step": 3,
+      "step_name": "点击采集",
+      "element_id": "btn_measure_acquire",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_acquire"
+    },
+    {
+      "step": 4,
+      "step_name": "保存测试文件",
+      "element_id": "dlg_save_project",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_save"
+    },
+    {
+      "step": 5,
+      "step_name": "点击停止",
+      "element_id": "btn_measure_stop",
+      "action": "click",
+      "dialogue_copy_id": "task_step5_click_stop"
+    }
+  ]
+}

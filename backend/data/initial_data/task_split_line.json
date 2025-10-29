@@ -1,0 +1,41 @@
+{
+  "task_id": "task_split_line",
+  "task_name": "分割线段",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击模态",
+      "element_id": "btn_nav_modality",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_modality"
+    },
+    {
+      "step": 2,
+      "step_name": "点击模型",
+      "element_id": "btn_model",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_model"
+    },
+    {
+      "step": 3,
+      "step_name": "选中子结构中的线段",
+      "element_id": "btn_select_line",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_select_line"
+    },
+    {
+      "step": 4,
+      "step_name": "点击分割线段",
+      "element_id": "btn_split_line",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_split_line"
+    },
+    {
+      "step": 5,
+      "step_name": "设定分割参数",
+      "element_id": "dlg_set_split_params",
+      "action": "input",
+      "dialogue_copy_id": "task_step5_set_split_params"
+    }
+  ]
+}

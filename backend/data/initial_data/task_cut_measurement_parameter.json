@@ -1,0 +1,34 @@
+{
+  "task_id": "task_cut_measurement_parameter",
+  "task_name": "剪切参数",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量导航",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击参数管理",
+      "element_id": "btn_subnav_param_management",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_param_management"
+    },
+    {
+      "step": 3,
+      "step_name": "右击保存的参数",
+      "element_id": "btn_parameter_operation_options",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_parameter_operation_options"
+    },
+    {
+      "step": 4,
+      "step_name": "剪切参数",
+      "element_id": "btn_cut_measurement_parameter",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_cut_measurement_parameter"
+    }
+  ]
+}

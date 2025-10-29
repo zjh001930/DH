@@ -1,0 +1,19 @@
+2025-10-29 13:51:09,252 - INFO - [LOCAL_DATA_INGESTER] 初始化完成
+2025-10-29 13:51:09,252 - INFO - [LOCAL_DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:51:09,252 - INFO - [LOCAL_DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-10-29 13:51:09,252 - INFO - [LOCAL_DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-10-29 13:51:09,252 - INFO - ============================================================
+2025-10-29 13:51:09,253 - INFO - AI 助手数据导入工具 - 本地版本
+2025-10-29 13:51:09,255 - INFO - ============================================================
+2025-10-29 13:51:09,255 - INFO - 检查本地服务状态...
+2025-10-29 13:51:09,279 - INFO - ✓ PostgreSQL 连接成功
+2025-10-29 13:51:09,307 - INFO - ✓ Weaviate 连接成功
+2025-10-29 13:51:09,318 - INFO - ✓ Ollama 连接成功
+2025-10-29 13:51:09,318 - INFO - 初始化数据库...
+2025-10-29 13:51:09,319 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@localhost:5432/ai_assistant
+2025-10-29 13:51:09,407 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-29 13:51:09,407 - INFO - [VECTOR_REPO] 正在初始化 Weaviate: http://localhost:8080
+2025-10-29 13:51:11,927 - ERROR - [WEAVIATE] 导入失败: cannot import name '__version__' from partially initialized module 'weaviate' (most likely due to a circular import) (C:\Users\86152\AppData\Local\Programs\Python\Python313\Lib\site-packages\weaviate\__init__.py)
+2025-10-29 13:51:12,122 - ERROR - [WEAVIATE] 备用连接也失败: cannot import name '__version__' from partially initialized module 'weaviate' (most likely due to a circular import) (C:\Users\86152\AppData\Local\Programs\Python\Python313\Lib\site-packages\weaviate\__init__.py)
+2025-10-29 13:51:12,123 - ERROR - [VECTOR_REPO] ✗ Weaviate 初始化失败: 'NoneType' object has no attribute 'is_ready'
+2025-10-29 13:51:12,123 - ERROR - Weaviate 数据库初始化失败

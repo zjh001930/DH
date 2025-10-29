@@ -1,0 +1,20 @@
+{
+  "task_id": "task_view_analysis_interface",
+  "task_name": "查看主分析界面",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "切换到分析模式",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_switch_to_analysis"
+    },
+    {
+      "step": 2,
+      "step_name": "点击分析按钮",
+      "element_id": "btn_subnav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_analysis"
+    }
+  ]
+}

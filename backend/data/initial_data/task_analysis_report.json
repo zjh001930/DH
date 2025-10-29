@@ -1,0 +1,35 @@
+{
+  "task_id": "task_analysis_report",
+  "task_name": "分析报告",
+  "description": "分析报告：输出数据、图表、报告",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击分析",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis"
+    },
+    {
+      "step": 2,
+      "step_name": "点击输出",
+      "element_id": "btn_analysis_subnav_output",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_output"
+    },
+    {
+      "step": 3,
+      "step_name": "选择导出格式",
+      "element_id": "btn_export_format",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_export_format"
+    },
+    {
+      "step": 4,
+      "step_name": "点击结果的输出",
+      "element_id": "btn_analysis_subnav_output_1",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_output_1"
+    }
+  ]
+}

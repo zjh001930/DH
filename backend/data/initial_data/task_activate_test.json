@@ -1,0 +1,34 @@
+{
+  "task_id": "task_activate_test",
+  "task_name": "激活测试",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "切换到分析模式",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis_nav"
+    },
+    {
+      "step": 2,
+      "step_name": "点击子导航分析",
+      "element_id": "btn_subnav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_analysis"
+    },
+    {
+      "step": 3,
+      "step_name": "右击选中的测试",
+      "element_id": "btn_select_test_file",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_select_test_file"
+    },
+    {
+      "step": 4,
+      "step_name": "点击激活",
+      "element_id": "btn_activate_test",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_activate_test"
+    }
+  ]
+}

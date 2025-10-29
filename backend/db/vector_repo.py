@@ -20,33 +20,39 @@ def get_weaviate_client():
     
     if weaviate_client is None:
         try:
-            # 使用兼容的导入方式
+            # 使用更安全的导入方式
             import weaviate
-            weaviate_client = weaviate.Client(url=WEAVIATE_URL)
+            
+            # 检查 Weaviate 版本并使用相应的客户端创建方式
+            try:
+                # 尝试新版本的客户端创建方式
+                weaviate_client = weaviate.Client(url=WEAVIATE_URL)
+            except Exception:
+                # 如果新版本方式失败，尝试旧版本方式
+                try:
+                    weaviate_client = weaviate.Client(
+                        url=WEAVIATE_URL,
+                        timeout_config=(5, 15)
+                    )
+                except Exception:
+                    # 最后尝试最基本的连接方式
+                    import requests
+                    # 先测试连接
+                    response = requests.get(f"{WEAVIATE_URL}/v1/.well-known/ready", timeout=5)
+                    if response.status_code == 200:
+                        weaviate_client = weaviate.Client(WEAVIATE_URL)
+                    else:
+                        raise Exception(f"Weaviate服务不可用: {response.status_code}")
+            
             logger.info(f"[WEAVIATE] 客户端连接成功: {WEAVIATE_URL}")
+            
         except ImportError as e:
             logger.error(f"[WEAVIATE] 导入失败: {e}")
-            # 尝试备用导入方式
-            try:
-                import weaviate.client as weaviate_client_module
-                weaviate_client = weaviate_client_module.Client(url=WEAVIATE_URL)
-                logger.info(f"[WEAVIATE] 使用备用方式连接成功: {WEAVIATE_URL}")
-            except Exception as backup_e:
-                logger.error(f"[WEAVIATE] 备用连接也失败: {backup_e}")
-                return None
+            logger.error("请确保已安装 weaviate-client: pip install weaviate-client")
+            return None
         except Exception as e:
             logger.error(f"[WEAVIATE] 连接失败: {e}")
             return None
-    
-    return weaviate_client
-    
-    if weaviate_client is None:
-        try:
-            weaviate_client = weaviate.Client(url=WEAVIATE_URL)
-            logger.info(f"[VECTOR_REPO] Weaviate 客户端连接成功: {WEAVIATE_URL}")
-        except Exception as e:
-            logger.error(f"[VECTOR_REPO] Weaviate 客户端连接失败: {e}")
-            raise
     
     return weaviate_client
 

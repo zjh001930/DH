@@ -1,0 +1,34 @@
+{
+  "task_id": "task_wavelet_analysis",
+  "task_name": "进行小波分析",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "切换到分析模式",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis_nav"
+    },
+    {
+      "step": 2,
+      "step_name": "点击子导航分析",
+      "element_id": "btn_subnav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_analysis"
+    },
+    {
+      "step": 3,
+      "step_name": "点击添加小波分析算法",
+      "element_id": "btn_wavelet_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_wavelet_analysis"
+    },
+    {
+      "step": 4,
+      "step_name": "设置算法参数进行分析",
+      "element_id": "dlg_wavelet_analysis_setting",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_set wavelet_analysis_setting"
+    }
+  ]
+}

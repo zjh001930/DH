@@ -1,0 +1,27 @@
+{
+  "task_id": "task_frame_by_frame_display",
+  "task_name": "按帧显示动画",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击按帧显示",
+      "element_id": "btn_frame_mode",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_frame_mode"
+    },
+    {
+      "step": 2,
+      "step_name": "点击下一帧",
+      "element_id": "btn_next_frame",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_next_frame"
+    },
+    {
+      "step": 3,
+      "step_name": "点击上一帧",
+      "element_id": "btn_last_frame",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_last_frame"
+    }
+  ]
+}

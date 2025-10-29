@@ -93,3 +93,519 @@
 2025-10-25 20:17:16,767 - INFO - ✓ 您的 AI 助手现在可以提供任务引导服务
 2025-10-25 20:17:16,767 - INFO - ⚠ 注意: RAG 知识问答功能需要修复 Weaviate 后重新导入
 2025-10-25 20:17:16,767 - INFO - ============================================================
+2025-10-27 20:27:41,936 - INFO - [SIMPLE_INGESTER] 初始化完成
+2025-10-27 20:27:41,937 - INFO - [SIMPLE_INGESTER] 数据目录: /app/data
+2025-10-27 20:27:41,938 - INFO - ============================================================
+2025-10-27 20:27:41,938 - INFO - AI 助手简化数据导入工具
+2025-10-27 20:27:41,939 - INFO - 注意: 此版本跳过 Weaviate 向量数据库导入
+2025-10-27 20:27:41,939 - INFO - ============================================================
+2025-10-27 20:27:41,939 - INFO - 检查服务状态...
+2025-10-27 20:27:41,943 - INFO - ✓ 数据目录检查通过
+2025-10-27 20:27:41,943 - INFO - 初始化 PostgreSQL 数据库...
+2025-10-27 20:27:41,944 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@postgres:5432/ai_assistant
+2025-10-27 20:27:42,089 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-27 20:27:42,095 - INFO - 开始数据导入...
+2025-10-27 20:27:42,096 - INFO - 开始导入任务数据...
+2025-10-27 20:27:42,124 - INFO - [SQL_REPO] 创建新任务: task_full_fft_analysis
+2025-10-27 20:27:42,169 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-27 20:27:42,169 - INFO - ✓ 任务数据导入成功
+2025-10-27 20:27:42,170 - INFO - 开始导入 UI 元素数据...
+2025-10-27 20:27:42,203 - INFO - ✓ UI 元素数据导入完成: 6/6 成功
+2025-10-27 20:27:42,204 - INFO - ============================================================
+2025-10-27 20:27:42,204 - INFO - ✓ 简化数据导入完成！任务和UI数据已成功导入
+2025-10-27 20:27:42,205 - INFO - ✓ 您的 AI 助手现在可以提供任务引导服务
+2025-10-27 20:27:42,205 - INFO - ⚠ 注意: RAG 知识问答功能需要修复 Weaviate 后重新导入
+2025-10-27 20:27:42,205 - INFO - ============================================================
+2025-10-27 20:31:38,413 - INFO - [SIMPLE_INGESTER] 初始化完成
+2025-10-27 20:31:38,413 - INFO - [SIMPLE_INGESTER] 数据目录: /app/data
+2025-10-27 20:31:38,414 - INFO - ============================================================
+2025-10-27 20:31:38,414 - INFO - AI 助手简化数据导入工具
+2025-10-27 20:31:38,415 - INFO - 注意: 此版本跳过 Weaviate 向量数据库导入
+2025-10-27 20:31:38,415 - INFO - ============================================================
+2025-10-27 20:31:38,416 - INFO - 检查服务状态...
+2025-10-27 20:31:38,417 - INFO - ✓ 数据目录检查通过
+2025-10-27 20:31:38,418 - INFO - 初始化 PostgreSQL 数据库...
+2025-10-27 20:31:38,418 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@postgres:5432/ai_assistant
+2025-10-27 20:31:38,512 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-27 20:31:38,513 - INFO - 开始数据导入...
+2025-10-27 20:31:38,513 - INFO - 开始导入任务数据...
+2025-10-27 20:31:38,531 - INFO - [SQL_REPO] 更新任务: task_full_fft_analysis
+2025-10-27 20:31:38,580 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-27 20:31:38,581 - INFO - ✓ 任务数据导入成功
+2025-10-27 20:31:38,581 - INFO - 开始导入 UI 元素数据...
+2025-10-27 20:31:38,594 - INFO - ✓ UI 元素数据导入完成: 6/6 成功
+2025-10-27 20:31:38,595 - INFO - ============================================================
+2025-10-27 20:31:38,596 - INFO - ✓ 简化数据导入完成！任务和UI数据已成功导入
+2025-10-27 20:31:38,596 - INFO - ✓ 您的 AI 助手现在可以提供任务引导服务
+2025-10-27 20:31:38,596 - INFO - ⚠ 注意: RAG 知识问答功能需要修复 Weaviate 后重新导入
+2025-10-27 20:31:38,597 - INFO - ============================================================
+2025-10-29 13:31:26,462 - INFO - [SIMPLE_INGESTER] 初始化完成
+2025-10-29 13:31:26,462 - INFO - [SIMPLE_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:31:26,462 - INFO - ============================================================
+2025-10-29 13:31:26,463 - INFO - AI 助手简化数据导入工具
+2025-10-29 13:31:26,463 - INFO - 注意: 此版本跳过 Weaviate 向量数据库导入
+2025-10-29 13:31:26,463 - INFO - ============================================================
+2025-10-29 13:31:26,463 - INFO - 检查服务状态...
+2025-10-29 13:31:26,463 - INFO - ✓ 数据目录检查通过
+2025-10-29 13:31:26,463 - INFO - 初始化 PostgreSQL 数据库...
+2025-10-29 13:31:26,463 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@localhost:5432/ai_assistant
+2025-10-29 13:31:26,830 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-29 13:31:26,830 - INFO - 开始数据导入...
+2025-10-29 13:31:26,831 - INFO - 开始导入任务数据...
+2025-10-29 13:31:26,840 - INFO - [SQL_REPO] 更新任务: task_full_fft_analysis
+2025-10-29 13:31:26,856 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:31:26,856 - INFO - ✓ 任务数据导入成功
+2025-10-29 13:31:26,856 - INFO - 开始导入 UI 元素数据...
+2025-10-29 13:31:27,352 - INFO - ✓ UI 元素数据导入完成: 180/180 成功
+2025-10-29 13:31:27,352 - INFO - ============================================================
+2025-10-29 13:31:27,352 - INFO - ✓ 简化数据导入完成！任务和UI数据已成功导入
+2025-10-29 13:31:27,352 - INFO - ✓ 您的 AI 助手现在可以提供任务引导服务
+2025-10-29 13:31:27,353 - INFO - ⚠ 注意: RAG 知识问答功能需要修复 Weaviate 后重新导入
+2025-10-29 13:31:27,353 - INFO - ============================================================
+2025-10-29 13:35:42,187 - INFO - [SIMPLE_INGESTER] 初始化完成
+2025-10-29 13:35:42,187 - INFO - [SIMPLE_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:35:42,187 - INFO - ============================================================
+2025-10-29 13:35:42,187 - INFO - AI 助手简化数据导入工具
+2025-10-29 13:35:42,187 - INFO - 注意: 此版本跳过 Weaviate 向量数据库导入
+2025-10-29 13:35:42,187 - INFO - ============================================================
+2025-10-29 13:35:42,187 - INFO - 检查服务状态...
+2025-10-29 13:35:42,187 - INFO - ✓ 数据目录检查通过
+2025-10-29 13:35:42,187 - INFO - 初始化 PostgreSQL 数据库...
+2025-10-29 13:35:42,188 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@localhost:5432/ai_assistant
+2025-10-29 13:35:42,260 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-29 13:35:42,261 - INFO - 开始数据导入...
+2025-10-29 13:35:42,261 - INFO - 开始导入任务数据...
+2025-10-29 13:35:42,261 - WARNING - 任务数据文件不存在: C:\Donghua\ai_assistant_tool\backend\data\initial_data\task_full_fft_analysis.json
+2025-10-29 13:35:42,261 - INFO - 开始导入 UI 元素数据...
+2025-10-29 13:35:42,510 - INFO - ✓ UI 元素数据导入完成: 180/180 成功
+2025-10-29 13:35:42,510 - INFO - ============================================================
+2025-10-29 13:35:42,510 - WARNING - ⚠ 数据导入部分成功，请检查上述错误信息
+2025-10-29 13:35:42,510 - INFO - 任务数据: ✗
+2025-10-29 13:35:42,510 - INFO - UI元素: ✓
+2025-10-29 13:35:42,511 - INFO - ============================================================
+2025-10-29 13:40:33,539 - INFO - [SIMPLE_INGESTER] 初始化完成
+2025-10-29 13:40:33,540 - INFO - [SIMPLE_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:40:33,540 - INFO - ============================================================
+2025-10-29 13:40:33,540 - INFO - AI 助手简化数据导入工具
+2025-10-29 13:40:33,540 - INFO - 注意: 此版本跳过 Weaviate 向量数据库导入
+2025-10-29 13:40:33,540 - INFO - ============================================================
+2025-10-29 13:40:33,540 - INFO - 检查服务状态...
+2025-10-29 13:40:33,540 - INFO - ✓ 数据目录检查通过
+2025-10-29 13:40:33,540 - INFO - 初始化 PostgreSQL 数据库...
+2025-10-29 13:40:33,540 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@localhost:5432/ai_assistant
+2025-10-29 13:40:33,717 - INFO - [SQL_REPO] ✓ 数据库初始化成功
+2025-10-29 13:40:33,717 - INFO - 开始数据导入...
+2025-10-29 13:40:33,718 - INFO - 开始导入任务数据...
+2025-10-29 13:40:33,720 - INFO - 找到 101 个任务文件
+2025-10-29 13:40:33,720 - INFO - 处理任务文件: task_2d_graph_display.json
+2025-10-29 13:40:33,740 - INFO - [SQL_REPO] 创建新任务: task_2d_graph_display
+2025-10-29 13:40:33,784 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:33,784 - INFO - ✓ 任务数据导入成功: task_2d_graph_display.json
+2025-10-29 13:40:33,785 - INFO - 处理任务文件: task_acoustic_array_settings.json
+2025-10-29 13:40:33,789 - INFO - [SQL_REPO] 创建新任务: task_acoustic_array_settings
+2025-10-29 13:40:33,814 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:33,815 - INFO - ✓ 任务数据导入成功: task_acoustic_array_settings.json
+2025-10-29 13:40:33,815 - INFO - 处理任务文件: task_acoustic_power_setup.json
+2025-10-29 13:40:33,826 - INFO - [SQL_REPO] 创建新任务: task_acoustic_power_setup
+2025-10-29 13:40:33,858 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:33,859 - INFO - ✓ 任务数据导入成功: task_acoustic_power_setup.json
+2025-10-29 13:40:33,859 - INFO - 处理任务文件: task_acoustic_sound_pressure_setup.json
+2025-10-29 13:40:33,867 - INFO - [SQL_REPO] 创建新任务: task_acoustic_sound_pressure_setup
+2025-10-29 13:40:33,887 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:33,887 - INFO - ✓ 任务数据导入成功: task_acoustic_sound_pressure_setup.json
+2025-10-29 13:40:33,888 - INFO - 处理任务文件: task_activate_test.json
+2025-10-29 13:40:33,896 - INFO - [SQL_REPO] 创建新任务: task_activate_test
+2025-10-29 13:40:33,922 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:33,922 - INFO - ✓ 任务数据导入成功: task_activate_test.json
+2025-10-29 13:40:33,922 - INFO - 处理任务文件: task_add_cable_force_information.json
+2025-10-29 13:40:33,925 - INFO - [SQL_REPO] 创建新任务: task_add_cable_force_information
+2025-10-29 13:40:33,934 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:33,935 - INFO - ✓ 任务数据导入成功: task_add_cable_force_information.json
+2025-10-29 13:40:33,935 - INFO - 处理任务文件: task_add_line.json
+2025-10-29 13:40:33,943 - INFO - [SQL_REPO] 创建新任务: task_add_line
+2025-10-29 13:40:33,958 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:33,959 - INFO - ✓ 任务数据导入成功: task_add_line.json
+2025-10-29 13:40:33,959 - INFO - 处理任务文件: task_add_plane.json
+2025-10-29 13:40:33,965 - INFO - [SQL_REPO] 创建新任务: task_add_plane
+2025-10-29 13:40:33,979 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:33,980 - INFO - ✓ 任务数据导入成功: task_add_plane.json
+2025-10-29 13:40:33,980 - INFO - 处理任务文件: task_add_point.json
+2025-10-29 13:40:33,982 - INFO - [SQL_REPO] 创建新任务: task_add_point
+2025-10-29 13:40:33,998 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:33,999 - INFO - ✓ 任务数据导入成功: task_add_point.json
+2025-10-29 13:40:33,999 - INFO - 处理任务文件: task_add_substructure.json
+2025-10-29 13:40:34,004 - INFO - [SQL_REPO] 创建新任务: task_add_substructure
+2025-10-29 13:40:34,018 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,019 - INFO - ✓ 任务数据导入成功: task_add_substructure.json
+2025-10-29 13:40:34,019 - INFO - 处理任务文件: task_analysis_report.json
+2025-10-29 13:40:34,022 - INFO - [SQL_REPO] 创建新任务: task_analysis_report
+2025-10-29 13:40:34,028 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,029 - INFO - ✓ 任务数据导入成功: task_analysis_report.json
+2025-10-29 13:40:34,029 - INFO - 处理任务文件: task_automatic_modeling.json
+2025-10-29 13:40:34,036 - INFO - [SQL_REPO] 创建新任务: task_automatic_modeling
+2025-10-29 13:40:34,047 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,047 - INFO - ✓ 任务数据导入成功: task_automatic_modeling.json
+2025-10-29 13:40:34,048 - INFO - 处理任务文件: task_auto_generate_point_number.json
+2025-10-29 13:40:34,052 - INFO - [SQL_REPO] 创建新任务: task_auto_generate_point_number
+2025-10-29 13:40:34,065 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,065 - INFO - ✓ 任务数据导入成功: task_auto_generate_point_number.json
+2025-10-29 13:40:34,066 - INFO - 处理任务文件: task_change_animation_amplitude.json
+2025-10-29 13:40:34,067 - INFO - [SQL_REPO] 创建新任务: task_change_animation_amplitude
+2025-10-29 13:40:34,074 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,075 - INFO - ✓ 任务数据导入成功: task_change_animation_amplitude.json
+2025-10-29 13:40:34,075 - INFO - 处理任务文件: task_change_animation_speed.json
+2025-10-29 13:40:34,078 - INFO - [SQL_REPO] 创建新任务: task_change_animation_speed
+2025-10-29 13:40:34,084 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,084 - INFO - ✓ 任务数据导入成功: task_change_animation_speed.json
+2025-10-29 13:40:34,084 - INFO - 处理任务文件: task_channel_characteristics_settings.json
+2025-10-29 13:40:34,087 - INFO - [SQL_REPO] 创建新任务: task_set_channel_characteristics
+2025-10-29 13:40:34,101 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,101 - INFO - ✓ 任务数据导入成功: task_channel_characteristics_settings.json
+2025-10-29 13:40:34,101 - INFO - 处理任务文件: task_channel_grouping.json
+2025-10-29 13:40:34,104 - INFO - [SQL_REPO] 创建新任务: task_channel_grouping
+2025-10-29 13:40:34,118 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,119 - INFO - ✓ 任务数据导入成功: task_channel_grouping.json
+2025-10-29 13:40:34,119 - INFO - 处理任务文件: task_channel_table_switch.json
+2025-10-29 13:40:34,121 - INFO - [SQL_REPO] 创建新任务: task_channel_table_switch
+2025-10-29 13:40:34,127 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,127 - INFO - ✓ 任务数据导入成功: task_channel_table_switch.json
+2025-10-29 13:40:34,127 - INFO - 处理任务文件: task_clear_point_number.json
+2025-10-29 13:40:34,130 - INFO - [SQL_REPO] 创建新任务: task_clear_point_number
+2025-10-29 13:40:34,138 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,139 - INFO - ✓ 任务数据导入成功: task_clear_point_number.json
+2025-10-29 13:40:34,139 - INFO - 处理任务文件: task_copy_measurement_channel.json
+2025-10-29 13:40:34,145 - INFO - [SQL_REPO] 创建新任务: task_copy_measurement_channel
+2025-10-29 13:40:34,155 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,156 - INFO - ✓ 任务数据导入成功: task_copy_measurement_channel.json
+2025-10-29 13:40:34,156 - INFO - 处理任务文件: task_copy_measurement_parameter.json
+2025-10-29 13:40:34,161 - INFO - [SQL_REPO] 创建新任务: task_copy_measurement_parameter
+2025-10-29 13:40:34,174 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,174 - INFO - ✓ 任务数据导入成功: task_copy_measurement_parameter.json
+2025-10-29 13:40:34,174 - INFO - 处理任务文件: task_copy_object.json
+2025-10-29 13:40:34,176 - INFO - [SQL_REPO] 创建新任务: task_mirror_object
+2025-10-29 13:40:34,192 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,193 - INFO - ✓ 任务数据导入成功: task_copy_object.json
+2025-10-29 13:40:34,194 - INFO - 处理任务文件: task_cut_measurement_parameter.json
+2025-10-29 13:40:34,197 - INFO - [SQL_REPO] 创建新任务: task_cut_measurement_parameter
+2025-10-29 13:40:34,212 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,212 - INFO - ✓ 任务数据导入成功: task_cut_measurement_parameter.json
+2025-10-29 13:40:34,212 - INFO - 处理任务文件: task_data_output.json
+2025-10-29 13:40:34,215 - INFO - [SQL_REPO] 创建新任务: task_data_output
+2025-10-29 13:40:34,221 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,221 - INFO - ✓ 任务数据导入成功: task_data_output.json
+2025-10-29 13:40:34,221 - INFO - 处理任务文件: task_data_replay.json
+2025-10-29 13:40:34,224 - INFO - [SQL_REPO] 创建新任务: task_data_replay
+2025-10-29 13:40:34,232 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,232 - INFO - ✓ 任务数据导入成功: task_data_replay.json
+2025-10-29 13:40:34,232 - INFO - 处理任务文件: task_delete_cable_force_analysis.json
+2025-10-29 13:40:34,234 - INFO - [SQL_REPO] 创建新任务: task_delete_cable_force_analysis
+2025-10-29 13:40:34,255 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,256 - INFO - ✓ 任务数据导入成功: task_delete_cable_force_analysis.json
+2025-10-29 13:40:34,257 - INFO - 处理任务文件: task_delete_cable_force_information.json
+2025-10-29 13:40:34,262 - INFO - [SQL_REPO] 创建新任务: task_delete_cable_force_information
+2025-10-29 13:40:34,274 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,274 - INFO - ✓ 任务数据导入成功: task_delete_cable_force_information.json
+2025-10-29 13:40:34,275 - INFO - 处理任务文件: task_delete_line.json
+2025-10-29 13:40:34,277 - INFO - [SQL_REPO] 创建新任务: task_delete_line
+2025-10-29 13:40:34,285 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:34,286 - INFO - ✓ 任务数据导入成功: task_delete_line.json
+2025-10-29 13:40:34,286 - INFO - 处理任务文件: task_delete_measurement_parameter.json
+2025-10-29 13:40:34,289 - INFO - [SQL_REPO] 创建新任务: task_delete_measurement_parameter
+2025-10-29 13:40:34,301 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,301 - INFO - ✓ 任务数据导入成功: task_delete_measurement_parameter.json
+2025-10-29 13:40:34,302 - INFO - 处理任务文件: task_delete_model.json
+2025-10-29 13:40:34,306 - INFO - [SQL_REPO] 创建新任务: task_delete_model
+2025-10-29 13:40:34,312 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,312 - INFO - ✓ 任务数据导入成功: task_delete_model.json
+2025-10-29 13:40:34,312 - INFO - 处理任务文件: task_delete_order_analysis.json
+2025-10-29 13:40:34,314 - INFO - [SQL_REPO] 创建新任务: task_delete_order_analysis
+2025-10-29 13:40:34,325 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,326 - INFO - ✓ 任务数据导入成功: task_delete_order_analysis.json
+2025-10-29 13:40:34,326 - INFO - 处理任务文件: task_delete_plane.json
+2025-10-29 13:40:34,331 - INFO - [SQL_REPO] 创建新任务: task_delete_plane
+2025-10-29 13:40:34,343 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:34,344 - INFO - ✓ 任务数据导入成功: task_delete_plane.json
+2025-10-29 13:40:34,344 - INFO - 处理任务文件: task_delete_point.json
+2025-10-29 13:40:34,346 - INFO - [SQL_REPO] 创建新任务: task_delete_point
+2025-10-29 13:40:34,360 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:34,361 - INFO - ✓ 任务数据导入成功: task_delete_point.json
+2025-10-29 13:40:34,361 - INFO - 处理任务文件: task_delete_project.json
+2025-10-29 13:40:34,366 - INFO - [SQL_REPO] 创建新任务: task_delete_project
+2025-10-29 13:40:34,381 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:34,381 - INFO - ✓ 任务数据导入成功: task_delete_project.json
+2025-10-29 13:40:34,382 - INFO - 处理任务文件: task_delete_substructure.json
+2025-10-29 13:40:34,388 - INFO - [SQL_REPO] 创建新任务: task_delete_substructure
+2025-10-29 13:40:34,400 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,400 - INFO - ✓ 任务数据导入成功: task_delete_substructure.json
+2025-10-29 13:40:34,401 - INFO - 处理任务文件: task_delete_test_point.json
+2025-10-29 13:40:34,406 - INFO - [SQL_REPO] 创建新任务: task_delete_test_point
+2025-10-29 13:40:34,433 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,434 - INFO - ✓ 任务数据导入成功: task_delete_test_point.json
+2025-10-29 13:40:34,434 - INFO - 处理任务文件: task_edit_point_number.json
+2025-10-29 13:40:34,437 - INFO - [SQL_REPO] 创建新任务: task_edit_point_number
+2025-10-29 13:40:34,461 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,462 - INFO - ✓ 任务数据导入成功: task_edit_point_number.json
+2025-10-29 13:40:34,462 - INFO - 处理任务文件: task_export_avi.json
+2025-10-29 13:40:34,470 - INFO - [SQL_REPO] 创建新任务: task_export_avi
+2025-10-29 13:40:34,488 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,489 - INFO - ✓ 任务数据导入成功: task_export_avi.json
+2025-10-29 13:40:34,489 - INFO - 处理任务文件: task_export_cable_force_information.json
+2025-10-29 13:40:34,493 - INFO - [SQL_REPO] 创建新任务: task_export_cable_force_information
+2025-10-29 13:40:34,509 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,509 - INFO - ✓ 任务数据导入成功: task_export_cable_force_information.json
+2025-10-29 13:40:34,509 - INFO - 处理任务文件: task_export_test_point.json
+2025-10-29 13:40:34,513 - INFO - [SQL_REPO] 创建新任务: task_export_test_point
+2025-10-29 13:40:34,527 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,528 - INFO - ✓ 任务数据导入成功: task_export_test_point.json
+2025-10-29 13:40:34,528 - INFO - 处理任务文件: task_extend_object.json
+2025-10-29 13:40:34,532 - INFO - [SQL_REPO] 创建新任务: task_extend_object
+2025-10-29 13:40:34,541 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,542 - INFO - ✓ 任务数据导入成功: task_extend_object.json
+2025-10-29 13:40:34,542 - INFO - 处理任务文件: task_fft_display.json
+2025-10-29 13:40:34,544 - INFO - [SQL_REPO] 创建新任务: task_fft_display
+2025-10-29 13:40:34,562 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,563 - INFO - ✓ 任务数据导入成功: task_fft_display.json
+2025-10-29 13:40:34,563 - INFO - 处理任务文件: task_frame_by_frame_display.json
+2025-10-29 13:40:34,568 - INFO - [SQL_REPO] 创建新任务: task_frame_by_frame_display
+2025-10-29 13:40:34,576 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,576 - INFO - ✓ 任务数据导入成功: task_frame_by_frame_display.json
+2025-10-29 13:40:34,577 - INFO - 处理任务文件: task_frequency_response_analysis_settings.json
+2025-10-29 13:40:34,580 - INFO - [SQL_REPO] 创建新任务: task_frequency_response_analysis_settings
+2025-10-29 13:40:34,587 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,587 - INFO - ✓ 任务数据导入成功: task_frequency_response_analysis_settings.json
+2025-10-29 13:40:34,587 - INFO - 处理任务文件: task_full_fft_analysis.json
+2025-10-29 13:40:34,589 - INFO - [SQL_REPO] 更新任务: task_full_fft_analysis
+2025-10-29 13:40:34,594 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:34,594 - INFO - ✓ 任务数据导入成功: task_full_fft_analysis.json
+2025-10-29 13:40:34,595 - INFO - 处理任务文件: task_import_cable_force_information.json
+2025-10-29 13:40:34,599 - INFO - [SQL_REPO] 创建新任务: task_import_cable_force_information
+2025-10-29 13:40:34,611 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,612 - INFO - ✓ 任务数据导入成功: task_import_cable_force_information.json
+2025-10-29 13:40:34,612 - INFO - 处理任务文件: task_import_measurement_parameter.json
+2025-10-29 13:40:34,616 - INFO - [SQL_REPO] 创建新任务: task_import_measurement_parameter
+2025-10-29 13:40:34,632 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,632 - INFO - ✓ 任务数据导入成功: task_import_measurement_parameter.json
+2025-10-29 13:40:34,632 - INFO - 处理任务文件: task_import_model.json
+2025-10-29 13:40:34,634 - INFO - [SQL_REPO] 创建新任务: task_import_model
+2025-10-29 13:40:34,643 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,643 - INFO - ✓ 任务数据导入成功: task_import_model.json
+2025-10-29 13:40:34,643 - INFO - 处理任务文件: task_import_test_point.json
+2025-10-29 13:40:34,646 - INFO - [SQL_REPO] 创建新任务: task_import_test_point
+2025-10-29 13:40:34,658 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,659 - INFO - ✓ 任务数据导入成功: task_import_test_point.json
+2025-10-29 13:40:34,659 - INFO - 处理任务文件: task_material_property_calculation.json
+2025-10-29 13:40:34,665 - INFO - [SQL_REPO] 创建新任务: task_material_property_calculation
+2025-10-29 13:40:34,678 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,679 - INFO - ✓ 任务数据导入成功: task_material_property_calculation.json
+2025-10-29 13:40:34,679 - INFO - 处理任务文件: task_mirror_object.json
+2025-10-29 13:40:34,682 - INFO - [SQL_REPO] 创建新任务: task_copy_object
+2025-10-29 13:40:34,693 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,694 - INFO - ✓ 任务数据导入成功: task_mirror_object.json
+2025-10-29 13:40:34,694 - INFO - 处理任务文件: task_modal_animation_controls.json
+2025-10-29 13:40:34,696 - INFO - [SQL_REPO] 创建新任务: task_modal_animation_controls
+2025-10-29 13:40:34,711 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:34,712 - INFO - ✓ 任务数据导入成功: task_modal_animation_controls.json
+2025-10-29 13:40:34,712 - INFO - 处理任务文件: task_modal_animation_display.json
+2025-10-29 13:40:34,715 - INFO - [SQL_REPO] 创建新任务: task_modal_animation_display
+2025-10-29 13:40:34,726 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,726 - INFO - ✓ 任务数据导入成功: task_modal_animation_display.json
+2025-10-29 13:40:34,726 - INFO - 处理任务文件: task_modal_verification.json
+2025-10-29 13:40:34,731 - INFO - [SQL_REPO] 创建新任务: task_modal_verification
+2025-10-29 13:40:34,739 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,739 - INFO - ✓ 任务数据导入成功: task_modal_verification.json
+2025-10-29 13:40:34,739 - INFO - 处理任务文件: task_modify_algorithm.json
+2025-10-29 13:40:34,742 - INFO - [SQL_REPO] 创建新任务: task_modify_algorithm
+2025-10-29 13:40:34,761 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,761 - INFO - ✓ 任务数据导入成功: task_modify_algorithm.json
+2025-10-29 13:40:34,762 - INFO - 处理任务文件: task_modify_channel_params.json
+2025-10-29 13:40:34,768 - INFO - [SQL_REPO] 创建新任务: task_modify_channel_params
+2025-10-29 13:40:34,777 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,778 - INFO - ✓ 任务数据导入成功: task_modify_channel_params.json
+2025-10-29 13:40:34,778 - INFO - 处理任务文件: task_new_cable_force_analysis.json
+2025-10-29 13:40:34,784 - INFO - [SQL_REPO] 创建新任务: task_new_cable_force_analysis
+2025-10-29 13:40:34,792 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,792 - INFO - ✓ 任务数据导入成功: task_new_cable_force_analysis.json
+2025-10-29 13:40:34,792 - INFO - 处理任务文件: task_new_model.json
+2025-10-29 13:40:34,794 - INFO - [SQL_REPO] 创建新任务: task_new_model
+2025-10-29 13:40:34,814 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,814 - INFO - ✓ 任务数据导入成功: task_new_model.json
+2025-10-29 13:40:34,815 - INFO - 处理任务文件: task_new_order_analysis.json
+2025-10-29 13:40:34,822 - INFO - [SQL_REPO] 更新任务: task_new_cable_force_analysis
+2025-10-29 13:40:34,835 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,835 - INFO - ✓ 任务数据导入成功: task_new_order_analysis.json
+2025-10-29 13:40:34,835 - INFO - 处理任务文件: task_new_project.json
+2025-10-29 13:40:34,841 - INFO - [SQL_REPO] 创建新任务: task_project_management
+2025-10-29 13:40:34,851 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,851 - INFO - ✓ 任务数据导入成功: task_new_project.json
+2025-10-29 13:40:34,852 - INFO - 处理任务文件: task_new_test_point.json
+2025-10-29 13:40:34,857 - INFO - [SQL_REPO] 创建新任务: task_new_test_point
+2025-10-29 13:40:34,873 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,874 - INFO - ✓ 任务数据导入成功: task_new_test_point.json
+2025-10-29 13:40:34,874 - INFO - 处理任务文件: task_open_project.json
+2025-10-29 13:40:34,878 - INFO - [SQL_REPO] 创建新任务: task_open_project
+2025-10-29 13:40:34,888 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:34,888 - INFO - ✓ 任务数据导入成功: task_open_project.json
+2025-10-29 13:40:34,889 - INFO - 处理任务文件: task_paste_measurement_channel.json
+2025-10-29 13:40:34,892 - INFO - [SQL_REPO] 创建新任务: task_paste_measurement_channel
+2025-10-29 13:40:34,900 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,901 - INFO - ✓ 任务数据导入成功: task_paste_measurement_channel.json
+2025-10-29 13:40:34,902 - INFO - 处理任务文件: task_paste_measurement_parameter.json
+2025-10-29 13:40:34,908 - INFO - [SQL_REPO] 创建新任务: task_paste_measurement_parameter
+2025-10-29 13:40:34,920 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,920 - INFO - ✓ 任务数据导入成功: task_paste_measurement_parameter.json
+2025-10-29 13:40:34,920 - INFO - 处理任务文件: task_print_data.json
+2025-10-29 13:40:34,927 - INFO - [SQL_REPO] 创建新任务: task_print_data
+2025-10-29 13:40:34,939 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,939 - INFO - ✓ 任务数据导入成功: task_print_data.json
+2025-10-29 13:40:34,939 - INFO - 处理任务文件: task_project_Automatic_naming.json
+2025-10-29 13:40:34,942 - INFO - [SQL_REPO] 创建新任务: task_project_Automatic_naming
+2025-10-29 13:40:34,951 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,953 - INFO - ✓ 任务数据导入成功: task_project_Automatic_naming.json
+2025-10-29 13:40:34,953 - INFO - 处理任务文件: task_quick_output.json
+2025-10-29 13:40:34,960 - INFO - [SQL_REPO] 创建新任务: task_quick_output
+2025-10-29 13:40:34,974 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:34,974 - INFO - ✓ 任务数据导入成功: task_quick_output.json
+2025-10-29 13:40:34,975 - INFO - 处理任务文件: task_rainflow_analysis.json
+2025-10-29 13:40:34,979 - INFO - [SQL_REPO] 创建新任务: task_rainflow_analysis
+2025-10-29 13:40:34,989 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:34,989 - INFO - ✓ 任务数据导入成功: task_rainflow_analysis.json
+2025-10-29 13:40:34,990 - INFO - 处理任务文件: task_realtime_measurement.json
+2025-10-29 13:40:34,992 - INFO - [SQL_REPO] 创建新任务: task_realtime_measurement
+2025-10-29 13:40:35,000 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:35,000 - INFO - ✓ 任务数据导入成功: task_realtime_measurement.json
+2025-10-29 13:40:35,000 - INFO - 处理任务文件: task_realtime_signal_processing.json
+2025-10-29 13:40:35,006 - INFO - [SQL_REPO] 创建新任务: task_realtime_signal_processing
+2025-10-29 13:40:35,023 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,024 - INFO - ✓ 任务数据导入成功: task_realtime_signal_processing.json
+2025-10-29 13:40:35,024 - INFO - 处理任务文件: task_recorder_display.json
+2025-10-29 13:40:35,029 - INFO - [SQL_REPO] 创建新任务: task_recorder_display
+2025-10-29 13:40:35,036 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,036 - INFO - ✓ 任务数据导入成功: task_recorder_display.json
+2025-10-29 13:40:35,036 - INFO - 处理任务文件: task_rename_measurement_parameter.json
+2025-10-29 13:40:35,038 - INFO - [SQL_REPO] 创建新任务: task_rename_measurement_parameter
+2025-10-29 13:40:35,046 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,046 - INFO - ✓ 任务数据导入成功: task_rename_measurement_parameter.json
+2025-10-29 13:40:35,046 - INFO - 处理任务文件: task_rename_project.json
+2025-10-29 13:40:35,050 - INFO - [SQL_REPO] 创建新任务: task_rename_project
+2025-10-29 13:40:35,063 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,063 - INFO - ✓ 任务数据导入成功: task_rename_project.json
+2025-10-29 13:40:35,063 - INFO - 处理任务文件: task_rotate_object.json
+2025-10-29 13:40:35,066 - INFO - [SQL_REPO] 创建新任务: task_rotate_object
+2025-10-29 13:40:35,079 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:35,080 - INFO - ✓ 任务数据导入成功: task_rotate_object.json
+2025-10-29 13:40:35,080 - INFO - 处理任务文件: task_select_sampling_frequency.json
+2025-10-29 13:40:35,083 - INFO - [SQL_REPO] 创建新任务: task_select_sampling_frequency
+2025-10-29 13:40:35,090 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,090 - INFO - ✓ 任务数据导入成功: task_select_sampling_frequency.json
+2025-10-29 13:40:35,090 - INFO - 处理任务文件: task_set_channel_table.json
+2025-10-29 13:40:35,092 - INFO - [SQL_REPO] 创建新任务: task_set_channel_table
+2025-10-29 13:40:35,100 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,101 - INFO - ✓ 任务数据导入成功: task_set_channel_table.json
+2025-10-29 13:40:35,101 - INFO - 处理任务文件: task_set_measurement_channels.json
+2025-10-29 13:40:35,109 - INFO - [SQL_REPO] 创建新任务: task_set_measurement_channels
+2025-10-29 13:40:35,122 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,123 - INFO - ✓ 任务数据导入成功: task_set_measurement_channels.json
+2025-10-29 13:40:35,123 - INFO - 处理任务文件: task_set_storage_method.json
+2025-10-29 13:40:35,126 - INFO - [SQL_REPO] 创建新任务: task_set_storage_rules
+2025-10-29 13:40:35,137 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,138 - INFO - ✓ 任务数据导入成功: task_set_storage_method.json
+2025-10-29 13:40:35,139 - INFO - 处理任务文件: task_set_storage_path.json
+2025-10-29 13:40:35,141 - INFO - [SQL_REPO] 更新任务: task_set_storage_rules
+2025-10-29 13:40:35,148 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,148 - INFO - ✓ 任务数据导入成功: task_set_storage_path.json
+2025-10-29 13:40:35,149 - INFO - 处理任务文件: task_set_test_name.json
+2025-10-29 13:40:35,152 - INFO - [SQL_REPO] 更新任务: task_set_storage_rules
+2025-10-29 13:40:35,166 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,166 - INFO - ✓ 任务数据导入成功: task_set_test_name.json
+2025-10-29 13:40:35,167 - INFO - 处理任务文件: task_set_vehicle_ride_comfort.json
+2025-10-29 13:40:35,176 - INFO - [SQL_REPO] 创建新任务: task_set_vehicle_ride_comfort
+2025-10-29 13:40:35,185 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,186 - INFO - ✓ 任务数据导入成功: task_set_vehicle_ride_comfort.json
+2025-10-29 13:40:35,186 - INFO - 处理任务文件: task_shape_comparison.json
+2025-10-29 13:40:35,188 - INFO - [SQL_REPO] 创建新任务: task_shape_comparison
+2025-10-29 13:40:35,194 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,195 - INFO - ✓ 任务数据导入成功: task_shape_comparison.json
+2025-10-29 13:40:35,195 - INFO - 处理任务文件: task_signal_add_spectrum_analysis.json
+2025-10-29 13:40:35,198 - INFO - [SQL_REPO] 创建新任务: task_signal_add_spectrum_analysis
+2025-10-29 13:40:35,218 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,219 - INFO - ✓ 任务数据导入成功: task_signal_add_spectrum_analysis.json
+2025-10-29 13:40:35,220 - INFO - 处理任务文件: task_signal_delete_spectrum_analysis.json
+2025-10-29 13:40:35,225 - INFO - [SQL_REPO] 创建新任务: task_signal_delete_spectrum_analysis
+2025-10-29 13:40:35,233 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:35,233 - INFO - ✓ 任务数据导入成功: task_signal_delete_spectrum_analysis.json
+2025-10-29 13:40:35,233 - INFO - 处理任务文件: task_signal_selection.json
+2025-10-29 13:40:35,235 - INFO - [SQL_REPO] 创建新任务: task_signal_selection
+2025-10-29 13:40:35,242 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,243 - INFO - ✓ 任务数据导入成功: task_signal_selection.json
+2025-10-29 13:40:35,243 - INFO - 处理任务文件: task_signal_set_spectrum_analysis.json
+2025-10-29 13:40:35,247 - INFO - [SQL_REPO] 创建新任务: task_signal_set_spectrum_analysis
+2025-10-29 13:40:35,266 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,267 - INFO - ✓ 任务数据导入成功: task_signal_set_spectrum_analysis.json
+2025-10-29 13:40:35,267 - INFO - 处理任务文件: task_sound_intensity_analysis_setup.json
+2025-10-29 13:40:35,273 - INFO - [SQL_REPO] 创建新任务: task_sound_intensity_analysis_setup
+2025-10-29 13:40:35,283 - INFO - [SQL_REPO] 插入 6 个任务步骤
+2025-10-29 13:40:35,283 - INFO - ✓ 任务数据导入成功: task_sound_intensity_analysis_setup.json
+2025-10-29 13:40:35,283 - INFO - 处理任务文件: task_split_line.json
+2025-10-29 13:40:35,286 - INFO - [SQL_REPO] 创建新任务: task_split_line
+2025-10-29 13:40:35,296 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:35,296 - INFO - ✓ 任务数据导入成功: task_split_line.json
+2025-10-29 13:40:35,297 - INFO - 处理任务文件: task_stretch_object.json
+2025-10-29 13:40:35,303 - INFO - [SQL_REPO] 创建新任务: task_stretch_object
+2025-10-29 13:40:35,318 - INFO - [SQL_REPO] 插入 5 个任务步骤
+2025-10-29 13:40:35,319 - INFO - ✓ 任务数据导入成功: task_stretch_object.json
+2025-10-29 13:40:35,319 - INFO - 处理任务文件: task_use_envelope_analysis.json
+2025-10-29 13:40:35,327 - INFO - [SQL_REPO] 创建新任务: task_use_envelope_analysis
+2025-10-29 13:40:35,344 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,344 - INFO - ✓ 任务数据导入成功: task_use_envelope_analysis.json
+2025-10-29 13:40:35,344 - INFO - 处理任务文件: task_use_rotor_balancer.json
+2025-10-29 13:40:35,347 - INFO - [SQL_REPO] 创建新任务: task_rotor_balancer
+2025-10-29 13:40:35,367 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,367 - INFO - ✓ 任务数据导入成功: task_use_rotor_balancer.json
+2025-10-29 13:40:35,367 - INFO - 处理任务文件: task_view_analysis_channel_info.json
+2025-10-29 13:40:35,372 - INFO - [SQL_REPO] 创建新任务: task_view_analysis_channel_info
+2025-10-29 13:40:35,380 - INFO - [SQL_REPO] 插入 3 个任务步骤
+2025-10-29 13:40:35,380 - INFO - ✓ 任务数据导入成功: task_view_analysis_channel_info.json
+2025-10-29 13:40:35,381 - INFO - 处理任务文件: task_view_analysis_interface.json
+2025-10-29 13:40:35,385 - INFO - [SQL_REPO] 创建新任务: task_view_analysis_interface
+2025-10-29 13:40:35,394 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,394 - INFO - ✓ 任务数据导入成功: task_view_analysis_interface.json
+2025-10-29 13:40:35,394 - INFO - 处理任务文件: task_view_data_management_interface.json
+2025-10-29 13:40:35,397 - INFO - [SQL_REPO] 创建新任务: task_view_data_management_interface
+2025-10-29 13:40:35,411 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,411 - INFO - ✓ 任务数据导入成功: task_view_data_management_interface.json
+2025-10-29 13:40:35,411 - INFO - 处理任务文件: task_view_events.json
+2025-10-29 13:40:35,413 - INFO - [SQL_REPO] 创建新任务: task_view_events
+2025-10-29 13:40:35,426 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,426 - INFO - ✓ 任务数据导入成功: task_view_events.json
+2025-10-29 13:40:35,426 - INFO - 处理任务文件: task_view_event_interface.json
+2025-10-29 13:40:35,430 - INFO - [SQL_REPO] 创建新任务: task_view_event_interface
+2025-10-29 13:40:35,445 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,446 - INFO - ✓ 任务数据导入成功: task_view_event_interface.json
+2025-10-29 13:40:35,446 - INFO - 处理任务文件: task_view_output_interface.json
+2025-10-29 13:40:35,453 - INFO - [SQL_REPO] 创建新任务: task_view_output_interface
+2025-10-29 13:40:35,477 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,478 - INFO - ✓ 任务数据导入成功: task_view_output_interface.json
+2025-10-29 13:40:35,478 - INFO - 处理任务文件: task_view_param_settings.json
+2025-10-29 13:40:35,484 - INFO - [SQL_REPO] 创建新任务: task_view_param_settings
+2025-10-29 13:40:35,500 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,501 - INFO - ✓ 任务数据导入成功: task_view_param_settings.json
+2025-10-29 13:40:35,501 - INFO - 处理任务文件: task_view_print_interface.json
+2025-10-29 13:40:35,508 - INFO - [SQL_REPO] 创建新任务: task_view_print_interface
+2025-10-29 13:40:35,534 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,534 - INFO - ✓ 任务数据导入成功: task_view_print_interface.json
+2025-10-29 13:40:35,535 - INFO - 处理任务文件: task_view_signal_processing_analysis.json
+2025-10-29 13:40:35,540 - INFO - [SQL_REPO] 创建新任务: task_view_signal_processing_analysis
+2025-10-29 13:40:35,551 - INFO - [SQL_REPO] 插入 2 个任务步骤
+2025-10-29 13:40:35,551 - INFO - ✓ 任务数据导入成功: task_view_signal_processing_analysis.json
+2025-10-29 13:40:35,552 - INFO - 处理任务文件: task_wavelet_analysis.json
+2025-10-29 13:40:35,558 - INFO - [SQL_REPO] 创建新任务: task_wavelet_analysis
+2025-10-29 13:40:35,577 - INFO - [SQL_REPO] 插入 4 个任务步骤
+2025-10-29 13:40:35,578 - INFO - ✓ 任务数据导入成功: task_wavelet_analysis.json
+2025-10-29 13:40:35,578 - INFO - 任务数据导入完成: 101/101 成功
+2025-10-29 13:40:35,578 - INFO - 开始导入 UI 元素数据...
+2025-10-29 13:40:35,854 - INFO - ✓ UI 元素数据导入完成: 180/180 成功
+2025-10-29 13:40:35,855 - INFO - ============================================================
+2025-10-29 13:40:35,855 - INFO - ✓ 简化数据导入完成！任务和UI数据已成功导入
+2025-10-29 13:40:35,855 - INFO - ✓ 您的 AI 助手现在可以提供任务引导服务
+2025-10-29 13:40:35,855 - INFO - ⚠ 注意: RAG 知识问答功能需要修复 Weaviate 后重新导入
+2025-10-29 13:40:35,855 - INFO - ============================================================

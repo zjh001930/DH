@@ -1,0 +1,27 @@
+{
+  "task_id": "task_set_storage_rules",
+  "task_name": "设置存储路径",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击存储规则",
+      "element_id": "btn_subnav_storage_rules",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_storage_rules"
+    },
+    {
+      "step": 3,
+      "step_name": "点击存储路径设置路径",
+      "element_id": "btn_subnav_storage_path",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_storage_path"
+    }
+  ]
+}

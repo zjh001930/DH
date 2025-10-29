@@ -1,0 +1,35 @@
+{
+  "task_id": "task_data_replay",
+  "task_name": "数据回放",
+  "description": "进行数据回放，切换到分析模式，回放数据",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击分析",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis"
+    },
+    {
+      "step": 2,
+      "step_name": "点击分析",
+      "element_id": "btn_subnav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_analysis"
+    },
+    {
+      "step": 3,
+      "step_name": "选择通道",
+      "element_id": "view_analysis_channel_info_1",
+      "action": "info",
+      "dialogue_copy_id": "task_step3_select_channel"
+    },
+    {
+      "step": 4,
+      "step_name": "点击回放",
+      "element_id": "btn_analysis_replay",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_replay"
+    }
+  ]
+}

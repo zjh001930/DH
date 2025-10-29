@@ -213,7 +213,7 @@ def get_task_details(task_id: str) -> dict:
                     "element_id": step.element_id,
                     "action": step.action,
                     "dialogue_copy_id": step.dialogue_copy_id,
-                    "screenshot_url": step.screenshot_path
+                    "screenshot_path": step.screenshot_path
                 }
                 for step in steps
             ]

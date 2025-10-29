@@ -1,0 +1,27 @@
+{
+  "task_id": "task_set_channel_table",
+  "task_name": "设置通道参数",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入测量模式",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_measurement_mode"
+    },
+    {
+      "step": 2,
+      "step_name": "进入参数设置界面",
+      "element_id": "btn_subnav_param_settings",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_enter_param_settings"
+    },
+    {
+      "step": 3,
+      "step_name": "打开通道设定窗口，其中可设定通道参数",
+      "element_id": "btn_channel_table_settings",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_open_channel_settings"
+    }
+  ]
+}

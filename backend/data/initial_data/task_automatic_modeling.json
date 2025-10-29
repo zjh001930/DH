@@ -1,0 +1,34 @@
+{
+  "task_id": "task_automatic_modeling",
+  "task_name": "自动建模",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击模态",
+      "element_id": "btn_nav_modality",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_modality"
+    },
+    {
+      "step": 2,
+      "step_name": "点击模型",
+      "element_id": "btn_model",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_model"
+    },
+    {
+      "step": 3,
+      "step_name": "选中模型",
+      "element_id": "btn_select_automatic_modeling",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_automatic_modeling"
+    },
+    {
+      "step": 4,
+      "step_name": "设定模型参数",
+      "element_id": "dlg_set_model_parameters",
+      "action": "input",
+      "dialogue_copy_id": "task_step4_set_model_parameters"
+    }
+  ]
+}

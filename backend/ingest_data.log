@@ -1,0 +1,30 @@
+2025-10-28 17:46:09,735 - INFO - [DATA_INGESTER] 初始化完成
+2025-10-28 17:46:09,736 - INFO - [DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-28 17:46:09,736 - INFO - [DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-10-28 17:46:09,736 - INFO - [DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-10-28 17:46:09,736 - INFO - ============================================================
+2025-10-28 17:46:09,737 - INFO - AI 助手数据导入工具
+2025-10-28 17:46:09,737 - INFO - ============================================================
+2025-10-28 17:46:09,738 - INFO - 检查服务状态...
+2025-10-28 17:46:12,435 - ERROR - ✗ Ollama 服务检查失败: [OLLAMA_CLIENT] Embedding API 连接失败，请确认 Ollama 已启动并模型已加载: HTTPConnectionPool(host='ollama_host', port=11434): Max retries exceeded with url: /api/embeddings (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x000001D901ADABA0>: Failed to resolve 'ollama_host' ([Errno 11001] getaddrinfo failed)"))
+2025-10-28 17:46:12,435 - ERROR - 服务检查失败，退出
+2025-10-29 13:28:52,683 - INFO - [DATA_INGESTER] 初始化完成
+2025-10-29 13:28:52,687 - INFO - [DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:28:52,687 - INFO - [DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-10-29 13:28:52,687 - INFO - [DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-10-29 13:28:52,688 - INFO - ============================================================
+2025-10-29 13:28:52,688 - INFO - AI 助手数据导入工具
+2025-10-29 13:28:52,688 - INFO - ============================================================
+2025-10-29 13:28:52,689 - INFO - 检查服务状态...
+2025-10-29 13:28:55,408 - ERROR - ✗ Ollama 服务检查失败: [OLLAMA_CLIENT] Embedding API 连接失败，请确认 Ollama 已启动并模型已加载: HTTPConnectionPool(host='ollama_host', port=11434): Max retries exceeded with url: /api/embeddings (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x000001BC65DCABA0>: Failed to resolve 'ollama_host' ([Errno 11001] getaddrinfo failed)"))
+2025-10-29 13:28:55,409 - ERROR - 服务检查失败，退出
+2025-10-29 13:48:47,277 - INFO - [DATA_INGESTER] 初始化完成
+2025-10-29 13:48:47,279 - INFO - [DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-10-29 13:48:47,279 - INFO - [DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-10-29 13:48:47,280 - INFO - [DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-10-29 13:48:47,280 - INFO - ============================================================
+2025-10-29 13:48:47,281 - INFO - AI 助手数据导入工具
+2025-10-29 13:48:47,281 - INFO - ============================================================
+2025-10-29 13:48:47,281 - INFO - 检查服务状态...
+2025-10-29 13:48:50,005 - ERROR - ✗ Ollama 服务检查失败: [OLLAMA_CLIENT] Embedding API 连接失败，请确认 Ollama 已启动并模型已加载: HTTPConnectionPool(host='ollama_host', port=11434): Max retries exceeded with url: /api/embeddings (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x000001B6DB08ABA0>: Failed to resolve 'ollama_host' ([Errno 11001] getaddrinfo failed)"))
+2025-10-29 13:48:50,006 - ERROR - 服务检查失败，退出

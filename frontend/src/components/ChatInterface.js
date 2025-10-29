@@ -23,7 +23,7 @@ const TaskExecutionMessage = ({ taskData }) => {
                 {step.screenshot_path && (
                   <div className="step-screenshot">
                     <img 
-                      src={`http://localhost:8000/tasks/screenshots/${step.screenshot_path}`} 
+                      src={`http://localhost:8000${step.screenshot_path}`} 
                       alt={`步骤 ${step.step} 截图`}
                       className="step-image"
                       onError={(e) => {
@@ -78,7 +78,7 @@ const ChatInterface = () => {
 
     try {
       const response = await request({
-        url: 'http://localhost:8000/assistant',
+        url: 'http://localhost:8000/chat',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

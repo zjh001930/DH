@@ -1,0 +1,27 @@
+{
+  "task_id": "task_change_animation_amplitude",
+  "task_name": "改变动画幅度",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击减小按钮",
+      "element_id": "btn_decrease_amplitude",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_decrease_amplitude"
+    },
+    {
+      "step": 2,
+      "step_name": "点击增大按钮",
+      "element_id": "btn_increase_amplitude",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_increase_amplitude"
+    },
+    {
+      "step": 3,
+      "step_name": "点击设定按钮",
+      "element_id": "btn_set_amplitude",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_set_amplitude"
+    }
+  ]
+}

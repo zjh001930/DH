@@ -1,0 +1,28 @@
+{
+  "task_id": "task_set_storage_rules",
+  "task_name": "设置测量工程名",
+  "description": "引导用户设置存储规则包括命名、路径、方式",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击存储规则",
+      "element_id": "btn_subnav_storage_rules",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_storage_rules"
+    },
+    {
+      "step": 3,
+      "step_name": "点击工程名设置工程名",
+      "element_id": "btn_subnav_project_name",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_project_name"
+    }
+  ]
+}

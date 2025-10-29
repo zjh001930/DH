@@ -1,11 +1,19 @@
 # backend/config/settings.py
 import os
 
-# --- LLM/Ollama 配置 (来自 docker-compose.yml) ---
+# --- LLM策略配置 ---
+LLM_STRATEGY = os.getenv("LLM_STRATEGY", "local")  # "local" 或 "api"
+
+# --- LLM/Ollama 配置 (本地策略) ---
 # 默认使用 Docker 内部网络的服务名
-OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://ollama_host:11434")
-LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "llama3")           # 用于生成回答
+OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434")
+LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "qwen2.5:3b-instruct")           # 用于生成回答
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "bge-m3") # 用于向量化
+
+# --- API策略配置 ---
+API_KEY = os.getenv("API_KEY", "")  # OpenAI/Claude等API密钥
+API_MODEL_NAME = os.getenv("API_MODEL_NAME", "gpt-3.5-turbo")  # API模型名称
+API_EMBEDDING_MODEL = os.getenv("API_EMBEDDING_MODEL", "text-embedding-ada-002")  # API嵌入模型
 
 # --- 数据库配置 ---
 # 使用 docker-compose.yml 中设置的 DATABASE_URL 环境变量
@@ -17,5 +25,5 @@ WEAVIATE_URL = f"http://{WEAVIATE_HOST}"
 WEAVIATE_RAG_CLASS = "AssistantKnowledge" # RAG 知识库的 Weaviate 类名
 
 # --- 业务逻辑配置 ---
-INTENT_CONFIDENCE_THRESHOLD = 0.75
+INTENT_CONFIDENCE_THRESHOLD = 0.65
 IMAGE_STORAGE_PATH = os.getenv("IMAGE_STORAGE_PATH", "/app/data/images")

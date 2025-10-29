@@ -1,0 +1,41 @@
+{
+  "task_id": "task_paste_measurement_channel",
+  "task_name": "粘贴通道",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量导航",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击参数设置",
+      "element_id": "btn_subnav_param_settings",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_param_settings"
+    },
+    {
+      "step": 3,
+      "step_name": "点击模拟通道",
+      "element_id": "btn_analog_channel",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_analog_channel"
+    },
+    {
+      "step": 4,
+      "step_name": "右击通道",
+      "element_id": "btn_channel",
+      "action": "click",
+      "dialogue_copy_id": "task_step4_click_channel"
+    },
+    {
+      "step": 5,
+      "step_name": "粘贴通道",
+      "element_id": "btn_paste_channel",
+      "action": "click",
+      "dialogue_copy_id": "task_step5_paste_channel"
+    }
+  ]
+}

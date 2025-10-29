@@ -1,0 +1,20 @@
+{
+  "task_id": "task_delete_project",
+  "task_name": "删除工程",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "进入工程管理视图",
+      "element_id": "btn_nav_project_management",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_enter_project_management"
+    },
+    {
+      "step": 2,
+      "step_name": "删除工程",
+      "element_id": "btn_toolbar_delete_project",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_delete_project"
+    }
+  ]
+}

@@ -82,8 +82,8 @@ docker-compose logs -f
 
 4. **下载 AI 模型**
 ```bash
-# 下载 Llama3 模型 (用于对话生成)
-docker exec -it ollama_host ollama pull llama3
+# 下载 Qwen2.5 模型 (用于对话生成)
+docker exec -it ollama_host ollama pull qwen2.5:3b-instruct
 
 # 下载 BGE-M3 模型 (用于向量化)
 docker exec -it ollama_host ollama pull bge-m3

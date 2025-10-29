@@ -1,0 +1,34 @@
+{
+  "task_id": "task_acoustic_array_settings",
+  "task_name": "声阵列分析设置",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击分析",
+      "element_id": "btn_nav_analysis",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_analysis"
+    },
+    {
+      "step": 2,
+      "step_name": "点击声学",
+      "element_id": "btn_analysis_acoustic",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_acoustic"
+    },
+    {
+      "step": 3,
+      "step_name": "点击声阵列分析",
+      "element_id": "btn_acoustic_array",
+      "action": "click",
+      "dialogue_copy_id": "task_step3_click_acoustic_array"
+    },
+    {
+      "step": 4,
+      "step_name": "设置参数",
+      "element_id": "dlg_acoustic_array_settings",
+      "action": "input",
+      "dialogue_copy_id": "task_step4_set_array"
+    }
+  ]
+}

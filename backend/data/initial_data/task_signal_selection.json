@@ -1,0 +1,34 @@
+{
+  "task_id": "task_signal_selection",
+  "task_name": "选择信号",
+  "steps": [
+    {
+      "step": 1,
+      "step_name": "点击测量导航",
+      "element_id": "btn_nav_measurement",
+      "action": "click",
+      "dialogue_copy_id": "task_step1_click_measurement"
+    },
+    {
+      "step": 2,
+      "step_name": "点击测量",
+      "element_id": "btn_subnav_measure",
+      "action": "click",
+      "dialogue_copy_id": "task_step2_click_subnav_measure"
+    },
+    {
+      "step": 3,
+      "step_name": "选择测量的方式",
+      "element_id": "btn_measurement_method_selection",
+      "action": "select",
+      "dialogue_copy_id": "task_step3_select_measurement_method"
+    },
+    {
+      "step": 4,
+      "step_name": "选择信号",
+      "element_id": "btn_signal_selection",
+      "action": "select",
+      "dialogue_copy_id": "task_step4_select_signal"
+    }
+  ]
+}
