@@ -26,9 +26,9 @@ def test_simple_question():
     
     # 测试一个非常简单的问题
     simple_questions = [
-        "你好",
-        "测试",
-        "帮助"
+        "查看打印界面",
+        "打印界面",
+        "你好"
     ]
     
     for question in simple_questions:
@@ -53,14 +53,29 @@ def test_simple_question():
                 data = response.json()
                 print(f"   ✅ 成功")
                 print(f"   响应类型: {data.get('response_type')}")
+                print(f"   任务ID: {data.get('recognized_task_id')}")
                 print(f"   置信度: {data.get('confidence')}")
                 
+                # 如果是任务引导响应，显示步骤信息
+                if data.get('response_type') == 'task_guidance':
+                    task_data = data.get('data', {})
+                    steps = task_data.get('steps', [])
+                    print(f"   任务名称: {task_data.get('task_name')}")
+                    print(f"   步骤数量: {len(steps)}")
+                    if steps:
+                        print(f"   第一步: {steps[0].get('step_name')}")
+                
                 # 如果是RAG响应，检查答案长度
-                if data.get('response_type') == 'open_qa':
+                elif data.get('response_type') == 'open_qa':
                     answer = data.get('data', {}).get('answer', '')
                     sources = data.get('data', {}).get('sources', [])
                     print(f"   答案长度: {len(answer)} 字符")
                     print(f"   知识源数量: {len(sources)}")
+                    
+                # 显示响应文本的前100个字符
+                response_text = data.get('data', {}).get('response_text', '')
+                if response_text:
+                    print(f"   响应预览: {response_text[:100]}...")
                     
                 break  # 成功一个就够了
                 

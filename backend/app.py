@@ -216,9 +216,79 @@ def chat_interface():
                 task_name = task_data.get('name', '未知任务')
                 steps = task_data.get('steps', [])
                 
-                if steps:
-                    steps_text = "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
-                    response_text = f"我来帮你完成「{task_name}」任务。\n\n具体步骤如下：\n{steps_text}"
+                # 首先尝试从数据库获取详细步骤信息
+                detailed_steps = []
+                try:
+                    from db.sql_repo import get_task_details
+                    task_details = get_task_details(task_id)
+                    
+                    if task_details and 'steps' in task_details and task_details['steps']:
+                        # 使用数据库中的详细步骤信息
+                        db_steps = task_details['steps']
+                        print(f"从数据库获取到 {len(db_steps)} 个步骤")
+                        
+                        for i, db_step in enumerate(db_steps):
+                            step_info = {
+                                'step_number': db_step.get('step', i + 1),
+                                'step_name': db_step.get('step_name', f'步骤 {i + 1}'),
+                                'description': db_step.get('step_name', f'步骤 {i + 1}'),
+                                'element_id': db_step.get('element_id', ''),
+                                'action': db_step.get('action', 'click'),
+                                'image_path': None
+                            }
+                            
+                            # 构建图片路径
+                            element_id = db_step.get('element_id', '')
+                            if element_id:
+                                # 检查图片文件是否存在
+                                image_filename = f"{element_id}.png"
+                                image_path = f"/images/{image_filename}"
+                                step_info['image_path'] = image_path
+                                print(f"  步骤 {i+1}: {step_info['step_name']} -> 图片: {image_filename}")
+                            else:
+                                print(f"  步骤 {i+1}: {step_info['step_name']} -> 无图片")
+                            
+                            detailed_steps.append(step_info)
+                    else:
+                        # 如果数据库中没有详细步骤，使用意图识别器中的步骤
+                        print(f"数据库中无详细步骤，使用意图识别器中的 {len(steps)} 个步骤")
+                        for i, step in enumerate(steps):
+                            step_info = {
+                                'step_number': i + 1,
+                                'step_name': step if isinstance(step, str) else str(step),
+                                'description': step if isinstance(step, str) else str(step),
+                                'element_id': '',
+                                'action': 'click',
+                                'image_path': None
+                            }
+                            detailed_steps.append(step_info)
+                            
+                except Exception as e:
+                    print(f"获取步骤详情时出错: {e}")
+                    # 使用基本步骤信息作为备用
+                    for i, step in enumerate(steps):
+                        step_info = {
+                            'step_number': i + 1,
+                            'step_name': step if isinstance(step, str) else str(step),
+                            'description': step if isinstance(step, str) else str(step),
+                            'element_id': '',
+                            'action': 'click',
+                            'image_path': None
+                        }
+                        detailed_steps.append(step_info)
+                
+                # 生成富文本响应
+                if detailed_steps:
+                    steps_text = []
+                    for step_info in detailed_steps:
+                        step_desc = f"{step_info['step_number']}. {step_info.get('step_name', step_info['description'])}"
+                        if step_info.get('action') == 'click':
+                            step_desc += " (点击操作)"
+                        elif step_info.get('action') == 'input':
+                            step_desc += " (输入操作)"
+                        steps_text.append(step_desc)
+                    
+                    response_text = f"我来帮你完成「{task_name}」任务。\n\n操作步骤：\n" + "\n".join(steps_text)
                 else:
                     response_text = f"我找到了「{task_name}」任务，但暂时没有详细步骤信息。"
                 
@@ -229,7 +299,8 @@ def chat_interface():
                     'data': {
                         'task_name': task_name,
                         'description': task_data.get('description', ''),
-                        'steps': steps
+                        'steps': detailed_steps,
+                        'response_text': response_text
                     }
                 })
                 
@@ -323,6 +394,24 @@ def get_screenshot(filename):
         return send_from_directory(IMAGE_STORAGE_PATH, filename)
     except FileNotFoundError:
         return "Image not found in storage path.", 404
+
+# --- 5.2.4. 图片服务接口: /images/<filename> ---
+@app.route('/images/<path:filename>', methods=['GET'])
+def get_image(filename):
+    """
+    提供图片文件服务，用于前端加载步骤中的图片。
+    路径映射到 data/images 目录
+    """
+    try:
+        # 构建图片目录路径
+        images_dir = os.path.join(os.path.dirname(__file__), 'data', 'images')
+        return send_from_directory(images_dir, filename)
+    except FileNotFoundError:
+        logger.warning(f"Image not found: {filename}")
+        return "Image not found.", 404
+    except Exception as e:
+        logger.error(f"Error serving image {filename}: {e}")
+        return "Error serving image.", 500
 
 
 if __name__ == '__main__':

@@ -11,31 +11,61 @@ const TaskExecutionMessage = ({ taskData }) => {
     <div className="task-execution-message">
       <div className="task-header">
         <h4>{taskData.task_name}</h4>
-        <p className="task-description">{taskData.description}</p>
+        {taskData.description && <p className="task-description">{taskData.description}</p>}
       </div>
+      
+      {/* 显示AI生成的回答文本 */}
+      {taskData.response_text && (
+        <div className="task-response-text">
+          <p>{taskData.response_text}</p>
+        </div>
+      )}
+      
       <div className="task-steps">
         <h5>操作步骤：</h5>
-        <ol>
+        <div className="steps-container">
           {taskData.steps.map((step, index) => (
-            <li key={index} className="task-step">
-              <div className="step-content">
-                <strong>步骤 {step.step}：</strong> {step.step_name}
-                {step.screenshot_path && (
-                  <div className="step-screenshot">
-                    <img 
-                      src={`http://localhost:8000${step.screenshot_path}`} 
-                      alt={`步骤 ${step.step} 截图`}
-                      className="step-image"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                )}
+            <div key={index} className="task-step">
+              <div className="step-header">
+                <span className="step-number">{step.step_number}</span>
+                <div className="step-info">
+                  <strong className="step-title">
+                    {step.step_name || step.description}
+                  </strong>
+                  {step.action && (
+                    <span className="step-action">
+                      {step.action === 'click' ? '点击操作' : 
+                       step.action === 'input' ? '输入操作' : step.action}
+                    </span>
+                  )}
+                </div>
               </div>
-            </li>
+              
+              {step.image_path && (
+                <div className="step-screenshot">
+                  <img 
+                    src={`http://localhost:8000${step.image_path}`} 
+                    alt={`步骤 ${step.step_number} 截图`}
+                    className="step-image"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      // 显示备用文本
+                      const fallback = document.createElement('div');
+                      fallback.className = 'image-fallback';
+                      fallback.textContent = '图片加载失败';
+                      e.target.parentNode.appendChild(fallback);
+                    }}
+                    onLoad={(e) => {
+                      // 图片加载成功，移除可能存在的错误提示
+                      const fallback = e.target.parentNode.querySelector('.image-fallback');
+                      if (fallback) fallback.remove();
+                    }}
+                  />
+                </div>
+              )}
+            </div>
           ))}
-        </ol>
+        </div>
       </div>
     </div>
   );
