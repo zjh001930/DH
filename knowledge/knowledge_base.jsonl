@@ -1,0 +1,305 @@
+{"id": "chunk_1", "content": "", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_2", "content": "问：软件安装对电脑配置有要求吗？\n答：软件安装对电脑配置要求并不高，参考I5处理器，16G内存，但是高配置的电脑会大大提高软件的使用体验。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_3", "content": "问：如何解决仪器无法通讯的问题？\n答：可通过检查，仪器是否开机，网线是否正常，电脑本地网络是否正常，目的IP设置是否准确？", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_4", "content": "问：你们仪器在正常ping同的情况下，仪器还是无法通讯是什么问题？\n答：检查是否防火墙没有关闭导致的问题，电脑是否安装了杀毒软件限制了仪器的通讯，检查使用软件是否匹配。。。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_5", "content": "问：你们公司传感器是否可定制？\n答：可以定制，输入您的需求，我们会及时跟您联系。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_6", "content": "问：你们公司常感器如何安装？\n答：根据使用环境的不同，可以选择多种安装方式，螺纹，磁吸，胶装，顶针等。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_7", "content": "问：应变片最常用的桥路方式是哪种？\n答：在众多试验中，应变片最常用的桥式方式是方式一1/4桥，方便简单便捷。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_8", "content": "问：应变片信号如何接入到仪器中？\n答：根据不同的桥路方式，软件界面和说明书有对应的接线定义，而且每根信号线都有标识。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_9", "content": "问：你们软件如何设置采样频率？\n答：在参数设置界面可以设置采样频率，并且有多个选项选择。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_10", "content": "问：采样频率应该设置多大？\n答：需要先明确你的分析频率要达到多大，那么根据香农定律，若只侧重频率精度，采集频率至少设置分析的2.56倍以上。若对幅值精度有极高要求，则要设置到关心频率的10-20倍。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_11", "content": "问：软件参数设置的上限频率是什么意思？\n答：是硬件低通滤波器，有多个滤波范围选择。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_12", "content": "问：软件参数设置的下限频率是什么意思？\n答：是硬件高通滤波器，有多个滤波范围选择。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_13", "content": "问：软件参数设置抗混滤波是什么，如何设置？\n答：抗混滤波器是一种特殊的低通滤波器，防止高频信号对低频信号的混叠，在非特殊情况下默认打开状态。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_14", "content": "问：软件采集数据可以自定义文件大小吗？\n答：可以的，存储规则界面，勾选设定停止存储可设置时间或者文件大小。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_15", "content": "问：软件设置可以设置触发存储吗？\n答：可以的，存储规则界面，修改存储方式为触发记录，有多类触发方式可供选择。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_16", "content": "问：信号触发的触发量级是什么意思？\n答：该通道信号设置的量程的百分比，比如信号触发设置10%，量程为100g，当信号达到10g时及以上，达到触发条件，即开始存储。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_17", "content": "问：信号触发的负延迟是什么意思？\n答：达到触发量级前多存储一部分信号，比如设置负延迟200个点，意思是在达到触发量级时，多存储前面的200个点，为了更完整的把整个触发信号采集下来。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_18", "content": "问：软件界面配色和布局可以自定义吗？\n答：可以的，软件右上角，选项，风格设置可以自定义软件的风格。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_19", "content": "问：FFT的实时谱和平均谱是什么？\n答：实时谱是根据当前时刻对应谱线数的快速傅里叶变换结果，可以查看频率的实时变化结果，平均谱是圈定区域内数据的平均后频率结果。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_20", "content": "问：为什么谱线数加大后，需要更久的时候才刷新一次FFT？\n答：谱线数调整大之后，需要的一次快速傅里叶数据量也跟着增大，在一定的采样率下就需要多采集一些时间才能够满足数据要求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_21", "content": "问：已采集完的数据，设置的参数还可以进行修改吗？\n答：可以在分析界面点击通道按钮进入全部通道列表，可以对每个通道参数进行修改，黑色部分可修改，灰色部分不可修改。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_22", "content": "问：为什么信号处理后数据结果出不来？\n答：软件需要点击自动计算，才会呈现信号处理后的结果。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_23", "content": "问：如果数据采集忘记清零，数据采集完成后，还能不能调整零点?\n答：可以的，在分析界面，将鼠标放在通道列表需要更改零点的通道旁，弹出来“设置”，点击进去，更改偏移量。也就是曲线的上下平移。有些数据量大的情况，需要在设置好偏移量后，点击自动计算或者手动计算，将数据曲线从新画图。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_24", "content": "问：采集了50组数据，为什么分析界面只能看到32个，数据是否被覆盖了？\n答：数据没有被覆盖，软件限制最多只能展示32个测试文件，多于32个测试文件会覆盖显示，而不是覆盖文件，可以通过更改软件配置来恢复。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_25", "content": "问：模态软件制图是否与实际模型尺寸和细节完全一致？\n答：模态分析软件制模型图，不需要和实际模型尺寸和细节完全一致，只要体现模型的大致形态方便布置测点即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_26", "content": "问：安装运行软件提示需要安装.NET Framework，如何解决？\n答：安装光盘里有对于版本程序可以安装。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_27", "content": "问：查找不到设备怎么办？\n答：请检查以下步骤：\n网线接口仪器：\n1.需要按要求修改规定的电脑IP地址\n2.需要检查仪器是否开机并正确与电脑进行通讯（可进行命令提示符来ping仪器IP判断问题）\n3.需要检查软件接口类型和仪器类型是否选择正确\n4.是否关闭电脑防火墙\nUSB接口仪器：\n1.需要检查是否已正常安装驱动程序\n2.需要检查软件接口类型和仪器类型是否选择正确\n如以上问题均不能解决问题，请您与您的东华技术人员联系。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_28", "content": "问：软件测量量没有自己想要的参数如何解决？\n答：您好，前往软件最左上角，东华测试图标处，选择“测量量定义”，按实际您的通道类型进行增添即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_29", "content": "问：软件无法采集，提示GPS时钟未准备就绪，怎么处理呢？\n答：您好，前往软件右上角选择“选项”—“系统设置”—“同步时钟”，打勾取消即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_30", "content": "问：积分或者微分的单位换算系数是什么意思？\n答：您好，软件换算逻辑如下：\n积分：m/s2积分成m/s，换算系数为1倍，填1，m/s2积分成mm/s，换算系数为1000倍，填1000\n微分：m/s微分成m/s2，换算系数为1倍，填1，mm/s微分成m/s2，换算系数为0.001倍，填0.001。以此类推！\n请根据实际需求选择对应的换算系数输入，以确保数据处理的准确性。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_31", "content": "问：为什么我滤波出来分析界面没数据显示？\n答：您好，在设置信号处理完成后，再分析界面选择查看信号处理通道后，再双击软件界面左上方“自动计算”即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_32", "content": "问：如何测试出传感器的真实输出电压值？\n答：您好，首先再软件中吧灵敏度改成1，在将该通道的参数设置里的“输入方式”调回GND档位，然后选择平衡清零，完成后再切换为测试输入方式即可！", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_33", "content": "问：为什么我采集了很多个文件，每次输出数据都是同一个的数据？\n答：您好，需要前往分析数据查看界面，鼠标右键放在您需要的测试文件名上，单击右键，选择“激活”，再输出即可", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_34", "content": "问：如何批量导出测试文件数据？\n答：您好，可前往分析-输出界面，找到“报告”图标，选择你要批量导出的测试文件即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_35", "content": "问：怎么查看一段数据中的某个部分数据的统计信息（最大值、最小值等等）？\n答：您好，鼠标右键选择光标为“双光标”后，前后框选目标区域即可。如无法弹出双光标，可先手动按住键盘ctrl加鼠标左键，可左右拖动鼠标选择放大目标大致区域，然后调出双光标即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_36", "content": "问：三线制1/4桥应变片如何连接通道线？\n答：应变片两根导线：一端连接仪器通道线红色（Eg+），另外一端连接仪器通道线黄色（Vi+）和白色（1/4桥）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_37", "content": "问：电流传感器如何接线？\n答：您好，\n两线制传感器：\n传感器供电线接仪器电流环适调器“24V”，传感器信号线接仪器电流环适调器“Vi+”。\n三线制传感器：\n传感器供电线接仪器电流环适调器“24V”，传感器信号线接仪器电流环适调器“Vi+”，传感器信号地接仪器电流环适调器“0”。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_38", "content": "问：2D001H和2D001V有啥区别？\n答：您好，2D001H代表传感器测试横向振动，2D001V代表传感器测试竖向振动。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_39", "content": "问：仪器四合一的BNC线头，哪个是通道1、2、3、4？\n答：您好，可查看四合一的BNC线头上的黄色标签，依次为-1、-2、-3、-4，依次为1-4通道，也可按BNC四根线长度，由短到长依次为1-4通道。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_40", "content": "问：仪器采集过程中突然断电，数据会丢失吗？\n答：您好，需要供电的仪器正常采集过程中突然断电，数据会截止保存在断电时刻自动停止采集，前面已采集的数据不会丢失。自带电池的采集设备，在电量足够的情况下，会继续进行数据采集，直至电量耗尽。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_41", "content": "问：仪器开机没反应，不工作怎么回事？\n答：1.需要供电的仪器在正常接电的情况下开机无反应，可检查仪器电源插头位置或仪器机壳其他有明显标志位置的保险丝是否熔断，熔断更换保险丝即可。\n2.自带锂电池的仪器可判断是否电量耗尽，并搭接充电器1-2小时再判断仪器是否正常工作。如以上帮助无法判断仪器状态，请咨询您的东华技术人员。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_42", "content": "问：Win10和Win11电脑提示USB驱动安装不了怎么解决？\n答：您好！一般Win10和Win11需要进行禁用驱动程序强制签名，具体操作如下：\n1.打开设置 → 更新和安全 → 恢复 → 点击\"立即重新启动\"进入高级启动模式\n2.依次选择：疑难解答 → 高级选项 → 启动设置 → 重启。\n3.按数字键7或功能键F7选择\"禁用驱动程序强制签名\"。\n电脑重启后重新安装即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_43", "content": "问：DH5902N如何进行离线采集？\n答：您好，需要用网线连接仪器，设置好传感器的相关通道参数设置后，然后去测量界面进行一次采集-停止操作，仪器内部会记录保存本次相关通道参数设置，然后拔掉网线，仪器进入离线采集准备状态。长按“平衡”按钮，仪器平衡灯闪烁，再长按“采集”按钮，仪器采样灯保持常亮，仪器进入采集状态。数据采集完成后，长按“采集”按钮，仪器采样灯熄灭，仪器进入停止采集状态，离线采集完成，连上网线后，查找仪器后进入软件界面，选择右上角“选项”-“数据回收”，即可找回离线采集的数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_44", "content": "问：DH5916如何进行离线采集？\n答：您好，需要用仪器USB线连接仪器，设置好传感器的相关通道参数设置后，然后在参数设置界面点击“参数下传”按钮，仪器内部会记录保存本次相关通道参数设置，然后拔掉USB线，仪器进入离线采集准备状态。\n1.长按“平衡”按钮，仪器工作灯闪烁，表示记录仪正在平衡，待指示灯变成常亮，表示平衡结束。再长按“采样/停止”按钮，仪器工作指示灯开始闪烁，仪器进入采集状态。\n2.数据采集完成后，长按“采集/停止”按钮，仪器工作灯常亮，仪器进入停止采集状态，离线采集完成，连上USB线，查找仪器后进入软件界面，选择右上角“选项”-“数据回收”，即可找回离线采集的数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_45", "content": "问：DH3819N波特率选择多少：\n答：您好，115200", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_46", "content": "问：应变采集器能接350Ω的片子吗？\n答：您好，我公司的应变采集仪器在出厂时需要选购定做1/4桥使用120Ω或350Ω（二选一）。半桥或者全桥不受限制，一般在60Ω-20000Ω任意设定", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_47", "content": "问：软件对操作系统和硬盘大小有什么要求。\n答：WIN7以上，硬盘的大小决定了存储的数据量，建议数据存储盘200GB以上。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_48", "content": "问： 对于长时间采集时产生的庞大数据量，是否有好的归类方法。\n答：建议使用存储规则下的自动命名功能，按日期时间定义文件夹，便于后期检索分析。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_49", "content": "问： 软件是否支持Txt、Excel等格式文件的导入导出。\n答：支持导出、不支持导入。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_50", "content": "问： 软件是否支持自定公式的输入。\n答：支持，虚拟通道中含有常用的运算法，复杂的公式可转换为C#语言，通过自定义函数实现。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_51", "content": "问： 软件中有PSD测量功能么。\n答：有的，将频谱中的幅值类型改为功率谱密度。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_52", "content": "问： 软件是否有加密狗、注册码等限制。\n答：没有，可以同时在任意数量的电脑上使用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_53", "content": "问：我方希望脱离软件调用仪器的采集数据，能否实现。\n答：可以，请提供仪器的编号，我司提供相对应的二次开发接口和文档。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_54", "content": "问： 老师让处理数据，每篇报告的格式一样，软件中能自动生成么。\n答：需要提供报告的word模板，我司这边评估植入软件的可能性。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_55", "content": "问： 车载试验，除了传统的振动噪声采集外，还有哪些功能推荐。\n答：建议加入GPS和视频功能，记录实时车况和运行轨迹。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_56", "content": "问： 贵司软件中的残余应力计算对应哪种检测方法。\n答：盲孔法。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_57", "content": "问：4~20mA电流输出型的流量传感器，量程0~100L/min，软件中的灵敏度如何输入。\n答：推荐选用标定系数的两点法，第一标定点4mA、0L/min，第二标定点20mA、100L/min。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_58", "content": "问： 软件波形导出的图片，要插入报告内，波形内的光标数值怎么放大。\n答：在选项-风格设置中修改光标处的字体大小。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_59", "content": "问： DH8302采集时，显示的时间波形显示稠密不清晰。\n答：采样率高时数据量大，可在停止采集进入分析界面，通过Ctrl键框选局部放大。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_60", "content": "问：2D001H和2D001V区别是什么，如何进行传感器安装固定？\n答：2D001H测试的是横向振动，2D001V测试的是竖向振动，传感器上向上箭头为安装方向，传感器出线端为测试方向，建议安装传感器底部采用橡皮泥或者牙膏类流体进行固定，起到传感器和地面更好的耦合作用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_61", "content": "问：锂电池供电的仪器是否支持边充电边工作？\n答：可插入充电器一边充电一边工作，支持外部交流电源或直流电源供电。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_62", "content": "问：软件如何复制某个通道参数粘贴到其他通道？\n答：选中需要复制的通道，右键复制。然后到其他通道，再右键粘贴。可选择通道粘贴，也可以粘贴到所有通道。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_63", "content": "问：软件数据如何进行回放？\n答：到分析界面拖动上方黄色导航光标，拖到需要回放的起始点然后再点击启动回放，即开始回放数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_64", "content": "问：你们IIR滤波器和FIR滤波器的区别是什么？\n答：IIR滤波器：幅频特性精度很高，不是线性相位的；\nFIR滤波器：幅频特性精度较之于IIR低，但是具有线性相位的特点。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_65", "content": "问：你们索力测试模块依据的规程和应用的计算公式是什么？\n答：基于《公路桥梁荷载试验规程》（JTG-T J21-01-2015）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_66", "content": "问：你们软件模态模块有哪些分析方法？\n答：Polylscf，峰值拾取，SSI随机子空间算法，自互功率谱等多种分析方法；", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_67", "content": "问：你们软件振动舒适性用的标准是什么？\n答：汽车平顺性实验主要与ISO2631、ISO5349、ISO8041标准相关的分析方法。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_68", "content": "问：你们软件声学模块声功率不同测试方法依据的测试规范分别是什么？\n答：声压法（工程）对应ISO3744 （GB/T3767），声压法（简易）对应ISO3746 （GB/T3768）；\n声压法（精密）对应ISO3745 （GB/T6882），声强法（离散）对应ISO9614-1（GB/T16404-1），声强法 （扫描）对应ISO9614-2（GB/T16404-2）。每个测量方法可使用不同的测量表面/路径。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_69", "content": "问：软件怎么去打开以往的工程文件夹查看数据？\n答：打开软件到初始界面，左边有个“文件夹”三个字，点击右侧文件袋标识，下拉，浏览到文件夹，进行浏览到自己保存的工程文件夹路径下，确定后就能找到文件夹，双击进行打开。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_70", "content": "问：怎么更改采集后的数据的通道参数？\n答：在软件分析界面，激活你要的数据文件，找到你要更改的通道，将鼠标放到通道上，弹出“设置”按钮，点击进行，在弹框里面可以进行更改。注意，灰色的无法更改，必须在前期设置准确。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_71", "content": "问：为什么我在输出界面导出的数据都一样？\n答：若你的工程文件夹下面包含了多个测试文件夹，要分析或者导出数据时，需要激活对应的数据文件才能准确的导出你所需要的数据，在分析界面，右侧，找到你要激活或者导出的测试文件夹，右键进行激活，再去输出界面进行数据输出。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_72", "content": "问：怎么进行多通道导线电阻测量？\n答：在参数设置界面，所有的通道右侧为“通道设定”按钮，在最上方有个“设置”二字，点击在里面选择测量导线电阻即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_73", "content": "问：通道可以进行复制粘贴吗？\n答：可以，在通道设置界面，设置好你要的一个通道，选中这个通道，右键进行复制，然后可以选中一些通道或者是选中一个通道，右键进行粘贴，分为粘贴到所有通道和粘贴到选中通道两种。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_74", "content": "问：应力和应变怎么切换？\n答：在通道设置界面，选中你要设置的通道，右侧点击通道设定，在里面测量类型选择应力应变，接着左侧测量量可以选择应变或者是应力，选中应变就是测量应变，选中应力后，下方会多新增一栏：弹性模量，将构件弹性模量准确输入即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_75", "content": "问：可以对采集完的数据进行采样频率更改吗？\n答：可以，在软件的分析界面下，找到“输出”界面，在里面点击选择“东华软件”，里面有个“重采样”，可以对采样频率进行重新采样并输出新的测试文件。注意：只能从高采样频率降为低采样频率，如从5000Hz采样频率采集的文件降为2000Hz采样频率采集的文件。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_76", "content": "问：软件可以更改背景颜色吗？\n答：可以，在右上角选项里面，有个“风格设置”可以在里面进行细致的调整。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_77", "content": "问：软件图谱里的曲线颜色可以更改吗？\n答：可以，在图谱右上角有通道信息，前端有个色彩方块，鼠标光标移动到色彩光标上右键，可以选择自己需要的颜色。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_78", "content": "问：软件设置好的参数可以保存吗？\n答：可以，在参数设置界面，设置好你正确的参数后，左上角可以进行参数另存为，存到默认文件夹路径下或者自己的文件夹下，若存到默认的文件夹地址，在软件最上方的“参数设置”左侧有个“参数管理”，点击进去后找到你存的参数文件，双击就可以进行调用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_79", "content": "问：你们应变花模块在哪，怎么使用？\n答：应变花模块在软件的信号处理模块或者是算法设置模块里；左上角找到信号处理模块或者是算法设置模块，点击进去后找到应变花模块，根据你应变花的类型，选中对应的类型，如：三片直角型应变花，定义一片为0°方向，那么中间片为45°方向，另外一个直角边即是90°方向，下方输入准确的参数即可。角度的查看，0°到90°方向为正，反之为负。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_80", "content": "问：若采集完的数据起始位不在0点，怎么将数据回归到0点？\n答：可以使用“信号处理”里面的“虚拟通道”进行算法把数据拉回0点，提前找到偏移了多少数值并记录一下，然后点击选中“虚拟通道”，在左侧双击选中需要做算法的通道，双击后会自动输入到右侧算法框内，比如起始位在299，需要让起始位到0，那么算法就是[“通道”-299]如何回车，上方会提升【已校验】，即可运算完成，去分析界面找到虚拟算法通道，左上角点击自动计算即可显示。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_81", "content": "问：频谱图怎么增大频率分辨率？\n答：点击打开FFT图谱（频谱图），左键选中FFT图谱，在左侧有个参数“谱线数”，下拉可以进行选取不同的数值，有400、800、1600、3200、6400、12800、25600等，最大25600，越大，频率分辨率越小，频谱图越细化。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_82", "content": "问：为什么采集完数据后无法看到频谱图？\n答：打开数据到分析界面，选中FFT图谱（频谱图），左侧有两个选中，一个是实时谱计算和平均谱计算，实时谱是每一个数据块做一次快速傅里叶变换得到的单个频谱图谱，平均谱看的是整一段数据的频谱图。右侧选中通道后，点击左上角自动计算，若是没有，将谱线数选中小一点档位，再次进行自动计算（当前谱线数无法进行一次快速傅里叶变换所以无法计算得到）。注意：自动计算若是黄色，代表计算过，可以左键单机一次灭掉黄色，再次进行点击一次，再进行计算一次。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_83", "content": "问：图谱里面多个通道曲线叠加看得不明显，可以分开看曲线吗？\n答：方式一：打开一个图谱，左键选中图谱后右边勾选多个通道查看数据，左侧有个参数为“分开显示”，勾选后可以在一个图谱里面将多根曲线分开；\n方式二：打开多个图谱，每个图谱选中不同通道，如何左上角，选择横向平铺或者纵向平铺，将多个谱图自动排列开。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_84", "content": "问：怎么得到冲击系数？\n答：打开测得的动应变数据，在分析界面找到冲击系数模块，在图谱里面右键，选择峰值光标，找到曲线的最大值（波峰）所在位置，并对比波峰左右两侧波谷的值，哪个波谷最靠近最大值所在的波峰，右键重新调出双光标将这个波谷和波峰卡在双光标之间即可自动计算出来。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_85", "content": "问：测量量里面没有想要的物理量怎么进行添加？\n答：在软件参数设置界面，左上角找到东华测试logo，点击后选中弹框里面的测量量定义，进去后分为左中右三列，左侧选择你要的测量类型，接着点击左上角“添加”，中间列会新增一栏，选中新增的空白栏后，在右侧进行下拉选取所需要的物理量单位，最后左上角进行保存即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_86", "content": "问：怎么看我之前数据文件的通道参数设置？\n答：在工程文件界面打开数据，默认到分析界面，分析界面上方，有个“通道”一栏，点击后，可以看到这批数据的通道参数，需要查找哪一个通道的，双击那个通道的一行即可出现弹框，看到之前的参数设置。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_87", "content": "问：你们频谱阻尼比计算模块用的是什么计算方法？\n答：半功率带宽法。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_88", "content": "问：仪器可以使用直流供电吗？\n答：您可以查看仪器后面是否有直流供电输入口。红色接线柱代表直流正极、黑色代表负极。并且一般情况下旁边会标注输入电压范围的。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_89", "content": "问：5902N这款仪器使用时怎么这么烫的。\n答：5902N是一款多功能坚固性设备，产品设计时把设备外壳作为元器件散热的途径，所以外壳温度会较高，保证内部元器件都在设计温度范围内工作，从而保证产品指标稳定可靠。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_90", "content": "问：我现在有一台设备，通道不够用，如何加大通道数量并跟之前的匹配\n答：您好，如果您使用的仪器是独立板卡的，如果有板卡槽位的话可以加装板卡操作，也可以使用新的同款设备通过交换机的联用，两种方法都可以与之前通道匹配", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_91", "content": "问：我在做实验过程中，应变信号温飘很严重，怎么办？\n答：您好，在应变试验中，出现温漂情况最好是使用温度补偿片方法，在同环境同温度且不受外力的位置贴一个补偿片，在软件中使用该通道作为试验通道的补偿", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_92", "content": "问：我在现场试验的时候，信号全都是正弦波，影响试验数据该怎么办\n答：您好，首先判断一下波形是否为规则的正弦波可以通过软件自带的FFT功能看一下频率多少，没有的话可以通过双光标来看波峰隔值为多少，大多数情况为电干扰带来的影响，首先要确保仪器接地良好，然后排查信号线附近有无其他强电设备，做好隔离。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_93", "content": "问：5922D设备更换板卡时需要怎么操作\n答：您好，更换5922D板卡时，需要使用小的一字螺丝刀对板卡上下两颗螺丝进行拆卸，螺丝拆除完毕后，将板卡水平拉出，拉出时注意不要摇晃，换新的安装时，也要注意水平插进去，按照板卡卡槽送进去，最后安装到里面回有插接到位的声音，回装螺丝，打开软件，软件会自动检测到新的板卡", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_94", "content": "问：1a314e的量程和频响分别多少\n答：1a314e的量程为-50g～50g、频响为0.5～7000hz", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_95", "content": "问：DH5925N仪器的计算机配置是什么\n答：DH5925N仪器计算机配置CPU为i5-1145GRE，运行内存为8G，硬盘容量为128G", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_96", "content": "问：我在使用光电转速传感器过程中，信号不对怎么办\n答：首先确保反光贴与传感器的安装位置是否正确，其次要降低背景反射率，可以使用哑光交代粘贴之周围，还要确保环境光线强度，避免安装在强光附近，最后要保证传感器光源干净，防止灰尘油污等遮挡", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_97", "content": "问：东华有没有可以测量水下的加速度传感器\n答：东华水下加速度传感器有1A702E、1A731E等型号水下可用的加速度传感器，密封方式均为激光焊接，且水下耐压为2Mpa和1Mpa", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_98", "content": "问：在外场试验中，附近哪有接地点，如何给设备接地？\n答：找一块湿润的土壤，如果如果没有的话，可以用水浇湿，找找一根金属铁棒插在土壤内，使用接接地线将设备与金属铁棒相连。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_99", "content": "问：软件里如何批量输出图片？\n答：在在软件分析功能中，在输出界面找到word输出，勾选左下角以图片格式输出，并勾选通道，则可以以图片方式输出", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_100", "content": "问：在使用有输出的传感器时不小心清零了该怎么办？\n答：1.可以使用接地清零的操作.2.可以先将传感器输出至零位，然后平衡清零，在让传感器进行输出信号，软件数据则能正常显示", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_101", "content": "问：使用热电偶测温冷端补偿怎么操作\n答：可以使用pt100进行冷端补偿操作，如果没有热电阻，则可以在软件热电偶的通道手动输入当前环境温度进行补偿操作", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_102", "content": "问：在进行静载试验过程中，我加载到一个位置，试验终止了，需要卸载，下次继续做该怎么办\n答：首先要在卸载前，需要导出当前加载的零点，继续试验之前，倒入之前的零点，继续试验的零点为上次加载的值", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_103", "content": "问：在实验之前忘记设置信号处理，试验之后可以处理吗\n答：DHDAS软件信号处理模块在事前事后都可以进行设置，但是要确保采集到原始数据，事后可以在分析界面的信号处理模块处理，处理完毕后点击自动计算即可", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_104", "content": "问：5902N的信号线散线里蓝棕分别是什么线\n答：5902N信号线蓝棕为fb+、fb-为反馈补偿电路，主要功能为消除长距离导线压降进行补偿", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_105", "content": "问：DH5971N能远程控制重启吗？\n答：不能，但是有下位机的DH5972N、DH5974N采集仪可以。.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_106", "content": "问：DH5971N连接对延长线的距离有什么要求？\n答：DH5971N控制器和采集器之间的延长线距离不要超过100米，如果采集器串联，控制器与最远端采集器之间不要超过300米；采集器与传感器之间的延长线距离不要超过300米。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_107", "content": "问：DH5971N的485采集器最多能接多少个485传感器？\n答：单台485采集器一次不超过7台485传感器。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_108", "content": "问：DH5974N这款仪器使用一段时间发烫正常吗。\n答：产品设计时把设备外壳作为元器件散热的途径，所以外壳温度会较高，保证内部元器件都在设计温度范围内工作，从而保证产品指标稳定可靠。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_109", "content": "问：2D001传感器上面的档位有什么区别吗？\n答：0档：加速度；1档：小速度；2档：中速度；3档：大速度。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_110", "content": "问：东华所有设备的目的指向IP都是一样的吗？\n答：不是的，要根据实际使用的采集仪进行区分，比如DH2002的目的IP是192.168.0.195，但是DH5972N的目的IP是192.168.0.145。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_111", "content": "问：DHDAS如何设置软件自启动？\n答：打开DHDAS软件存在文件夹，路径：DHDAS/config，打开SystemCfg文件，查找关键字”Auto“,\n是否显示软件启动自动工作参数设置界面\nSoftWareStartAutoWork=1", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_112", "content": "问：索力的大小波动太大，能不能限制一下波动范围？\n答：可以，在索力的参数设置界面设置基频上下限。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_113", "content": "问：DHDAS软件能不能不用自带的第三方发数，用其他协议发数？\n答：可以，MQTT、UDP等发数都是可以的，但是需要定制。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_114", "content": "问：Linux系统可以安装DHDAS软件进行测试吗？\n答：不可以，暂只支持windows系统的。二次开放接口、PHM软件在Linux系统使用的话都需要定制。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_115", "content": "问：PHM软件可以实现任意地点、任意电脑通过网页地址登录吗?\n答：可以，但是最原来安装软件的服务器需要绑定公网IP；如果现场在同一个局域网内，IP互通，可以局域网内的任意服务器输入软件安装ip地址端口登录。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_116", "content": "问：PHM软件的告警信息记录怎么删除？\n答：勾选需要删除的告警信息，点击确定。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_117", "content": "问：PHM软件安装激活好后，没有设备连接显示，怎么查看？\n答：1.首先在以太网设置目的IP（见仪器表面会有标注或看说明书）；ping下仪器IP是否ping通；\n2.检查防火墙和杀毒软件是否都关闭；\n3.点击IIS，打开DHDC所在文件夹，后撤一个，依次打开dc\\drivers\\instrument\\config，打开dhsdk文件，将需要的仪器改成true，保存，打开任务管理器，服务，重启dhdc。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_118", "content": "问：PHM软件安装软件激活license显示不合法是什么意思？\n答：license授权过期了，一个月不使用就过期，需要联系公司让软件部重新发一个。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_119", "content": "问：PHM软件对不能清零的通道进行了清零，然后数据变得很异常，能不能恢复？\n答：可以，删除数据库零点文件，然后重启一下DHDC。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_120", "content": "问：PHM软件MQTT发数，外部编码有什么要求或者注意的地方吗？\n答：不能超过16个字符，里面不能含有#。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_121", "content": "问：PHM软件可以像DHDAS一样，展示长时间的波形变化吗？\n答：可以，一种是把块大小选择大些，另一种打开2D图谱，将配置中心-组件配置中，使用记录仪点开。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_122", "content": "问：PHM软件的加密狗现场容易丢失，能不能不插加密狗激活软件？\n答：可以，使用绑定主机的授权license。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_123", "content": "问：你们公司有没有适合在野外使用的仪器？\n答：DH5902N坚固型动态信号测试分析系统专为车载、机载、舰载等各种恶劣环境的数据采集设计，内置工业级控制计算机和固态硬盘，可在强振、高低温、高湿等极限环境下完成测试和长时间监测工作。系统采用有线网络（LAN）或无线网络（Wi-Fi）连接计算机实时采集、传输、存储、显示、分析数据；可脱离计算机控制独立工作，将数据实时存储在仪器大容量固态硬盘中，连接计算机后再将数据回收进行分析处理。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_124", "content": "问：你们公司有哪些无线模态类仪器\n答：DH5907G 无线模态测试分析系统，内置磁电式速度传感器，大容量可充锂电池组供电，支持有线、WIFI 通讯模式，支持 GPS 同步采集多测点数据，实时传输数据至计算机，广泛应用于桥梁、大型建筑及大型机械设备等不易实现人工激励的结构的实验模态分析。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_125", "content": "问：你们的DH3816N能否用来测量动态信号？\n答：该仪器动态采样时每个模块（4 通道）可任选一通道作为动态采样，200Hz、100Hz、50Hz、20Hz、10Hz 多种频率可选，不过是能满足最多四个通道动态采样，不推荐您测点较多的场合使用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_126", "content": "问：你们DH3816N能否测量360Ω的应变片\n答：120Ω或350Ω（订货时确定一种），单台选择一种进行采购", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_127", "content": "问：我们需要长期震动监测，哪些传感器合适？\n答：环境类振动检测，推荐2D001。长期使用在桥梁检测等领域。如果是较高频率的振动，推荐压电式如1A314E等。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_128", "content": "问：你们公司水下测试振动信号，需要采用哪种传感器？\n答：推荐使用1A702E 1A709E 1A731E水下振动传感器，三轴正交剪切结构，双层屏蔽设计，抗环境干扰能力好，整体密封电缆可保证传感器长时间水下工作。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_129", "content": "问：我们购买的店小二电量约1800W，预计能支持DH5922D多久，32CH。\n答：因为DH5922D 32CH在满通道下的功耗约为160W，电小二1800W户外电源使用160W设备时，理论供电时间取决于设备功率和电源容量。以电小二1800W户外电源为例（电池容量约1.5度电），若设备功率为160W，理论供电时间约为9小时（1534Wh÷160W=9.59小时）。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_130", "content": "问：DHDAS软件能否大量配置通道参数\n答：您在设置好其中一个通道后，如果有同种类型传感器或者应变通道等，可以在图中参数设置界面，进行复制通道参数设定，实现多通道参数同时配置。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_131", "content": "问：DHDAS软件能否导出多个测试数据\n答：您在分析界面，输出功能中，报告功能。可以实现多个测试数据同时导出。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_132", "content": "问：DHDAS软件能否处理多周期采样。\n答：可以实现这个功能，不过需要进行定制软件功能，常规软件为未配置该功能", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_133", "content": "问：DHDAS软件能否读取别家的txt类文件\n答：目前软件读取的测试数据文件时DHprj格式，暂时不能读取生成的txt,excel等文件。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_134", "content": "问：有没有能够接受1588同步时钟协议的仪器\n答：DH5981 分布式动态信号测试分析系统，是为大型结构的强度和振动特性试验专门设计，采用独立分布式模块，利用以太网交换机（支持 IEEE1588 网络同步和 POE 供电）扩展，单台计算机可以实现无限多通道的动态应力应变或振动信号并行同步测试和分析。广泛应用于机械工程、汽车工业、航空航天、电子工业等行业各种结构的性能测试和分析。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_135", "content": "问：仪器是否能识别485类传感器信号\n答：动态数采一般需要配备485板卡，才能进行485传感器数据接收等。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_136", "content": "问：软件上的上限频率是什么意思？\n答：是硬件低通滤波器", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_137", "content": "问：软件上的输入方式GND有什么作用？\n答：GND是接地，仪器通道端接地，可以用来判断信号干扰，或者用来消除仪器的初始偏置电压，比如将通道打到GND，再平衡清零。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_138", "content": "问：如何设置自动命名测试文件？\n答：存储规则界面，勾选自动命名文件", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_139", "content": "问：如何设置触发存储？\n答：存储规则界面将默认的连续存储设置为触发存储", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_140", "content": "问：信号触发的触发量级是什么意思？\n答：该通道信号设置的量程的百分比，比如信号触发设置10%，量程为100g，当信号达到10g时，达到触发条件，开始存储。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_141", "content": "问：信号触发的负延迟是什么意思？\n答：达到触发量级前多存储一部分信号，比如设置负延迟200个点，意思是在达到触发量级时，多存储前面的200个点，为了更完美的把整个触发信号采集下来。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_142", "content": "问：正延迟是什么意思？\n答：比如停止采集正延迟200个点，意思是在达到停止采集的条件时，多存储后面的200个点。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_143", "content": "问：记录仪界面曲线走的太快是怎么回事？\n答：可能是采样频率比较高，刷新的太快，可以尝试降低采样频率；也可以将记录仪的横轴右下角的时间数字更改，双击，更改，改为比较大的数字。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_144", "content": "问：FFT的实时谱和平均谱是什么？\n答：实时谱是当前时刻的快速傅里叶变换，平均谱是开始采集数据到当前时刻所有数据的平均频谱。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_145", "content": "问：为什么我更改谱线数之后，很久才刷新一次FFT？\n答：谱线数调整大之后，需要的一次快速傅里叶数据量也跟着增大，在一定的采样率下就需要多采集一些时间才能够满足数据要求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_146", "content": "问：分析界面更改了一些信号处理参数后数据显示没了，怎么处理？\n答：需要点击一下软件左上角的自动计算或者手动计算。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_147", "content": "问：我开始采集应变数据忘记清零了，数据采集完成后，还能不能调整零点?\n答：可以的，在分析界面，将鼠标放在通道列表需要更改零点的通道旁，弹出来“设置”，点击进去，更改偏移量。也就是曲线的上下平移。有些数据量大的情况，需要在设置好偏移量后，点击自动计算或者手动计算，将数据曲线从新画图。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_148", "content": "问：我采集了50组数据，为什么分析界面只能看到32个？\n答：数据没有丢失，可以通过更改软件配置来恢复。关闭软件，打开安装位置的config文件，找到systemcfg，查找 最大run数，调大，保存。重新打开软件导入测试文件数据即可。温馨提示，打开测试文件数量越多，软件越可能会卡顿。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_149", "content": "问：如何截取一部分数据出来？\n答：首先需要您确认截取的数据范围，然后在分析界面的分析界面，点击东华软件，截取，输入对应的时间范围后打勾，重新命名测试文件即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_150", "content": "问：如何判断信号是否正常？\n答：以加速度传感器为例，设置参数完成后可以在测量界面，调出来对应的通道曲线，敲击传感器，看信号是否出现，是否符合衰减信号的样子，如果需要标定，请考虑信号校准。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_151", "content": "问：我需要用应变片进行应变测试，应该如何进行软件设置\n答：在测量界面，选择参数设置窗口，点击对应通道的通道设置，跳出设置弹窗，弹窗内的测量类型选择应变测试，根据实际连接情况选择对应的桥路方式，在测量位置选择实际物理量应变或者应力，若是应力则需要在弹性模量处输入被测物的弹性模量。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_152", "content": "问：如何判断我使用的哪种桥路方式或者连接的是否正确\n答：在选择应变测量时，选定桥路方式后，弹窗左下会有应变测试的测量示图以及连接电路图，根据电路图去判定，如何连接应变片或者核对连接是否正常。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_153", "content": "问：现场测量同一个物理量，每个通道设置相同，有什么快捷的设置方法\n答：在已经设置完成的通道上点击右键，选择复制，然后右键选择粘接，根据实际情况进行全部粘贴或者选择性粘贴，还可以对粘贴内容进行选择是否粘贴。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_154", "content": "问：量程应该如何选择\n答：在不知实际测量数值大小时，应先选择最大量程，再根据实际数据情况，调整到合适的量程。若试验为一次性试验，则建议使用多通道同时测量此数据，量程有大有小，以实现准确测量。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_155", "content": "问：如何保存参数和导入参数\n答：参数设置完成后，可在测量界面，参数管理窗口，点击参数另存，可将参数保存到指定位置，下次使用时，在此界面进行参数导入即可读取。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_156", "content": "问：如何采集数据\n答：在测量界面，选择测量窗口，点击采集按钮，输入测试文件名称，即可开始采集数据。选择界面中的记录仪，勾选右侧对应的通道，即可实时观察对应通道的实时波形。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_157", "content": "问：为什么数据不是从零点开始采集\n答：信号在接入时不在零位，若是需要时数据归零后采集，则需要在采集之前点击平衡清零，完成后再进行采集。需要注意的是，若需要数据的初始值，则不可进行平衡清零。若是需要记录平衡清零时的数据值，则需要在平衡后的弹窗内，选择保存零点。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_158", "content": "问：如何把采集到的数据进行输出\n答：在分析界面，点击分析窗口，鼠标放在需要的测试文件上，点击激活。然后，选择输出窗口，根据实际的输出需求，点击需要输出的格式，选择需要输出的路径，点击需要输出的通道，需要输出的相关信息后，点击输出，进行命名后确认，即可在选定路径中进行保存。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_159", "content": "问：设备的供电方式\n答：我司设备常规为市电220v供电，并配备三孔插座和线缆。若设备存在直流供电的接口，请查看面板是否存在红黑接线柱，有则可进行直流供电。若发货配备有适配器，请使用专用适配器给设备供电。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_160", "content": "问：桥式传感器是否可以使用外部供电同时正常进行数据采集\n答：可以。您可根据传感器的参数，选配合适的供电电源，将供电线缆接到外部电源，信号接入数采中，即可正常进行数据采集。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_161", "content": "问：5922D时间同步精度、功耗分别是多少\n答：多机箱间通过同步时钟盒同步，同步精度20ms\n32通道功耗为160W，64通道功耗为320W", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_162", "content": "问：5922D可以测热电偶怎么使用\n答：5922D可以用应变线Vi+、Vi-接热电偶，但需要冷端温度（热电偶接线处）温度已知且保持不变（置于恒温处或冰水混合物），或在冷端放置铂电阻测温，在通道设置选铂电阻通道做冷端", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_163", "content": "问：3816N能否采集动态信号\n答：相邻4个通道共用AD可任选一通道动态采样，200Hz、100Hz、50Hz、20Hz、10Hz五种频率可选", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_164", "content": "问：3816N接公共补偿时注意事项\n答：接公共补偿时，补偿片导线长度需要与被补偿通道的导线长度一致", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_165", "content": "问：示波的数据会不会被保存下来吗？\n答：不会，如果需要保存实时采集的数据，需要点击采集才能触发保存", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_166", "content": "问：如何修改数据的存储路径？\n答：首先点击“测量”进入“储存规则”-“文件夹”-选择“浏览文件夹”，选择保存的文件路径", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_167", "content": "问：软件会自动推送最新版本吗？\n答：不会，如有需要请联系客服", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_168", "content": "问：如何查看仪器的连接状态？\n答：打开软件，右上角“硬件”，“刷新连接”，如果连接成功会显示仪器的ip，并呈现绿色", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_169", "content": "问：如何查看历史数据？\n答：点击“工程管理”-在“文件”里选择“浏览文件夹”，打开文件，进入“分析”界面，选择右侧的模拟通道，查看历史数据", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_170", "content": "问：如何修改传感器的参数设置?\n答：点击软件左上角的“测量”，进入“参数设置”，选择对应通道里的传感器的“设置”，进入设置界面", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_171", "content": "问：如何添加传感器测点的算法?\n答：在“测量”界面选择“信号处理”，再选择需要用到的算法，选择绑定的通道，软件会自动生成一个测点，可以在测量界面查看", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_172", "content": "问：如何保存传感器的参数设置?\n答：首先在软件参数设置界面配置好对应的参数，再点击左上角的图标，选择“参数另存为”，命名参数文件名称，并选择保存路径", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_173", "content": "问：该软件能应用在哪些领域?\n答：广泛应用于：工程测试，科研实验，工业检测等", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_174", "content": "问：如何导出数据？\n答：选择“分析”-“输出”，进入数据输出界面。在需要输出数据的通道前打钩，设置完参数设置， 选中需要输出的文件类型，单击“输出”，可以导出数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_175", "content": "问：数据采集的时间是根据什么来确定的？\n答：一般情况下是和电脑上的时间同步。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_176", "content": "问：如何查看点击采集以及停止的时间？\n答：选择“分析”-“事件”，进入事件列表界面，在此界面中用于查看当前工程下各测试启动存储、 停止存储、触发等事件发生的时间", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_177", "content": "问：数据波形线的颜色可以更改吗？\n答：可以的，单击右上方的“设置”按钮，在弹出的菜单中选择“风格设置”项，弹出风格参数设置界面，软件默认3个风格界面，单击自定义，可由用户设置软件界面的颜色、字体大小等参数\n\n如何查看当前软件的版本号：\n答：软件右上角点击“帮助”---“关于”，可以查看软件版本号", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_178", "content": "问：软件里有哪些算法可供使用？\n答：在“测量”-“信号处理”，进入实时算法设置界面，用于数据的实时处理、分析和显示，包含 多种分析方法：频谱分析、幅值分析、倍频程分析、虚拟通道、滤波设计、应变花设置、积分微分等", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_179", "content": "问：实时采集数据时，有报警功能吗？\n答：可以用数字表的视图形式显示实际值、统计值或时间，并具有报警功能，当数值超出所设范围时，以突显的颜色显示。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_180", "content": "问：软件支持哪些传感器的数据采集？\n答：应变应力（点焊式表面应变计，埋入式应变计，光纤光栅应变计），振动传感器（磁电式振动传感器，IEPE 加速度传感器，电容式加速度传感器，压阻式加速度传感器），位移传感器（拉线位移传感器,直线位移传感器,磁环位移传感器,编码器位移传感器），倾角传感器,三维风速风向仪,环境温湿度计,静力水准仪,GNSS等", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_181", "content": "问：应变计线缆选型有什么要求？\n答：应变信号输入线选择 RVSP 四芯双绞屏蔽线，型号为 RVSP4*0.5 双绞屏蔽信号线。该 线缆采用双层屏蔽，抗干扰能力强，纤芯双绞可以显著提高抗干扰性能，同时抗氧化镀锡铜屏蔽网可减少电磁辐射与外部电磁干扰的影响。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_182", "content": "问：加速度传感器线缆选型有什么要求？\n答：单向加速度传感器信号线选择二芯屏蔽线，型号为 RVVP2*0.5 双芯屏蔽信号线。三向加速度传感器信号线选择 4 芯屏蔽线，型号为 RVVP4*0.5 四芯屏蔽信号线。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_183", "content": "问：网线该怎么选型\n答：由于监测现场会存在较大的干扰，所以选择超六类屏蔽双绞线。该网线具有高抗电磁干扰性的双绞线，能满足千兆传输性能。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_184", "content": "问：电源线该怎么选型\n答：电源线选型严格依据国标 GB4706.1-1992/1998 规定的电线负载电流值（部分）铜芯电线，铜芯线截面积允许长期电流情况：2.5 平方毫米(16A～25A)，6 平方毫米(32A～40A)。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_185", "content": "问：如用到铠装光纤该怎么选型\n答：选择 GYXTW-4单模 4 芯铠装光缆。该光缆具备回波高、衰减低、耐弯度高等特点。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_186", "content": "问：线缆防护套管该怎么选型\n答：现场线缆防护采用双扣包塑金属软管，此类软管具有极佳之防水、绝缘性，抗拉性，双扣设计，安全牢固。表面采用 PVC 材料，且 PVC 塑料中添加了防火阻燃剂结构为反扣型，增加抗拉强度、不容易折断或变形；弯曲性能好，内部平滑构造，在穿引电线电缆时极容易。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_187", "content": "问：单个同步时钟盒如何使用\n答：通过同步时钟盒的时钟1至时钟8的接口，采用同步时钟线分别与DH5922D仪器的同步时钟接口相连，此时的级联接口无需使用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_188", "content": "问：多个同步时钟盒如何使用\n答：当多个同步时钟盒进行连接时，由作为第一级的同步时钟盒从时钟1至时钟8的任意接口使用同步时钟级联线分别与作为第二级的同步时钟盒级联接口相连，DH5922D仪器的同步接口则全部与第二级同步时钟盒的时钟1至时钟8接口进行连接（使用同步时钟线）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_189", "content": "问：5922d仪器可以使用直流供电吗？\n答：您可以查看仪器后面是否有直流供电输入口。红色接线柱代表直流正极、黑色代表负极。并且一般情况下旁边会标注输入电压范围的。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_190", "content": "问：5922d如何配置计算机的ip地址\n答：在“开始”中选择“控制面板”，在弹出的面板中选择“网络和Internet”，在“网络和Internet”中选择“网络和共享中心”，在随后弹出的窗口中点击“本地连接”，在“本地连接”中点击“属性”按钮，在弹出的对话框里，先选择“Internet协议版本4（Icp/IPv4）”，再点击“属性”按钮，在随后打开的窗口里，选择“使用下面的IP地址（S）”；将IP地址设为“192.168.0.95”，设置完成后点击“确定”提交设置。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_191", "content": "问：如何更改需要查看的显示信息？\n答：选择一个视图窗口，单击左侧工具栏上的“统计信息”标签或在视图窗口中单击鼠标右键选择“统计信息”项，勾选需进行的统计的数值，如果当前绘图窗口内有双光标，则统计两个光标间的数据，否则统计当前整个窗口内显示的数据。当一个绘图窗口内的曲线不只一条时，统计信息是针对当前活动曲线的。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_192", "content": "问：如何设置信号处理界面。\n答：选择“测量”-“设置”-“信号处理”，在信号处理方法界面上可以选择多种算法，例如选择“频谱分析”图标，并双击“频谱分析”后，自动弹出参数配置窗口，设置相关参数，在FFT频谱分析配置界面里，可以选择具体的数据通道、输出方式、类型，计算类型、幅值类型、窗类型以及谱线数等相关参数。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_193", "content": "问：如何将所需要的数据按照想要的格式输出出来？\n答：输出管理：单击“输出”标签进入输出参数设置界面，可选择多种输出格式，包括：工作表、Matlab、纯文本、通用格式、word、图片，在需要输出数据的通道前打钩，设置完参数设置，在左上角的文件类型中选中需要的文件类型，单击“输出”按钮，即可弹出“文件保存位置”的对话框；例：选择Excel形式，选择相应的通道，设置完“参数设置”后，单击“输出”按钮。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_194", "content": "问：适调器工作指示灯不亮时，一般是什么原因引起的？\n答：在开机之前没有连接适调器，连接适调器的顺序不正确、适调器有故障、通道卡有故障。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_195", "content": "问：适调器工作指示灯不亮时，一般该怎么解决？\n答：先关闭仪器，重新连接适调器后再启动仪器，关机后将适调器接至另一个正常的通道，再开机，如工作指示灯仍不亮，则表示适调器有问题，如工作灯亮，表示适调器良好，原通道有故障。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_196", "content": "问：仪器连接软件及传感器时时应该注意哪些？\n答：所有仪器的连线必须牢固可靠、直流供电时，需在实验过程中，保证连接的导线不要晃动、测量时，要保证仪器良好的接地，接通电源，仪器正常工作后，需预采样，信号应无明显干扰，否则应重新调整连接线或接地点，电缆线的连接、拆除必须在仪器关机的状态下进行，若原来为多台仪器连接扩展使用的，现在只使用单台仪器，应将此仪器同步时钟线去掉，否则会引起采样数据错误。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_197", "content": "问：软件应变应力中的方式几分别是什么意思？\n答：方式一：1/4桥（三线制）适用于测量简单拉伸压缩或弯曲应变\n方式二：半桥（1片工作片，1片补偿片）适用于测量简单拉伸压缩或弯曲应变\n方式三：半桥（2片工作片）适用于测量简单拉伸压缩或弯曲应变\n方式四：半桥（2片工作片）适用于只测弯曲应变，消除了拉伸和压缩应变\n方式五：全桥（4片工作片）适用于只测拉伸压缩的应变\n方式六：全桥（4片工作片）适用于只测量弯曲应变。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_198", "content": "问：计数器通道三行输出的含义\n答：“Direc”对应方向，表示当前变化趋势，显示“正向”或“逆向”，“plusecounter”对应位置值，与脉冲总数相关，适用于用脉冲输出数量来衡量物理量大小的编码器、传感器；常见角度、位移、流量等，“plusepos”对应速度值，表示脉冲数变化快慢相关，适用于用脉冲输出快慢来衡量物理量大小的编码器、传感器，常见的转速、流速等。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_199", "content": "问：参数设置中几种不同输入方式各有什么意义\n答：DIF-DC：差分直流输入方式，可同时进行信号中交变部分和直流分量的测量。对于差分输入，每一个输入信号都有自有的基准地线。选择差分输入时，是判断两个信号之间的电压差。\nSIN-DC：单端直流输入方式，可同时进行信号中交变部分和直流分量的测量。 输入信号均以共同的地线为基准.这种输入方法主要应用于输入信号电压较高（高于1V），信号源到模拟输入硬件的导线较短，且所有的输入信号共用一个基准地线。选择单端输入时，是判断信号与GND的电压差。\nAC：交流输入方式，启用高通滤波器，会移除信号中的直流分量，只允许信号中的交变部分通过和测量。但由于滤波器的截止频率（-3dB点）和存在滤波陡度，AC输入方式在移除信号中的直流分量的同时也会衰减额外低频段的幅值（如0Hz~截止频率处）。\nIEPE：专用于IEPE型传感器的输入方式，在该输入方式下通道会给IEPE型传感器供电，同时接收传感器输出的电压信号。通道的供电电源为：4mA/24VDC，4mA为恒流源，此电流不会发生变化；24V指空载时的电压。同样在该输入方式下会启用高通滤波器，移除信号中的直流分量。\nGND：仪器内部接地。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_200", "content": "问：DH5857-8电荷适调器的各项技术指标\n答：最大输入电荷量：105pC（0.1mV/pC时）\n输入电阻：大于1011Ω；\n放大器输出灵敏度：0.1mV/pC、1 mV/pC或10mV/pC（订货时确定一档）；\n示值误差：小于1％（额定工作条件下，由7VRMS160Hz正弦信号测量）；\n噪声：小于10×10-3pC；\n最大带宽：0.3Hz～300kHz（+0.5dB～-3dB）；\n失真度：小于0.5％（频率小于30kHz）；\n外形尺寸：φ30mm×95mm（长）（单通道）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_201", "content": "问：上传数据至服务器后，为什么分析端无法查看数据？\n答：直接复制粘贴无法在分析端中查看数据，不许使用服务器端小工具，点击导入，并且导入的文件夹中不能其他类型文件（非工程文件）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_202", "content": "问：采集完成数据后，很多的设计都需查看数据，并且因为数据量庞大，无法实时计算，该怎么同时让众多设计都能查看数据？\n答：软件设计，在一个母工程测试下，通过设置时间段分组管理、信号分组管理、算法管理，让每个设计都能提交自己独特的算法，同时在母工程测试文件下，生成自己所设置好算法的测试文件，让每个设计都能同时查看数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_203", "content": "问：为什么使用电流环适调器后，输出的信号并不正常？怎么解决？\n答：电流环适调器使用后，仪器能供24V电压，但功率会跟不上。所以输出信号不正常，可以测量电压，发现没有供满电压，可以使用稳压电源单独供电，也可以将传感器按照比例电压比例来设置参数。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_204", "content": "问：这款仪器可以接什么规格电阻的应变片。\n答：市面上当前有120Ω和350Ω两种电阻规格的应变片，我司可以连接使用应变片的仪器在连接半桥或者全桥的桥路方式时两种规格都可以连接，绝大多数型号在使用四分之一桥的桥路方式时支持120Ω或者350Ω，需在购买时确定一种，少部分型号在使用四分之一桥的桥路方式时两种电阻规格的应变片都支持，需要根据具体型号来确认。（软件自动列举哪些仪器支持，哪些不支持。）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_205", "content": "问：如何选择合适的采样频率。\n答：根据信号频率选择，如需分析信号幅值与频率，采样频率应设置为信号频率的10-20倍；如只需分析信号频率，采样频率设置为信号频率的2.56倍即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_206", "content": "问：如何在软件中切换仪器型号连接通讯？\n答：在软件右上角点击“硬件”，在硬件界面选择对应的“接口类型”与“仪器型号”然后点击“确定”，在弹出的小窗口中选择“是”，等待软件自动重启完成即可切换仪器型号", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_207", "content": "问：导出的数据与查看的数据不对应是因为什么？\n答：是因为查看的数据未激活，在分析导出数据之前需要先将数据激活，再进行分析导出。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_208", "content": "问：能否将分析计算完的数据进行导出？\n答：可以，在“输出”界面选择对应加了算法的通道就可将计算后的数据结果导出。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_209", "content": "问：仪器采集的数据是否可以用其他软件抓取？\n答：可以，软件支持二次开发，可提供二次开发接口协议。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_210", "content": "问：软件是否可以将采集的实时数据进行实时处理后输出给其他软件或平台？\n答：可以通过软件第三方发数功能，将实时处理的数据发送到制定地址和端口。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_211", "content": "问：软件采集保存的数据是否可以用其他软件直接打开分析？\n答：不可以，需要使用本软件打开数据导出成通用格式才可用其他软件打开分析。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_212", "content": "问：如何判断数据已经正常保存？\n答：在测量界面上方事件显示框中同时出现开始存储时间与停止存储时间时，数据即已正常存储到硬盘中", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_213", "content": "问：如何查看已经存储完的数据在采集时设置的通道参数信息？\n答：在分析界面下打开数据以后点击“通道”即可看到采集该数据时设置的通道参数。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_214", "content": "问：如何获取到对应的软件安装包？\n答：1.找到仪器到货时附带的U盘/光盘，拷贝安装包；\n2.联系我司售后人员，提供仪器型号与仪器编号获取安装包。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_215", "content": "问：仪器采集出来的数据由很大的干扰怎么办\n答：您需要先使用FFT看下是什么频段的干扰，一般工频带来的干扰，可以通过仪器接信号地以及强弱电线缆不能水平放置等方式消除很多，而其他频率的干扰，则需要根据环境的不同，例如将传感器与被测面隔离开来等方式，", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_216", "content": "问：不同的通道可以用不同的采样频率吗\n答：这个需要定制，需要先对仪器进行评估，看是否能进行定制升级，", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_217", "content": "问：传感器接好后，怎么在软件上看是好是坏\n答：接好后，去测量界面，对传感器进行激励，查看测量界面的幅值是否符合预期。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_218", "content": "问：软件右上角提示同步时钟未连接（GPS时钟异常）怎么办?\n答：只使用一台的情况下，选择软件右上角选项，进入系统设置，将同步时钟的勾选框取消即可，若是多台联用的情况下，则需要检查同步线缆是否连接到位。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_219", "content": "问：软件提示内存不足怎么办？\n答：连接仪器，去软件右上角找到数据回收，再数据回收中选中不需要的实验数据，删除即可", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_220", "content": "问：软件在采集过程中电脑死机，或者网络故障，之前采集的数据还在吗\n答：在死机之前的数据都在的。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_221", "content": "问：采集示波过程中，波形的刷新非常卡顿是为什么\n答：需要在选项的系统设置中关闭大数据采集", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_222", "content": "问：数据采集完成后还可以进行修改调整吗\n答：数据采集后还可以在分析界面的输出界面使用东华软件功能进行数据再处理，并且在分析界面的通道界面也可以更改通道的部分参数，如灵敏度等，以及信号处理界面也可对数据进行再处理", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_223", "content": "问：软件提示通道过载\n答：传感器正常连接的情况下，检查通道设定量程是否设置过小，接线是否正确。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_224", "content": "问：仪器的IP可以更改吗，如何更改\n答：首先正常连接仪器，在硬件界面的仪器参数界面即可修改IP", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_225", "content": "问：软件输出的数据都有什么类型\n答：软件的数据类型包括TXT，excel，matlab等，在分析界面的输出界面都可查看。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_226", "content": "问：贵公司的结构力学测试系统能否用于高层建筑安全监测？\n答：可以。我们提供一站式力学性能测试解决方案。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_227", "content": "问：系统如何保证长期监测数据的准确性？是否会受温度漂移影响？\n答：软件内置漂移修正和异常点去除功能，可自动减少温度变化、胶粘剂老化等因素的干扰，确保数据可靠性。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_228", "content": "问：能否与MOOG、MTS等国际载荷控制系统兼容？\n答：支持通过网络NTP、反射内存卡实现同步与数据交互，并具备信号反馈和虚拟计算功能。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_229", "content": "问：设备健康监测如何验证数据准确性？客户需第三方验证吗？\n答：通过故障机理和特征值变化判断风险，无需第三方验证。系统推动维修模式从“定期维修”转向“状态监测维修”，降低成本。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_230", "content": "问：PHM系统在军工和民用领域的定价策略差异？\n答：军工客户更关注可靠性及定制化，价格敏感度低；民用领域强调标准化与模块化以降低成本，通过渠道合作推广。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_231", "content": "问：桥梁监测业务的市场规模有多大？\n答：大型桥梁单项目可达千万级，但中小型桥梁暂无强制安装政策。市场涵盖高铁、高速路等广义桥梁，数字化工程政策将推动需求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_232", "content": "问：PHM系统的核心竞争力是什么？\n答：小信号采集与抗干扰技术媲美国外，且自主可控。劣势在于应用理解深度，正通过上海研究院加强AI与数据处理技术。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_233", "content": "问：军工客户占比是否可持续？\n答：随着电化学工作站和民用PHM拓展，军工占比（当前超60%）可能下降，但仍是核心市场。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_234", "content": "问：实验与仿真平台能否用于机器人开发？\n答：可应用于人形机器狗力学性能优化与结构减重设计，目前正开拓相关客户。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_235", "content": "问：模态分析技术有何优势？\n答：支持锤击法、激振器法等测力模态，以及无需人工激励的工作模态分析，精度满足飞机、汽车等大型结构测试。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_236", "content": "问：扭矩分析系统的精度如何保障？\n答：实时扭振径向误差修正技术提升精度，支持角速度、轴功率同步计算。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_237", "content": "问：健康监测业务如何应对突发故障？\n答：通过实时特征值追踪与过载提示功能，预警异常振动或噪声源。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_238", "content": "问：残余应力分析支持哪些方法？\n答：支持盲孔法，可自动计算释放系数并绘制应力-深度曲线。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_239", "content": "问：高速旋转机械振动测试如何避免信号混叠？\n答：硬件支持抗混叠滤波+同步整周期采样（如102.4kHz采样率），软件自动识别转速阶次，确保高频谐波不丢失。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_240", "content": "问：多通道瞬态冲击（如爆破）测试能否同步触发？\n答：支持 光纤反射内存卡实现μs级同步，触发延迟＜1μs，满足ISO 5348瞬态事件捕捉要求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_241", "content": "问：锤击法模态测试如何避免力谱泄露？\n答：硬件集成力窗+指数窗函数，软件自动校验相干系数＞0.9，确保FRF可信度。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_242", "content": "问：复合材料层合板应变测量如何解决各向异性干扰？\n答：提供专用应变花布局方案（如0°/45°/90°三栅组合），软件自动计算泊松比修正矩阵。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_243", "content": "问：高温环境（＞300℃）应变片如何安装？\n答：配套 高温陶瓷胶+铠装热电偶，支持动态温度补偿，极限工作温度可达800℃（需定制）。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_244", "content": "问：旋转轴扭矩实时测量如何传输信号？\n答：可选无线遥测(2.4GHz)或滑环传输，采样率100kHz下延迟＜0.1ms，满足ISO 2669动态校准要求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_245", "content": "问：查看数据时如何查看数据的最大值、最小值、均方根值等\n答：1、在记录仪窗口中，右击统计信息可进行选择查看2、记录仪窗口左侧设置栏统计光标中可进行选择", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_246", "content": "问：一台电脑上能安装不同版本的dhdas软件\n答：不可以，需卸载现有版本软件后可安装其他版本", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_247", "content": "问：卸载软件会影响之前测试保存的文件吗\n答：不影响，卸载软件不会对之前测试文件造成影响", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_248", "content": "问：你们频谱用的是什么公式\n答：目前我们频响分析采用的是基于快速傅里叶变换（FFT）的算法，具有较高的频率分辨率和实时性，适用于各类振动信号的分析需求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_249", "content": "问：采集端报错7000失败是什么原因\n答：此为软件bug，经过测试交换机启动完成后上电剩余5台采集端服务器正常，问题原因明确。经6.24.12.29c版本软件测试无问题。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_250", "content": "问：主控端登陆时，其他端会跟随自动登录吗\n答：6.24.12.29d版本软件目前主控端登录的同时能够控制采集端自动登录", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_251", "content": "问：如果软件缩小至如果软件缩小至后台运行，是否会自动暂停数据采集任务？\n答：不会，软件在最小化至后台后仍会保持数据采集任务的正常运行，确保实验或测试过程不受操作界面状态的影响。同时系统会对采集数据进行实时缓存，待软件重新恢复至前台操作时，可继续进行数据监测与处理。此功能已在24.12.29d版本中通过验证，运行稳定可靠。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_252", "content": "问：坎贝尔图之前无法显示波形，现在是否优化完成\n答：之前的坎贝图由于电脑配置不足够显示波形，2025.3.8：6.24.12.29d版本软件测试已增加转速和倍频显示", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_253", "content": "问：数据时间段分组功能如何使用\n答：数据上通过鼠标右键标记出需要所有时间节点，然后在上方通过“+”和“-”去新建标记组，每个标记组可命名，后方起始时间和结束时间下拉可选标记的所有时间节点（结束时间选择的标记时间节点必须大于起始时间的选择），右侧勾选需要分析的通道", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_254", "content": "问：分析端算法管理是否添加入阶次分析，虚拟通道，应变花等模块\n答：6.24.12.29h版本软件测试以上功能均已加入算法管理", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_255", "content": "问：如何能查看到系统中的各个部分连接情况\n答：右上角硬件中可以查看采集器连接显示同常规，正常连接显示绿色，未连接显示黄色；采集端未连接服务端实时上传服务显示红色，未连接主控端显示黄色，未登录服务端显示蓝色；主控端未登录显示蓝色；显示端未连接主控端显示黄色。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_256", "content": "问：显示端的测点信息包括算法等能否自动获取\n答：2025.3.8：6.24.12.29d版本软件主控端生成新的算法或增加通道修改通道参数后均需要点击参数下传，显示端自动获取这些新的信息无需勾选", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_257", "content": "问：总量与总值的区别是什么\n答：总量就是软件内的总值，总值（峰值）就是peak，后续软件内将总值更名为总量，总值（峰值）更名为总量（峰值），6.24.12.29d版本软件测试已完成更改", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_258", "content": "问：虚拟通道是否有报警功能\n答：6.24.12.29d版本软件以及之后均增加虚拟通道报警功能", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_259", "content": "问：切片图是否能够根据3D图谱等比例缩放\n答：由于3D图谱的状态下Y轴视觉角度是斜的，2D图谱下，图谱横纵坐标的大小需要和切面视图联动即可。6.24.12.29d版本软件测试已实现等比例缩放", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_260", "content": "问：主控端下传参数会将自己的参数覆盖吗\n答：主控端下传参数覆盖掉显示端自己建的算法，系统中所有显示端建立的通道报警记录需汇总到主控端，同样的报警不能重复，目前新版本软件6.24.12.29n已经解决了此问题", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_261", "content": "问：为什么服务端管理软件上传启动不了\n答：服务端管理软件缺少库文件，上传启动不了，用新提供的库替换后正", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_262", "content": "问：参数设置里的上限频率什么意思\n答：上限频率相当于加一个硬件的低通滤波器，一般选择pass。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_263", "content": "问：二次开发接口是什么语言的？\n答：python，c#，c++等，根据客户提供的编号自动提供接口协议。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_264", "content": "问：仪器的供电方式是直流和交流都需要接吗？\n答：交流供电是220V，直流供电根据仪器上所标识的电压进行供电，红色为正极，黑色为负极，两种供电方式选择一种即可。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_265", "content": "问：仪器面板上的接地端需要接吗？\n答：一般建议使用单独导线将接地端与地线连接。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_266", "content": "问：DH5907Q最大通讯距离是多远？\n答：可视距离两百米，控制器或者AP尽量架高，保证天线之间平行无遮挡。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_267", "content": "问：DH5922D的频响范围是多少？\n答：DC～100kHz（﹢0.5dB ～ 3dB）（50kHz 平坦）", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_268", "content": "问：窗口勾选了部分通道，进行采集，未勾选的通道数据是否记录？\n答：只要是已有通道，并且是开启状态，点击采集后，软件都会记录相应数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_269", "content": "问：采集的数据波形很小看不清怎么放大？\n答：横纵坐标，左上角或者右下角有“+”“-”，可进行放大缩小或者鼠标移动到纵坐标左侧，出现带颜色光标，点击空白处即可自动放大显示图像波形。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_270", "content": "问：为什么索力计算窗口，右上角不显示索力值？\n答：在信号处理-索力测试，没有添加索的参数信息。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_271", "content": "问：软件能不能关闭部分通道?\n答：可以，在模拟通道内找到所需要关闭的通道，双击ON,显示OFF后关闭。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_272", "content": "问：在采集数据过程中右边通道不勾选的话数据是否在记录？\n答：在记录，右边勾选只是显示与不显示的说法，不勾选的通道同样在记录数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_273", "content": "问：软件能不能设置成自动保存数据？\n答：能，在存储规则内将自动开始保存勾选。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_274", "content": "问：软件能不能导出图片？\n答：能，在分析模块的输出板块内选择图片文件。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_275", "content": "问：输出的excel数据太大能不能降采样频率后输出?\n答：能,在参数设置的下方有个抽点数据,勾选即可.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_276", "content": "问：采集的数据时间太长,能不能只看部分数据?\n答：能,按住ctrl左键选择需要放大的部分查看.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_277", "content": "问：数据采集完成后增加了信号处理,为什么在分析内查看不到信号处理的数据?\n答：需要自动计算一下.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_278", "content": "问：软件数据能不能再进行回放?\n答：在分析界面将右边的黄色光标拖到需要回放的起始点,然后再点击启动回放。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_279", "content": "问：如何更改仪器的IP?\n答：在硬件内选择仪器参数设置进行更改.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_280", "content": "问：软件右上角显示同步时钟未准备就绪如何解决?\n答：可以在软件右上角选项系统设置的时钟内将同步时钟取消勾选.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_281", "content": "问：软件内没有需要的测量单位怎么办?\n答：点击左上角的东华logo,选择测量量定义,选择相关的类型,点击编辑添加,加入所需的测量量后保存.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_282", "content": "问：软件内的频谱模块为什么不显示数据曲线？\n答：FFT需要采集到一定量的数据才能计算，其需要的时间是谱线数乘2.56除以采样频率。你可以选择减少谱线数或者增加采样时间、采样频率来满足计算需求。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_283", "content": "问：在打开软件内的模块（如频域阻尼比、2D图谱等模块）时无法选择通道，为什么？\n答：该模块需要先设置对应的前置模块，比如频域阻尼比需要先在信号处理内设置频谱分析模块。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_284", "content": "问：设备通道指示灯一会亮一会不亮，是什么情况？\n答：当信号幅度超过满度值时，为过载状态，通道指示灯为红色，则测量结果无效；当信号幅度低于满度值的5%时，为欠载状态，通道指示灯为绿色；当信号既不欠载也不过载，指示灯不亮。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_285", "content": "问：DHDAS软件使用报告批量导出Matlab时，为什么会分为两个文件？\n答：Matlab文件有一个G的大小限制，当输出的Matlab文件大小超过一个G时会分为两个文件。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_286", "content": "问：二次开发接口目前有哪些语言的DEMO？\n答：目前有C#、C++、Labview、Python、JAVA对应的DEMO。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_287", "content": "问：多通道测试信号需要求平均，有什么办法？\n答：可通过软件算法，在信号处理界面下通过虚拟通道进行计算。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_288", "content": "问： 记录仪显示多个通道波形，最大值显示只显示第一个通道，怎么让全部显示？\n答： 可通过软件左上角有个分开显示，勾选上，记录仪通道波形就分开显示，最大值信息都会显示。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_289", "content": "问：设备的IP地址可以修改吗？\n答：可以，软件连接采集设备后，网络参数设置里可以进行IP地址设置，配置完后，重启采集设备，重新配置电脑IP即可连接。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_290", "content": "问：FFT窗口里看的频率和实际给的频率不准确，有什么办法调整？\n答：可在左侧调整谱线数，谱线数越大，频率分辨率越高，频率和实际越接近。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_291", "content": "问：软件模态测试时，稳态图计算没有内容，中间空白是什么原因？\n答：模态软件，测力法中的单点激励，如果用polyLSCF算法，计算稳态图示出现空白的现象，注意检查输入点的方向是否一致。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_292", "content": "问：在分析界面下，查看之前采集的数据，增加个算法，勾选通道后显示一条直线，哪里设置不对吗？\n答：由于是事后增加的算法，所以在分析界面下，上面一行有“自动计算”，点击下，软件要进行计算，计算完成后即可查看波形数据。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_293", "content": "问：采集设备前面板不显示机号，出现“FF”？\n答：电脑没有安装USB驱动程序导致。注意win8及以上系统需要先禁用驱动签名，才能安装上驱动。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_294", "content": "问：DH3818Y使用显示屏的时候为什么不能用200HZ采集。\n答：3818Y只有在连接电脑采集的时候采样率能达到200HZ。显示屏最多只有5HZ采样。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_295", "content": "问：DH5908N有几种采样模式。\n答：两种，“有线模式”将状态切换至ETH模式正常连接网线，“无线模式”将状态切换至WIFI使用AP进行连接。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_296", "content": "问：DH5907G进行桥梁模态采集，参考点距离测试点有1KM，远远超过AP的通讯距离怎么办。\n答：可以采集点使用一台电脑和AP进行采集，参考点使用一台电脑和AP进行采集，采集的数据经过GPS授时保证高度同步，后期可以进行合并。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_297", "content": "问：DH5907G和DH5907N同步有什么不同。\n答：5907N是使用控制器进行设备的相对时间的同步。5907G是使用GPS和北斗卫星进行绝对时间的同步授时，保证每一台仪器内部的时间一致。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_298", "content": "问：1000欧姆的应变片可以接入东华的设备么。\n答：1000欧姆的应变片可以接入，但需要使用半桥和全桥。四分之一桥除非特殊定制内置桥臂电阻1000欧姆的设备否则不能使用。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_299", "content": "问：使用软件显示软件已到期，怎么办。\n答：是否此软件是否安装的演示版软件，请联系公司进行处理。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_300", "content": "问：使用2D001H采集桥梁竖向基频，数据完全不对是怎么回事。\n答：2D001H是采集水平向振动的传感器，如果需要采集竖向请使用2D001V.", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_301", "content": "问：插座有电且电源线完好的情况下设备开机没反应，请问是为什么。\n答：请查看设备背后电源线连接处上面有个保险丝槽，使用一字螺丝刀撬开后查看保险丝是否完好。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_302", "content": "问：桥梁索力数据测试基频不明显怎么办。\n答：DH5906W或者传感器可以往索的中部绑一绑或者绑的尽量的高。如果可以话也可以人为给索一些激励，如果确实不明显看能否从高阶倍频来反推基频的大概值。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_303", "content": "问：使用FFT查看单一频率信号的幅值不准，值偏小，请问是为什么。\n答：FFT的谱线数是否选择合适，窗函数是否选用平顶窗来防止能量的泄露。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_304", "content": "问：USB3.0驱动安装不了，怎么办。\n答：是否为WIN10以上的系统？如果是的话需要先禁用驱动程序强制签名后再进行安装。", "source": "knowledge_base.txt", "category": "general"}
+{"id": "chunk_305", "content": "问：桥式传感器怎么接入设备。\n答：首先判断传感器式半桥还是全桥。半桥的话供电+接+EG，输出+接VI+，供电-接-EG。全桥供电+接+EG，输出+接VI+，供电-接-EG，输出-接VI-,有屏蔽网将屏蔽网对接。", "source": "knowledge_base.txt", "category": "general"}
