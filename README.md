@@ -1,108 +1,46 @@
-
-# 🤖 AI 助手工具
-
-一个基于 Docker 的智能助手系统，集成了大语言模型(LLM)、向量数据库和知识检索功能，为用户提供智能问答和任务引导服务。
-
-## ✨ 功能特性
-
-- 🧠 **智能问答**: 基于 RAG (检索增强生成) 的知识问答系统
-- 📋 **任务引导**: 结构化的操作步骤指导，支持图片展示
-- 🔍 **意图识别**: 自动识别用户意图，智能路由到相应功能
-- 💬 **对话界面**: 现代化的 Web 聊天界面
-- 🐳 **容器化部署**: 完全基于 Docker 的一键部署
-- 🔄 **实时响应**: 支持流式对话和实时状态更新
-
-## 🏗️ 系统架构
-
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   前端 (React)   │────│   后端 (Flask)   │────│  Ollama (LLM)   │
-│   端口: 3000    │    │   端口: 8000    │    │   端口: 11434   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                    ┌─────────┼─────────┐
-                    │                   │
-            ┌───────────────┐   ┌───────────────┐
-            │ PostgreSQL    │   │   Weaviate    │
-            │ (任务数据)     │   │  (向量数据库)  │
-            │ 端口: 5432    │   │  端口: 8080   │
-            └───────────────┘   └───────────────┘
-```
+# 🤖 AI 助手工具
+
+一个基于 Docker 的智能助手系统，集成了大语言模型(LLM)、向量数据库和知识检索功能，为用户提供智能
+问答和任务引导服务。
+
+## ✨ 功能特性
+
+- 🧠 智能问答：基于 RAG (检索增强生成) 的知识问答系统
+- 📋 任务引导：结构化的操作步骤指导，支持图片展示
+- 🔍 意图识别：自动识别用户意图，智能路由到相应功能
+- 💬 对话界面：现代化的 Web 聊天界面
+- 🐳 容器化部署：完全基于 Docker 的一键部署
+- 🔄 实时响应：支持流式对话和实时状态更新
+
 
 ### 核心组件
 
-- **前端**: React + 现代化 UI，提供聊天界面和任务展示
-- **后端**: Flask API，处理意图识别、任务路由和数据管理
-- **Ollama**: 本地 LLM 服务，支持 Llama3 和 BGE-M3 模型
-- **PostgreSQL**: 存储任务数据、步骤信息和用户界面元素
-- **Weaviate**: 向量数据库，支持语义搜索和 RAG 功能
-
-## 📋 目录
-
-- [快速开始](#-快速开始)
-- [使用指南](#-使用指南)
-- [开发指南](#-开发指南)
-- [数据库操作](#-数据库操作)
-- [测试验证](#-测试验证)
-- [API 接口](#-api-接口)
-- [配置说明](#️-配置说明)
-- [高级用法](#-高级用法)
-- [故障排除](#-故障排除)
-- [贡献指南](#-贡献指南)
+- 前端：React + Nginx（生产构建，静态资源）
+- 后端：Flask API，处理意图识别、任务路由和数据管理
+- Ollama：本地 LLM 服务（如 Qwen2.5），用于生成与向量化
+- PostgreSQL：存储任务数据、步骤信息和用户界面元素
+- Weaviate：向量数据库，支持语义搜索和 RAG 功能
 
 ## 🚀 快速开始
 
-### 系统要求
+### 前置条件
 
-- Docker 和 Docker Compose
-- 至少 8GB 内存 (推荐 16GB)
-- 10GB 可用磁盘空间
-
-### 一键部署
-
-1. **克隆项目**
-```bash
-git clone <repository-url>
-cd ai_assistant_tool
-```
-
-2. **启动所有服务**
-```bash
-docker-compose up -d
-```
-
-3. **等待服务初始化** (首次启动约需 5-10 分钟)
-```bash
-# 查看启动状态
-docker-compose ps
-
-# 查看日志
-docker-compose logs -f
-```
-
-4. **下载 AI 模型**
-```bash
-# 下载 Qwen2.5 模型 (用于对话生成)
-docker exec -it ollama_host ollama pull qwen2.5:3b-instruct
-
-# 下载 BGE-M3 模型 (用于向量化)
-docker exec -it ollama_host ollama pull bge-m3
-```
-
-5. **导入初始数据**
-```cmd
-run_data_import.bat
-```
+- Windows 安装并启动 Docker Desktop
+- 至少 8GB 内存（推荐 16GB）
+- 10GB 可用磁盘空间（首次拉取镜像与模型较慢）
 
 ### 一键启动（Windows，一行命令）
-在安装并启动 Docker Desktop 后，在项目根目录执行这一行命令即可完成构建、启动、拉模型与导入数据：
+
+在项目根目录执行这一行命令，完成构建、启动、拉模型与导入数据：
+
 ```bash
 docker-compose up -d --build && timeout /t 30 /nobreak >nul && docker exec -i ollama_host ollama pull qwen2.5:3b-instruct && docker exec -i ollama_host ollama pull bge-m3 && docker exec -i ai_assistant_backend python ingest_data_simple.py
 ```
 
 说明：
 - 构建并启动所有服务（前端、后端、Ollama、Postgres、Weaviate）
-- 等待服务就绪约 30 秒（首次启动耗时更长）
+- 等待约 30 秒，确保服务就绪（首次启动可能更长）
 - 拉取对话与向量模型（`qwen2.5:3b-instruct` 与 `bge-m3`）
 - 在后端容器内导入初始数据（避免宿主环境差异）
 
@@ -111,224 +49,54 @@ docker-compose up -d --build && timeout /t 30 /nobreak >nul && docker exec -i ol
 - 后端 API: `http://localhost:8000`
 - Weaviate 控制台: `http://localhost:8080`
 
-### 常用 Docker 命令
+### 常用部署命令（Windows）
+
 - 构建镜像：
 ```bash
 docker-compose build
 ```
+
 - 启动服务：
 ```bash
 docker-compose up -d
 ```
+
 - 查看状态：
 ```bash
 docker-compose ps
 ```
-- 查看某服务日志：
+
+- 停止并清理容器与网络：
 ```bash
-docker-compose logs -f backend
-```
-### 基本对话
-
-在前端界面中，你可以：
-
-1. **提问知识相关问题**
-   - "如何安装软件？"
-   - "数据采集的步骤是什么？"
-   - "FFT分析怎么做？"
-
-2. **请求任务指导**
-   - "请给我从采集到FFT分析的全流程"
-   - "我想进行数据分析"
-
-### API 使用
-
-```bash
-# 发送问题到 AI 助手
-curl -X POST http://localhost:8000/assistant \
-  -H "Content-Type: application/json" \
-  -d '{"user_input": "如何进行FFT分析？"}'
-
-# 获取可用任务列表
-curl http://localhost:8000/tasks
+docker-compose down
 ```
 
-### 响应类型
+## 📖 使用指南
 
-系统支持两种响应类型：
+- 在前端界面进行提问或任务指导：
+  - 示例提问：“如何进行 FFT 分析？”
+  - 示例任务：“请给我从采集到 FFT 分析的全流程”
+- 前端通过 Nginx 提供静态资源，所有对后端的请求统一走 `/api` 代理（已在 `frontend/nginx.conf` 配置），避免跨域与 `localhost` 硬编码。
 
-1. **任务执行** (`task_execution`): 返回结构化的操作步骤
-2. **开放问答** (`open_qa`): 返回基于知识库的文本回答
+## 🔧 配置说明
 
-## 🔧 开发指南
-
-### 环境配置
-
-1. **复制环境配置文件**
-```bash
-cp .env.example .env
-```
-
-2. **修改配置** (可选)
-```bash
-POSTGRES_PORT=5432
-WEAVIATE_PORT=8080
-OLLAMA_PORT=11434
-```
-
-#### Weaviate 连接与回退逻辑
-- `.env` 默认：`WEAVIATE_HOST=weaviate:8080`，用于容器间通信。
-- 如果在宿主机直接运行 Python 脚本（如 `ingest_data.py`），`weaviate` 域名不会被宿主机解析。
-- 为兼容本地运行，`backend/db/vector_repo.py` 增加了 HTTP 回退机制：
-  - 当客户端不可用或连接失败时，会自动尝试 `http://localhost:<端口>`。
-  - 只要 Docker 映射了 Weaviate 的 `8080` 到宿主机，导入和统计等 HTTP 操作将正常工作。
-- 你也可以在本地场景下，将 `.env` 或 `.env.local` 的 `WEAVIATE_HOST` 改为：
-```plaintext
-WEAVIATE_HOST=localhost:8080
-```
-### 后端开发
-
-1. **安装 Python 依赖**
-```bash
-cd backend
-pip install -r requirements.txt
-```
-
-2. **配置数据库连接**
-```bash
-# 确保 PostgreSQL 和 Weaviate 服务运行
-docker-compose up -d postgres_db weaviate
-```
-
-3. **本地运行后端**
-```bash
-# 设置环境变量
-export FLASK_ENV=development
-export FLASK_DEBUG=1
-
-# 启动后端服务
-python app.py
-```
-
-4. **导入测试数据**
-```bash
-python ingest_data_simple.py
-```
-
-### 前端开发
-
-1. **安装 Node.js 依赖**
-```bash
-cd frontend
-npm install
-```
-
-2. **启动开发服务器**
-```bash
-npm start
-```
-
-3. **构建生产版本**
-```bash
-npm run build
-```
-
-### 调试指南
-
-1. **查看后端日志**
-```bash
-# 容器模式
-docker-compose logs -f backend
-
-# 本地开发模式
-tail -f backend/app.log
-```
-
-2. **测试 API 端点**
-```bash
-# 健康检查
-curl http://localhost:8000/health
-
-# 测试助手接口
-curl -X POST http://localhost:8000/assistant \
-  -H "Content-Type: application/json" \
-  -d '{"user_input": "测试消息"}'
-```
-
-3. **数据库调试**
-```bash
-# 连接 PostgreSQL
-docker exec -it postgres_db psql -U assistant_user -d assistant_db
-
-# 查看表结构
-\d tasks
-\d task_steps
-\d ui_elements
-```
-
-### 数据库操作
-
-连接 PostgreSQL 数据库：
-```bash
-docker exec -it postgres_db psql -U assistant_user -d assistant_db
-```
-
-查看数据表：
-```sql
-\dt
-SELECT COUNT(*) FROM tasks;
-SELECT COUNT(*) FROM task_steps;
-SELECT COUNT(*) FROM ui_elements;
-```
-
-## 🧪 测试验证
-
-### 1. 功能测试
-
-运行测试脚本验证各项功能：
-
-**Windows:**
-```cmd
-test_data_import.bat
-```
-
-**手动测试:**
-```bash
-# 测试知识问答
-curl -X POST http://localhost:8000/assistant \
-  -H "Content-Type: application/json" \
-  -d '{"query": "如何安装软件？", "conversation_id": "test"}'
-
-# 测试任务引导
-curl -X POST http://localhost:8000/assistant \
-  -H "Content-Type: application/json" \
-  -d '{"query": "我想进行FFT分析", "conversation_id": "test"}'
-```
-
-### 2. 健康检查
-
-检查所有服务状态：
-```bash
-docker-compose ps
-```
-
-查看服务日志：
-```bash
-docker-compose logs -f [service-name]
-```
+- `.env` 支持自定义端口（如冲突可调整）：
+  - `FRONTEND_PORT=3000`
+  - `BACKEND_PORT=8000`
+  - `OLLAMA_PORT=11434`
+  - `WEAVIATE_PORT=8080`
+- Weaviate 连接回退逻辑：
+  - 后端的 `backend/db/vector_repo.py` 已增加 HTTP 回退机制。当容器域名（如 `weaviate:8080`）不可达时，会自动尝试 `http://localhost:8080`。
+  - 在容器模式下无需手动配置；若在宿主机直接运行 Python 脚本，可将 `.env` 的 `WEAVIATE_HOST` 改为 `localhost:8080`。
 
 ## 🔍 API 接口
 
-### 主要端点
+主要端点：
+- `POST /assistant`：智能助手对话接口
+- `GET /tasks`：获取任务列表
+- `GET /tasks/screenshots/<filename>`：获取任务截图
 
-| 端点 | 方法 | 描述 |
-|------|------|------|
-| `/assistant` | POST | 智能助手对话接口 |
-| `/tasks` | GET | 获取任务列表 |
-| `/tasks/screenshots/<filename>` | GET | 获取任务截图 |
-
-### 请求示例
-
+请求示例：
 ```json
 POST /assistant
 {
@@ -337,8 +105,7 @@ POST /assistant
 }
 ```
 
-### 响应示例
-
+响应示例：
 ```json
 {
   "response": "助手回复内容",
@@ -350,42 +117,15 @@ POST /assistant
 
 ## 🐛 故障排除
 
-### 常见问题
-
-1. **容器启动失败**
-   - 检查 Docker 服务是否运行
-   - 确认端口未被占用
-   - 查看容器日志：`docker-compose logs`
-
-2. **数据导入失败**
-   - 确认 PostgreSQL 容器正常运行
-   - 检查数据文件是否存在
-   - 查看导入日志：`backend/ingest_data_simple.log`
-
-3. **LLM 响应异常**
-   - 确认 Ollama 容器正常运行
-   - 检查模型是否已下载
-   - 验证 API 连接：`curl http://localhost:11434/api/tags`
-
-4. **RAG 功能异常**
-   - 确认 Weaviate 容器正常运行
-   - 检查向量数据是否已导入
-   - 访问 Weaviate 控制台：http://localhost:8080
-
-### 日志查看
-
-```bash
-# 查看所有服务日志
-docker-compose logs
-
-# 查看特定服务日志
-docker-compose logs ollama
-docker-compose logs weaviate
-docker-compose logs postgres_db
-
-# 查看后端应用日志
-docker-compose logs api-layer
-```
+- 容器启动失败：
+  - 检查 Docker 服务是否运行、端口是否被占用
+  - 查看编排状态：`docker-compose ps`
+- 数据导入失败：
+  - 确认 `ai_assistant_backend`、`ai_assistant_weaviate`、`ai_assistant_postgres`、`ollama_host` 容器已启动
+  - 重新执行导入：`docker exec -i ai_assistant_backend python ingest_data_simple.py`
+- Python 报错：`cannot import name '__version__' (weaviate-client)`：
+  - 宿主机直接运行 Python 可能因环境不兼容导致该错误。建议使用容器内导入。
+  - 如需本机修复：`python -m pip install --upgrade --force-reinstall weaviate-client`
 
 ## 🤝 贡献指南
 
@@ -397,25 +137,13 @@ docker-compose logs api-layer
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目采用 MIT 许可证。
 
 ## 📞 支持
 
-如有问题或建议，请：
-
-1. 查看 [故障排除](#-故障排除) 部分
-2. 创建 [Issue](../../issues)
-3. 联系项目维护者
+如有问题或建议：
+- 提交 Issue
+- 或联系项目维护者
 
 ---
-
-**注意**: 首次启动可能需要较长时间下载 Docker 镜像和 LLM 模型，请耐心等待。
-
-5. **Python 报错：cannot import name '__version__' (weaviate-client)**
-- 现象：运行 `python ingest_data.py` 时，日志出现 `cannot import name '__version__'`。
-- 原因：`weaviate-client` 的版本与当前 Python 环境不兼容或包损坏。
-- 解决：
-```cmd
-python -m pip install --upgrade --force-reinstall weaviate-client
-```
-- 如仍失败，建议在虚拟环境中重新安装依赖，或将 `WEAVIATE_HOST` 设为 `localhost:8080`，依赖 HTTP 回退完成导入。
+提示：首次构建和拉取模型耗时较长，请耐心等待。
