@@ -90,21 +90,44 @@ docker exec -it ollama_host ollama pull bge-m3
 ```
 
 5. **导入初始数据**
-```bash
-# Windows
+```cmd
 run_data_import.bat
-
-# Linux/Mac
-docker exec -it ai_assistant_backend python ingest_data_simple.py
 ```
 
-6. **访问应用**
-- 前端界面: http://localhost:3000
-- 后端 API: http://localhost:8000
-- Weaviate 控制台: http://localhost:8080
+### 一键启动（Windows，一行命令）
+在安装并启动 Docker Desktop 后，在项目根目录执行这一行命令即可完成构建、启动、拉模型与导入数据：
+```bash
+docker-compose up -d --build && timeout /t 30 /nobreak >nul && docker exec -i ollama_host ollama pull qwen2.5:3b-instruct && docker exec -i ollama_host ollama pull bge-m3 && docker exec -i ai_assistant_backend python ingest_data_simple.py
+```
 
-## 📖 使用指南
+说明：
+- 构建并启动所有服务（前端、后端、Ollama、Postgres、Weaviate）
+- 等待服务就绪约 30 秒（首次启动耗时更长）
+- 拉取对话与向量模型（`qwen2.5:3b-instruct` 与 `bge-m3`）
+- 在后端容器内导入初始数据（避免宿主环境差异）
 
+成功后访问：
+- 前端界面: `http://localhost:3000`
+- 后端 API: `http://localhost:8000`
+- Weaviate 控制台: `http://localhost:8080`
+
+### 常用 Docker 命令
+- 构建镜像：
+```bash
+docker-compose build
+```
+- 启动服务：
+```bash
+docker-compose up -d
+```
+- 查看状态：
+```bash
+docker-compose ps
+```
+- 查看某服务日志：
+```bash
+docker-compose logs -f backend
+```
 ### 基本对话
 
 在前端界面中，你可以：
@@ -148,12 +171,21 @@ cp .env.example .env
 
 2. **修改配置** (可选)
 ```bash
-# 编辑 .env 文件，调整端口和其他配置
 POSTGRES_PORT=5432
 WEAVIATE_PORT=8080
 OLLAMA_PORT=11434
 ```
 
+#### Weaviate 连接与回退逻辑
+- `.env` 默认：`WEAVIATE_HOST=weaviate:8080`，用于容器间通信。
+- 如果在宿主机直接运行 Python 脚本（如 `ingest_data.py`），`weaviate` 域名不会被宿主机解析。
+- 为兼容本地运行，`backend/db/vector_repo.py` 增加了 HTTP 回退机制：
+  - 当客户端不可用或连接失败时，会自动尝试 `http://localhost:<端口>`。
+  - 只要 Docker 映射了 Weaviate 的 `8080` 到宿主机，导入和统计等 HTTP 操作将正常工作。
+- 你也可以在本地场景下，将 `.env` 或 `.env.local` 的 `WEAVIATE_HOST` 改为：
+```plaintext
+WEAVIATE_HOST=localhost:8080
+```
 ### 后端开发
 
 1. **安装 Python 依赖**
@@ -378,3 +410,12 @@ docker-compose logs api-layer
 ---
 
 **注意**: 首次启动可能需要较长时间下载 Docker 镜像和 LLM 模型，请耐心等待。
+
+5. **Python 报错：cannot import name '__version__' (weaviate-client)**
+- 现象：运行 `python ingest_data.py` 时，日志出现 `cannot import name '__version__'`。
+- 原因：`weaviate-client` 的版本与当前 Python 环境不兼容或包损坏。
+- 解决：
+```cmd
+python -m pip install --upgrade --force-reinstall weaviate-client
+```
+- 如仍失败，建议在虚拟环境中重新安装依赖，或将 `WEAVIATE_HOST` 设为 `localhost:8080`，依赖 HTTP 回退完成导入。

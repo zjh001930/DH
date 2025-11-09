@@ -1,5 +1,4 @@
-version: '3.8'
-
+# services: (version: '3.8' 已移除)
 services:
   # PostgreSQL 数据库
   postgres:
@@ -24,7 +23,6 @@ services:
       retries: 5
 
   # Ollama 服务
-  # 1. Ollama 服务 (LLM 和 Embedding)
   ollama_service:
     image: ollama/ollama:latest
     container_name: ollama_host
@@ -34,7 +32,7 @@ services:
       - "${OLLAMA_PORT:-11434}:11434"
     volumes:
       - ollama_models:/root/.ollama
-    # 移除自定义命令，让容器使用默认启动方式
+    # 【新增】确保模型在启动时被拉取
     restart: always
 
   # Weaviate 向量数据库
@@ -65,8 +63,10 @@ services:
   # 后端服务
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile.backend
+      # 【修正】上下文必须是根目录 . (点)，而不是 ./backend
+      context: .
+      # 【修正】Dockerfile 的路径现在是 backend 文件夹内部
+      dockerfile: backend/Dockerfile.backend
     container_name: ai_assistant_backend
     env_file:
       - .env
@@ -90,26 +90,32 @@ services:
         condition: service_started
       weaviate:
         condition: service_started
-    volumes:
-      - ./backend:/app
+    # 【关键修正】移除此行以使用 Dockerfile 中的 COPY 指令
+    # volumes:
+    #   - ./backend:/app
 
   # 前端服务
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile.frontend
+      # 【修正】上下文必须是根目录 . (点)
+      context: .
+      # 【修正】Dockerfile 的路径现在是 frontend 文件夹内部
+      dockerfile: frontend/Dockerfile.frontend
+      args:
+        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://ai_assistant_backend:8000}
     container_name: ai_assistant_frontend
     env_file:
       - .env
     ports:
-      - "${FRONTEND_PORT:-3000}:3000"
+      - "${FRONTEND_PORT:-3000}:80"
     environment:
       REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL:-http://localhost:8000}
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+    # 【关键修正】移除此行以使用 Dockerfile 中的 COPY 指令
+    # volumes:
+    #   - ./frontend:/app
+    #   - /app/node_modules # 保留此匿名卷
 
 # 定义持久化存储卷
 volumes:

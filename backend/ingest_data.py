@@ -146,7 +146,8 @@ class DataIngester:
         """导入 RAG 数据到 Weaviate"""
         logger.info("开始导入 RAG 数据...")
         
-        rag_file = os.path.join(self.initial_data_dir, "rag_source.txt")
+        # 修正文件路径到项目根目录下的 knowledge 文件夹
+        rag_file = os.path.join(current_dir, "..", "knowledge", "knowledge_base.txt")
         if not os.path.exists(rag_file):
             logger.warning(f"RAG 数据文件不存在: {rag_file}")
             return False

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ChatInterface from './components/ChatInterface';
-import TaskList from './components/TaskList';
 import './index.css';
 
 function App() {
@@ -13,7 +12,8 @@ function App() {
 
   const checkBackendConnection = async () => {
     try {
-      const response = await fetch('http://localhost:8000/');
+      const baseUrl = process.env.REACT_APP_BACKEND_URL || '/api';
+      const response = await fetch(`${baseUrl}/`);
       if (response.ok) {
         setBackendConnected(true);
         setConnectionStatus('已连接');
@@ -38,9 +38,7 @@ function App() {
 
       {backendConnected ? (
         <main className="app-main">
-          <div className="sidebar">
-            <TaskList />
-          </div>
+          {/* 删除侧栏：不再渲染 TaskList */}
           <div className="chat-section">
             <ChatInterface />
           </div>

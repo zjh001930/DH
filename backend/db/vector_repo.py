@@ -1,318 +1,156 @@
-# backend/db/vector_repo.py
-import os
-import sys
-import logging
-from typing import List, Dict, Any, Optional
+# ==== 新增：HTTP 回退工具 ====
+import requests
+import re
 
-# 添加相对导入路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config.settings import WEAVIATE_URL, WEAVIATE_RAG_CLASS
 
-# 配置日志
-logger = logging.getLogger(__name__)
+def _get_fallback_url(base_url: str) -> str:
+    """获取回退URL，如果原始URL是容器内地址，则尝试使用localhost"""
+    # 如果URL包含容器名（如weaviate），则添加localhost作为回退
+    if re.search(r'://(weaviate|weaviate-service)', base_url):
+        # 提取端口号
+        match = re.search(r':(\d+)$', base_url)
+        if match:
+            port = match.group(1)
+            return f"http://localhost:{port}"
+    return base_url
 
-# 全局 Weaviate 客户端
-weaviate_client = None
 
-def get_weaviate_client():
-    """获取 Weaviate 客户端实例"""
-    global weaviate_client
-    
-    if weaviate_client is None:
+def _http_is_ready(timeout: int = 5) -> bool:
+    try:
+        r = requests.get(f"{WEAVIATE_URL}/v1/.well-known/ready", timeout=timeout)
+        return r.status_code == 200
+    except Exception as e:
+        logger.error(f"[WEAVIATE-HTTP] 就绪检查失败: {e}")
+        # 尝试回退URL
         try:
-            # 使用更安全的导入方式
-            import weaviate
-            
-            # 检查 Weaviate 版本并使用相应的客户端创建方式
-            try:
-                # 尝试新版本的客户端创建方式
-                weaviate_client = weaviate.Client(url=WEAVIATE_URL)
-            except Exception:
-                # 如果新版本方式失败，尝试旧版本方式
-                try:
-                    weaviate_client = weaviate.Client(
-                        url=WEAVIATE_URL,
-                        timeout_config=(5, 15)
-                    )
-                except Exception:
-                    # 最后尝试最基本的连接方式
-                    import requests
-                    # 先测试连接
-                    response = requests.get(f"{WEAVIATE_URL}/v1/.well-known/ready", timeout=5)
-                    if response.status_code == 200:
-                        weaviate_client = weaviate.Client(WEAVIATE_URL)
-                    else:
-                        raise Exception(f"Weaviate服务不可用: {response.status_code}")
-            
-            logger.info(f"[WEAVIATE] 客户端连接成功: {WEAVIATE_URL}")
-            
-        except ImportError as e:
-            logger.error(f"[WEAVIATE] 导入失败: {e}")
-            logger.error("请确保已安装 weaviate-client: pip install weaviate-client")
-            return None
-        except Exception as e:
-            logger.error(f"[WEAVIATE] 连接失败: {e}")
-            return None
-    
-    return weaviate_client
-
-def initialize_weaviate():
-    """初始化 Weaviate schema (类结构)"""
-    logger.info(f"[VECTOR_REPO] 正在初始化 Weaviate: {WEAVIATE_URL}")
-    
-    try:
-        client = get_weaviate_client()
-        
-        # 检查连接状态
-        if not client.is_ready():
-            logger.error("[VECTOR_REPO] Weaviate 服务未就绪")
-            return False
-        
-        # 检查是否已存在 schema
-        existing_schema = client.schema.get()
-        class_names = [cls['class'] for cls in existing_schema.get('classes', [])]
-        
-        if WEAVIATE_RAG_CLASS in class_names:
-            logger.info(f"[VECTOR_REPO] {WEAVIATE_RAG_CLASS} 类已存在，跳过创建")
-            return True
-        
-        # 创建知识库类 schema
-        knowledge_class = {
-            "class": WEAVIATE_RAG_CLASS,
-            "description": "AI助手的知识库，存储问答对和相关信息",
-            "properties": [
-                {
-                    "name": "question",
-                    "dataType": ["text"],
-                    "description": "用户问题"
-                },
-                {
-                    "name": "answer",
-                    "dataType": ["text"],
-                    "description": "问题答案"
-                },
-                {
-                    "name": "category",
-                    "dataType": ["text"],
-                    "description": "知识分类"
-                },
-                {
-                    "name": "source",
-                    "dataType": ["text"],
-                    "description": "知识来源"
-                },
-                {
-                    "name": "keywords",
-                    "dataType": ["text[]"],
-                    "description": "关键词列表"
-                }
-            ],
-            "vectorizer": "none"  # 手动提供向量
-        }
-        
-        # 创建类
-        client.schema.create_class(knowledge_class)
-        logger.info(f"[VECTOR_REPO] ✓ {WEAVIATE_RAG_CLASS} 类创建成功")
-        return True
-        
-    except Exception as e:
-        logger.error(f"[VECTOR_REPO] ✗ Weaviate 初始化失败: {e}")
+            fallback_url = _get_fallback_url(WEAVIATE_URL)
+            if fallback_url != WEAVIATE_URL:
+                logger.info(f"[WEAVIATE-HTTP] 尝试回退URL: {fallback_url}")
+                r = requests.get(f"{fallback_url}/v1/.well-known/ready", timeout=timeout)
+                return r.status_code == 200
+        except Exception as fallback_e:
+            logger.error(f"[WEAVIATE-HTTP] 回退URL检查失败: {fallback_e}")
         return False
 
-def insert_knowledge(knowledge_data: Dict[str, Any], vector: List[float]) -> bool:
-    """
-    插入知识数据到 Weaviate
-    
-    Args:
-        knowledge_data: 知识数据字典
-        vector: 向量嵌入
-    
-    Returns:
-        bool: 插入是否成功
-    """
+
+def _http_get_schema() -> Dict[str, Any]:
     try:
-        client = get_weaviate_client()
-        
-        # 插入数据对象
-        result = client.data_object.create(
-            data_object=knowledge_data,
-            class_name=WEAVIATE_RAG_CLASS,
-            vector=vector
-        )
-        
-        if result:
-            logger.debug(f"[VECTOR_REPO] 知识插入成功: {knowledge_data.get('question', '')[:50]}...")
-            return True
-        else:
-            logger.warning(f"[VECTOR_REPO] 知识插入失败: {knowledge_data}")
-            return False
-            
+        r = requests.get(f"{WEAVIATE_URL}/v1/schema", timeout=10)
+        r.raise_for_status()
+        return r.json()
     except Exception as e:
-        logger.error(f"[VECTOR_REPO] 插入知识时出错: {e}")
+        logger.error(f"[WEAVIATE-HTTP] 获取 schema 失败: {e}")
+        # 尝试回退URL
+        try:
+            fallback_url = _get_fallback_url(WEAVIATE_URL)
+            if fallback_url != WEAVIATE_URL:
+                logger.info(f"[WEAVIATE-HTTP] 尝试回退URL: {fallback_url}")
+                r = requests.get(f"{fallback_url}/v1/schema", timeout=10)
+                r.raise_for_status()
+                return r.json()
+        except Exception as fallback_e:
+            logger.error(f"[WEAVIATE-HTTP] 回退URL获取 schema 失败: {fallback_e}")
+        return {}
+
+
+def _http_create_class(knowledge_class: Dict[str, Any]) -> bool:
+    try:
+        r = requests.post(f"{WEAVIATE_URL}/v1/schema", json=knowledge_class, timeout=15)
+        if r.status_code in (200, 201):
+            return True
+        logger.error(f"[WEAVIATE-HTTP] 创建类失败: {r.status_code} {r.text}")
+        return False
+    except Exception as e:
+        logger.error(f"[WEAVIATE-HTTP] 创建类异常: {e}")
+        # 尝试回退URL
+        try:
+            fallback_url = _get_fallback_url(WEAVIATE_URL)
+            if fallback_url != WEAVIATE_URL:
+                logger.info(f"[WEAVIATE-HTTP] 尝试回退URL: {fallback_url}")
+                r = requests.post(f"{fallback_url}/v1/schema", json=knowledge_class, timeout=15)
+                if r.status_code in (200, 201):
+                    return True
+                logger.error(f"[WEAVIATE-HTTP] 回退URL创建类失败: {r.status_code} {r.text}")
+        except Exception as fallback_e:
+            logger.error(f"[WEAVIATE-HTTP] 回退URL创建类异常: {fallback_e}")
         return False
 
-def batch_insert_knowledge(knowledge_list: List[Dict[str, Any]], vectors: List[List[float]]) -> int:
-    """
-    批量插入知识数据
-    
-    Args:
-        knowledge_list: 知识数据列表
-        vectors: 对应的向量列表
-    
-    Returns:
-        int: 成功插入的数量
-    """
-    if len(knowledge_list) != len(vectors):
-        logger.error("[VECTOR_REPO] 知识数据和向量数量不匹配")
-        return 0
-    
-    success_count = 0
-    
-    try:
-        client = get_weaviate_client()
-        
-        # 使用批量操作
-        with client.batch as batch:
-            batch.batch_size = 100
-            
-            for knowledge_data, vector in zip(knowledge_list, vectors):
-                try:
-                    batch.add_data_object(
-                        data_object=knowledge_data,
-                        class_name=WEAVIATE_RAG_CLASS,
-                        vector=vector
-                    )
-                    success_count += 1
-                except Exception as e:
-                    logger.warning(f"[VECTOR_REPO] 批量插入单条数据失败: {e}")
-        
-        logger.info(f"[VECTOR_REPO] ✓ 批量插入完成: {success_count}/{len(knowledge_list)}")
-        return success_count
-        
-    except Exception as e:
-        logger.error(f"[VECTOR_REPO] 批量插入失败: {e}")
-        return success_count
 
-def retrieve_context(query_vector: List[float], limit: int = 5, certainty: float = 0.7) -> List[str]:
-    """
-    从 Weaviate 检索最相似的知识上下文
-    
-    Args:
-        query_vector: 查询向量
-        limit: 返回结果数量限制
-        certainty: 相似度阈值 (0-1)
-    
-    Returns:
-        List[str]: 检索到的知识片段列表
-    """
+def _http_batch_insert(knowledge_list: List[Dict[str, Any]], vectors: List[List[float]]) -> int:
     try:
-        client = get_weaviate_client()
-        
-        # 执行向量搜索
-        result = (
-            client.query
-            .get(WEAVIATE_RAG_CLASS, ["question", "answer", "category", "source"])
-            .with_near_vector({
-                "vector": query_vector,
-                "certainty": certainty
+        objects = []
+        for data, vec in zip(knowledge_list, vectors):
+            objects.append({
+                "class": WEAVIATE_RAG_CLASS,
+"properties": data,
+                "vector": vec
             })
-            .with_limit(limit)
-            .do()
-        )
-        
-        # 解析结果
-        knowledge_items = result.get("data", {}).get("Get", {}).get(WEAVIATE_RAG_CLASS, [])
-        
-        contexts = []
-        for item in knowledge_items:
-            # 组合问题和答案作为上下文
-            context = f"问题: {item.get('question', '')}\n答案: {item.get('answer', '')}"
-            contexts.append(context)
-        
-        logger.debug(f"[VECTOR_REPO] 检索到 {len(contexts)} 个相关上下文")
-        return contexts
-        
+        payload = {"objects": objects}
+        r = requests.post(f"{WEAVIATE_URL}/v1/objects/batch", json=payload, timeout=30)
+        if r.status_code not in (200, 202):
+            logger.error(f"[WEAVIATE-HTTP] 批量写入失败: {r.status_code} {r.text}")
+            return 0
+        body = r.json()
+        # Weaviate 会返回 per-object 结果，尽量统计成功数
+        results = body.get("objects", []) or body.get("results", [])
+        success = 0
+        for item in results:
+            status = item.get("status") or item.get("result", {}).get("status")
+            if (isinstance(status, str) and status.upper() == "SUCCESS") or ("errors" not in item):
+                success += 1
+        if not results:  # 某些版本无逐项回执，认为整体成功
+            success = len(objects)
+        return success
     except Exception as e:
-        logger.error(f"[VECTOR_REPO] 检索上下文失败: {e}")
-        # 返回模拟数据作为后备
-        return [
-            "RAG 检索到的知识片段 A: 软件安装对电脑配置要求并不高，参考I5处理器，16G内存。",
-            "RAG 检索到的知识片段 B: 在进行 FFT 分析之前，需要对信号进行窗函数处理。",
-            "RAG 检索到的知识片段 C: 采样频率应该设置为分析频率的2.56倍以上。"
-        ]
-
-def search_knowledge(query: str, query_vector: List[float], limit: int = 5) -> List[Dict[str, Any]]:
-    """
-    搜索知识库，返回详细的知识条目
-    
-    Args:
-        query: 查询文本
-        query_vector: 查询向量
-        limit: 返回结果数量
-    
-    Returns:
-        List[Dict]: 知识条目列表
-    """
-    try:
-        client = get_weaviate_client()
-        
-        result = (
-            client.query
-            .get(WEAVIATE_RAG_CLASS, ["question", "answer", "category", "source", "keywords"])
-            .with_near_vector({
-                "vector": query_vector,
-                "certainty": 0.6
-            })
-            .with_limit(limit)
-            .do()
-        )
-        
-        knowledge_items = result.get("data", {}).get("Get", {}).get(WEAVIATE_RAG_CLASS, [])
-        
-        logger.info(f"[VECTOR_REPO] 搜索到 {len(knowledge_items)} 个知识条目")
-        return knowledge_items
-        
-    except Exception as e:
-        logger.error(f"[VECTOR_REPO] 搜索知识失败: {e}")
-        return []
-
-def get_knowledge_count() -> int:
-    """获取知识库中的条目总数"""
-    try:
-        client = get_weaviate_client()
-        
-        result = (
-            client.query
-            .aggregate(WEAVIATE_RAG_CLASS)
-            .with_meta_count()
-            .do()
-        )
-        
-        count = result.get("data", {}).get("Aggregate", {}).get(WEAVIATE_RAG_CLASS, [{}])[0].get("meta", {}).get("count", 0)
-        return count
-        
-    except Exception as e:
-        logger.error(f"[VECTOR_REPO] 获取知识数量失败: {e}")
+        logger.error(f"[WEAVIATE-HTTP] 批量写入异常: {e}")
+        # 尝试回退URL
+        try:
+            fallback_url = _get_fallback_url(WEAVIATE_URL)
+            if fallback_url != WEAVIATE_URL:
+                logger.info(f"[WEAVIATE-HTTP] 尝试回退URL: {fallback_url}")
+                objects = []
+                for data, vec in zip(knowledge_list, vectors):
+                    objects.append({
+                        "class": WEAVIATE_RAG_CLASS,
+                        "properties": data,
+                        "vector": vec
+                    })
+                payload = {"objects": objects}
+                r = requests.post(f"{fallback_url}/v1/objects/batch", json=payload, timeout=30)
+                if r.status_code not in (200, 202):
+                    logger.error(f"[WEAVIATE-HTTP] 回退URL批量写入失败: {r.status_code} {r.text}")
+                    return 0
+                body = r.json()
+                # Weaviate 会返回 per-object 结果，尽量统计成功数
+                results = body.get("objects", []) or body.get("results", [])
+                success = 0
+                for item in results:
+                    status = item.get("status") or item.get("result", {}).get("status")
+                    if (isinstance(status, str) and status.upper() == "SUCCESS") or ("errors" not in item):
+                        success += 1
+                if not results:  # 某些版本无逐项回执，认为整体成功
+                    success = len(objects)
+                return success
+        except Exception as fallback_e:
+            logger.error(f"[WEAVIATE-HTTP] 回退URL批量写入异常: {fallback_e}")
         return 0
 
-def clear_knowledge_base() -> bool:
-    """清空知识库（谨慎使用）"""
+
+def _http_graphql(query: str) -> Dict[str, Any]:
     try:
-        client = get_weaviate_client()
-        
-        # 删除所有对象
-        client.batch.delete_objects(
-            class_name=WEAVIATE_RAG_CLASS,
-            where={
-                "operator": "Like",
-                "path": ["source"],
-                "valueText": "*"
-            }
-        )
-        
-        logger.info("[VECTOR_REPO] ✓ 知识库已清空")
-        return True
-        
+        r = requests.post(f"{WEAVIATE_URL}/v1/graphql", json={"query": query}, timeout=15)
+        r.raise_for_status()
+        return r.json()
     except Exception as e:
-        logger.error(f"[VECTOR_REPO] 清空知识库失败: {e}")
-        return False
+        logger.error(f"[WEAVIATE-HTTP] GraphQL 请求失败: {e}")
+        # 尝试回退URL
+        try:
+            fallback_url = _get_fallback_url(WEAVIATE_URL)
+            if fallback_url != WEAVIATE_URL:
+                logger.info(f"[WEAVIATE-HTTP] 尝试回退URL: {fallback_url}")
+                r = requests.post(f"{fallback_url}/v1/graphql", json={"query": query}, timeout=15)
+                r.raise_for_status()
+                return r.json()
+        except Exception as fallback_e:
+            logger.error(f"[WEAVIATE-HTTP] 回退URL GraphQL 请求失败: {fallback_e}")
+        return {}

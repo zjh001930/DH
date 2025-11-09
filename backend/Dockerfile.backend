@@ -7,13 +7,20 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # 复制并安装依赖
-# 优先复制依赖文件，利用 Docker 缓存机制
-COPY requirements.txt .
+# 【修正】路径必须包含 "backend/"，因为 context 现在是根目录
+COPY backend/requirements.txt .
+
 # 使用国内镜像加速器，解决下载超时问题
 RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 复制整个后端项目代码
-COPY . /app/
+# ⇓⇓⇓--- 新增：复制 RAG 数据文件 ---⇓⇓⇓
+# 将项目根目录的 "knowledge" 文件夹复制到容器的根目录 "/knowledge"
+# (ingest_data.py 脚本中的路径 ../knowledge/ 就能正确找到它)
+COPY knowledge/ /knowledge/
+# ⇑⇑⇑--- 结束新增 ---⇑⇑⇑
+
+# 【修正】路径必须包含 "backend/"，只复制后端代码到 /app
+COPY backend/ /app/
 
 # 暴露您的应用端口 (Flask/FastAPI 默认端口)
 EXPOSE 8000

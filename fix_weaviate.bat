@@ -1,29 +1,13 @@
 @echo off
-chcp 65001 >nul
-echo ========================================
-echo 修复 Weaviate 客户端问题
-echo ========================================
+echo Uninstalling existing weaviate-client and dependencies...
+pip uninstall -y weaviate-client grpcio protobuf
 
-echo 1. 卸载现有的 Weaviate 包...
-pip uninstall weaviate weaviate-client -y
+echo Upgrading pip, setuptools and wheel...
+python -m pip install --upgrade pip setuptools wheel
 
-echo.
-echo 2. 安装兼容的 Weaviate 客户端版本...
-pip install weaviate-client==3.25.3
+echo Installing a stable version of weaviate-client...
+pip install weaviate-client==3.26.2
 
 echo.
-echo 3. 验证安装...
-python -c "import weaviate; print('Weaviate 客户端安装成功！')"
-
-if errorlevel 1 (
-    echo 安装验证失败，尝试备用方案...
-    pip install weaviate-client==3.24.2
-    python -c "import weaviate; print('Weaviate 客户端备用版本安装成功！')"
-)
-
-echo.
-echo ========================================
-echo 修复完成！现在可以运行数据导入脚本
-echo ========================================
-
+echo Weaviate client has been reinstalled with a stable version.
 pause

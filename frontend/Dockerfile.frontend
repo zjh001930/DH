@@ -1,24 +1,19 @@
-# -------------------- frontend/Dockerfile.frontend --------------------
-
-# 使用 Node.js 镜像
-FROM node:20-alpine
-
-# 设置工作目录
+# -------------------- frontend/Dockerfile.frontend (生产环境修正版) --------------------
+FROM node:20-alpine AS build
 WORKDIR /app
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm install --registry=https://registry.npmmirror.com
+COPY frontend/ /app/
 
-# 复制 package.json 和 package-lock.json
-COPY package.json package-lock.json ./
+# 新增：为 React 构建注入后端 URL（仅构建时生效）
+ARG REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
 
-# 安装依赖
-RUN npm install
+RUN npm run build
 
-# 复制前端源代码
-COPY . .
-
-# 暴露端口
-EXPOSE 3000
-
-# 启动开发服务器
-CMD ["npm", "start"]
-
-# ----------------------------------------------------------------------
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY frontend/nginx.conf /etc/nginx/conf.d/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
