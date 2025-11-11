@@ -55,3 +55,12 @@ function App() {
 }
 
 export default App;
+
+async function sendMessage(text) {
+    const resp = await fetch(`${backendUrl}/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_input: text }) });
+    const data = await resp.json();
+    if (data.response_type === 'greeting') {
+        setMessages(prev => [...prev, { role: 'assistant', content: data.data?.answer || '你好，有什么可以帮助你的吗？' }]);
+        return;
+    }
+}

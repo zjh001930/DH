@@ -23,6 +23,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - [%
 logger = logging.getLogger(__name__)
 
 
+# backend/rag/handler.py
 class RAGHandler:
     """
     RAG (检索增强生成) 处理器.
@@ -64,20 +65,28 @@ class RAGHandler:
 
         # Prompt 模板
         prompt = f"""
-        你是一个专业的 AI 助手。请根据下面提供的上下文信息来回答用户的问题。
-        如果上下文信息不足以回答问题，请使用 "根据我的知识..." 来回答。
-
+        你是一个专业的 AI 助手。请遵守以下规则：
+        - 如果用户只是打招呼或寒暄（如“你好”、“您好”、“hi”），只回复“你好，有什么可以帮助你的吗？”。
+        - 不要复述历史；避免保留或引用会话记忆。
+        - 仅在用户提出明确问题或任务时，基于上下文提供答案。
+    
         【上下文信息】:
         {context_str}
-
+    
         【用户问题】:
         {user_input}
-
+    
         【你的回答】:
         """
         return prompt.strip()
 
     def answer_question(self, user_input: str) -> Dict[str, Any]:
+        # 问候拦截兜底：任何进入RAG的问候都直接返回固定短句
+        t = (user_input or "").strip().lower()
+        if any(g in t for g in ["你好", "您好", "hi", "hello", "hey", "嗨", "在吗"]):
+            return {"answer": "你好，有什么可以帮助你的吗？", "sources": []}
+
+        # 下面继续原有知识库检查、检索与生成
         """
         RAG 问答的主流程。
         """

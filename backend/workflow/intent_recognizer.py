@@ -175,6 +175,10 @@ class IntentRecognizer:
         """根据用户输入判断意图"""
         logger.info(f"[INTENT] Recognizing input: {user_input}")
 
+        ui_lower = (user_input or "").lower().strip()
+        if any(g in ui_lower for g in ["你好", "您好", "hi", "hello", "hey", "嗨", "在吗"]):
+            return {"recognized_task_id": "greeting", "confidence": 1.0}
+        
         best_match = None
         best_score = 0.0
         
@@ -296,7 +300,6 @@ class IntentRecognizer:
     def recognize_intent(self, user_input: str) -> dict:
         """意图识别方法 - 为了兼容app.py中的调用"""
         result = self.recognize(user_input)
-        # 将recognized_task_id转换为task_id以匹配app.py的期望
         return {
             "task_id": result.get("recognized_task_id"),
             "confidence": result.get("confidence", 0.0)

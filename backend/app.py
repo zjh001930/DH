@@ -105,6 +105,12 @@ def health_check():
 
 
 # --- 5.2.1. 主交互接口: /assistant ---
+# backend/app.py
+def _is_greeting(text: str) -> bool:
+    text = (text or "").strip().lower()
+    greetings = ["你好", "您好", "hi", "hello", "hey", "嗨", "在吗"]
+    return any(g in text for g in greetings)
+
 @app.route('/assistant', methods=['POST'])
 def assistant_interface():
     global intent_recognizer, workflow_engine, rag_handler, modules_initialized
@@ -124,6 +130,16 @@ def assistant_interface():
     if not user_input:
         return jsonify({"error": "Missing 'user_input' field"}), 400
 
+    # 问候拦截：避免进入意图识别/RAG，直接返回固定短句
+    if _is_greeting(user_input):
+        return jsonify({
+            "response_type": "open_qa",
+            "recognized_task_id": None,
+            "confidence": 1.0,
+            "data": {"answer": "你好，有什么可以帮助你的吗？"}
+        })
+
+    # 下面继续原有意图识别与路由
     try:
         # 1. 意图识别
         result = intent_recognizer.recognize(user_input)
@@ -180,11 +196,20 @@ def chat_interface():
             
         data = request.get_json()
         user_input = data.get('user_input', '').strip()
-        
+            
         if not user_input:
             return jsonify({'error': 'Missing user_input'}), 400
         
-        # 进行意图识别
+        # 问候拦截：避免进入意图识别/RAG，直接返回固定短句
+        if _is_greeting(user_input):
+            return jsonify({
+                'response_type': 'open_qa',
+                'recognized_task_id': None,
+                'confidence': 1.0,
+                'data': {'answer': '你好，有什么可以帮助你的吗？'}
+            })
+        
+        # 下面继续原有意图识别与RAG逻辑
         from workflow.intent_recognizer import IntentRecognizer
         recognizer = IntentRecognizer()
         intent_result = recognizer.recognize_intent(user_input)
