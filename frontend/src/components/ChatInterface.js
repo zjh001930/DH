@@ -44,7 +44,7 @@ const TaskExecutionMessage = ({ taskData }) => {
               {step.image_path && (
                 <div className="step-screenshot">
                   <img 
-                    src={`http://localhost:8000${step.image_path}`} 
+                    src={`${process.env.REACT_APP_BACKEND_URL || '/api'}${step.image_path}`} 
                     alt={`步骤 ${step.step_number} 截图`}
                     className="step-image"
                     onError={(e) => {
@@ -83,6 +83,7 @@ const ChatInterface = () => {
   const [input, setInput] = useState('');
   const { loading, error, request } = useApi();
   const messagesEndRef = useRef(null);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || '/api';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -108,7 +109,7 @@ const ChatInterface = () => {
 
     try {
       const response = await request({
-        url: 'http://localhost:8000/chat',
+        url: '/chat',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

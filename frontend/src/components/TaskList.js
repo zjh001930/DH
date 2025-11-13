@@ -12,7 +12,7 @@ const TaskList = () => {
   const fetchTasks = async () => {
     try {
       const response = await request({
-        url: 'http://localhost:8000/tasks',
+        url: '/tasks',
         method: 'GET'
       });
       setTasks(response.tasks || []);
