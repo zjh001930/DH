@@ -46,7 +46,7 @@ function App() {
       ) : (
         <div className="connection-error">
           <h2>无法连接到后端服务</h2>
-          <p>请确保后端服务正在运行在 http://localhost:8000</p>
+          <p>请确保后端服务正在运行在 http://localhost:18000</p>
           <button onClick={checkBackendConnection}>重新连接</button>
         </div>
       )}
@@ -55,12 +55,3 @@ function App() {
 }
 
 export default App;
-
-async function sendMessage(text) {
-    const resp = await fetch(`${backendUrl}/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_input: text }) });
-    const data = await resp.json();
-    if (data.response_type === 'greeting') {
-        setMessages(prev => [...prev, { role: 'assistant', content: data.data?.answer || '你好，有什么可以帮助你的吗？' }]);
-        return;
-    }
-}

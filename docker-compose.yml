@@ -13,7 +13,7 @@ services:
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT:-25432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${OLLAMA_PORT:-11434}:11434"
+      - "${OLLAMA_PORT:-11435}:11434"
     volumes:
       - ollama_models:/root/.ollama
     # 【新增】确保模型在启动时被拉取
@@ -42,7 +42,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${WEAVIATE_PORT:-8080}:8080"
+      - "${WEAVIATE_PORT:-18080}:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_APIKEY_ENABLED: 'false'
@@ -71,7 +71,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${BACKEND_PORT:-8000}:8000"
+      - "${BACKEND_PORT:-18000}:8000"
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:password@postgres:5432/ai_assistant}
       OLLAMA_API_URL: ${OLLAMA_API_URL:-http://ollama_service:11434}
@@ -102,14 +102,14 @@ services:
       # 【修正】Dockerfile 的路径现在是 frontend 文件夹内部
       dockerfile: frontend/Dockerfile.frontend
       args:
-        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://ai_assistant_backend:8000}
+        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-/api}
     container_name: ai_assistant_frontend
     env_file:
       - .env
     ports:
-      - "${FRONTEND_PORT:-3000}:80"
+      - "${FRONTEND_PORT:-3300}:80"
     environment:
-      REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL:-http://localhost:8000}
+      REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL:-/api}
     depends_on:
       - backend
     # 【关键修正】移除此行以使用 Dockerfile 中的 COPY 指令
