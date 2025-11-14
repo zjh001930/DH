@@ -1,0 +1,26 @@
+2025-11-13 22:45:35,969 - INFO - [DATA_INGESTER] 初始化完成
+2025-11-13 22:45:35,971 - INFO - [DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-11-13 22:45:35,971 - INFO - [DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-11-13 22:45:35,971 - INFO - [DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-11-13 22:45:35,971 - INFO - ============================================================
+2025-11-13 22:45:35,971 - INFO - AI 助手数据导入工具
+2025-11-13 22:45:35,971 - INFO - ============================================================
+2025-11-13 22:45:35,972 - INFO - 检查服务状态...
+2025-11-13 22:45:38,105 - ERROR - ✗ Ollama 服务检查失败: [OLLAMA_CLIENT] Embedding API 连接失败，请确认 Ollama 已启动并模型已加载: 404 Client Error: Not Found for url: http://localhost:11434/api/embeddings
+2025-11-13 22:45:38,106 - ERROR - 服务检查失败，退出
+2025-11-14 14:59:28,091 - INFO - [DATA_INGESTER] 初始化完成
+2025-11-14 14:59:28,095 - INFO - [DATA_INGESTER] 数据目录: C:\Donghua\ai_assistant_tool\backend\data
+2025-11-14 14:59:28,095 - INFO - [DATA_INGESTER] 初始数据目录: C:\Donghua\ai_assistant_tool\backend\data\initial_data
+2025-11-14 14:59:28,095 - INFO - [DATA_INGESTER] 图片目录: C:\Donghua\ai_assistant_tool\backend\data\images
+2025-11-14 14:59:28,095 - INFO - ============================================================
+2025-11-14 14:59:28,096 - INFO - AI 助手数据导入工具
+2025-11-14 14:59:28,096 - INFO - ============================================================
+2025-11-14 14:59:28,096 - INFO - 检查服务状态...
+2025-11-14 14:59:28,097 - INFO - 跳过 Ollama 服务检查（使用 Weaviate 自动向量化）
+2025-11-14 14:59:28,097 - INFO - ✓ 所有服务检查通过
+2025-11-14 14:59:28,097 - INFO - 初始化数据库...
+2025-11-14 14:59:28,097 - INFO - [SQL_REPO] 正在初始化数据库: postgresql://postgres:password@localhost:5432/ai_assistant
+2025-11-14 14:59:28,425 - ERROR - [SQL_REPO] ✗ 数据库初始化失败: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-14 14:59:28,425 - ERROR - PostgreSQL 数据库初始化失败

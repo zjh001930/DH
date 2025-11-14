@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # === 统一使用绝对导入（不要再有 .. 相对导入） ===
 from llm.ollama_client import OllamaClient
 from db.vector_repo import retrieve_context, get_knowledge_count
-from config.settings import LLM_MODEL_NAME  # 若未使用也保留以便配置集中
+from config.settings import LLM_MODEL_NAME, WEAVIATE_AUTO_VECTORIZE  # 若未使用也保留以便配置集中
 
 # === 配置日志 ===
 logging.basicConfig(
@@ -78,21 +78,21 @@ class RAGHandler:
                 "sources": []
             }
 
-        # 2. 向量化用户问题（embeddings）
         try:
-            query_vector = self.ollama_client.get_embedding(user_input)
-            logger.info("[RAG_HANDLER] 用户问题向量化成功。")
-        except Exception as e:
-            logger.error(f"[RAG_HANDLER] 调用 Ollama 嵌入模型失败: {e}")
-            return {"answer": "抱歉，连接嵌入模型失败。", "sources": []}
-
-        # 3. 检索上下文（向量优先，内部实现同时兼容文本 bm25）
-        try:
-            contexts = retrieve_context(query_vector)
+            if WEAVIATE_AUTO_VECTORIZE:
+                contexts = retrieve_context(user_input)
+            else:
+                query_vector = self.ollama_client.get_embedding(user_input)
+                logger.info("[RAG_HANDLER] 用户问题向量化成功。")
+                contexts = retrieve_context(query_vector)
             logger.info(f"[RAG_HANDLER] 检索到 {len(contexts)} 条上下文。")
         except Exception as e:
-            logger.error(f"[RAG_HANDLER] 调用 Weaviate 检索失败: {e}")
-            return {"answer": "抱歉，连接向量数据库出错。", "sources": []}
+            try:
+                contexts = retrieve_context(user_input)
+                logger.info(f"[RAG_HANDLER] 检索到 {len(contexts)} 条上下文。")
+            except Exception as e2:
+                logger.error(f"[RAG_HANDLER] 调用 Weaviate 检索失败: {e2}")
+                return {"answer": "抱歉，连接向量数据库出错。", "sources": []}
 
         # 4. 构建 Prompt
         prompt = self._build_prompt(user_input, contexts)

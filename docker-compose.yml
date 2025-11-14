@@ -2,6 +2,7 @@
 services:
   # PostgreSQL 数据库
   postgres:
+    profiles: ["local-deps"]
     image: postgres:13
     container_name: ai_assistant_postgres
     env_file:
@@ -24,6 +25,7 @@ services:
 
   # Ollama 服务
   ollama_service:
+    profiles: ["local-deps"]
     image: ollama/ollama:latest
     container_name: ollama_host
     env_file:
@@ -37,6 +39,7 @@ services:
 
   # Weaviate 向量数据库
   weaviate:
+    profiles: ["local-deps"]
     image: semitechnologies/weaviate:latest
     container_name: ai_assistant_weaviate
     env_file:
@@ -83,13 +86,12 @@ services:
       FLASK_ENV: ${FLASK_ENV:-production}
       FLASK_DEBUG: ${FLASK_DEBUG:-0}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
-    depends_on:
-      postgres:
-        condition: service_healthy
-      ollama_service:
-        condition: service_started
-      weaviate:
-        condition: service_started
+
+    networks:
+      - default
+      - dhcf-poc-fixed_core-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     # 【关键修正】移除此行以使用 Dockerfile 中的 COPY 指令
     # volumes:
     #   - ./backend:/app
@@ -125,3 +127,7 @@ volumes:
     driver: local
   weaviate_data:
     driver: local
+
+networks:
+  dhcf-poc-fixed_core-net:
+    external: true

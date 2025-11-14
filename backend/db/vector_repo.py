@@ -9,10 +9,11 @@ import requests
 
 # 统一从 config.settings 读取；若 WEAVIATE_RAG_CLASS 不存在，用默认类名
 try:
-    from config.settings import WEAVIATE_URL, WEAVIATE_RAG_CLASS  # type: ignore
+    from config.settings import WEAVIATE_URL, WEAVIATE_RAG_CLASS, WEAVIATE_AUTO_VECTORIZE  # type: ignore
 except Exception:
     from config.settings import WEAVIATE_URL  # type: ignore
-    WEAVIATE_RAG_CLASS = "Knowledge"  # 默认类名，按需改
+    WEAVIATE_RAG_CLASS = "Knowledge"
+    WEAVIATE_AUTO_VECTORIZE = False
 
 logger = logging.getLogger(__name__)
 
@@ -95,23 +96,34 @@ def _http_batch_insert(
     vectors: list[list[float]]
 ) -> int:
     try:
-        objects = [
-            {"class": WEAVIATE_RAG_CLASS, "properties": data, "vector": vec}
-            for data, vec in zip(knowledge_list, vectors)
-        ]
+        if vectors and len(vectors) == len(knowledge_list):
+            objects = [
+                {"class": WEAVIATE_RAG_CLASS, "properties": data, "vector": vec}
+                for data, vec in zip(knowledge_list, vectors)
+            ]
+        else:
+            objects = [
+                {"class": WEAVIATE_RAG_CLASS, "properties": data}
+                for data in knowledge_list
+            ]
         payload = {"objects": objects}
-        r = requests.post(f"{WEAVIATE_URL}/v1/objects/batch", json=payload, timeout=30)
+        r = requests.post(f"{WEAVIATE_URL}/v1/batch/objects", json=payload, timeout=30)
         if r.status_code not in (200, 202):
             logger.error("[WEAVIATE-HTTP] 批量写入失败: %s %s", r.status_code, r.text)
             return 0
         body = r.json()
-        results = body.get("objects", []) or body.get("results", [])
+        if isinstance(body, list):
+            results = body
+        else:
+            results = body.get("objects") or body.get("results") or body.get("Object") or []
         if not results:
             return len(objects)
         success = 0
         for item in results:
-            status = item.get("status") or item.get("result", {}).get("status")
-            if (isinstance(status, str) and status.upper() == "SUCCESS") or ("errors" not in item):
+            status = item.get("status") or (item.get("result") or {}).get("status")
+            if isinstance(status, str) and status.upper() == "SUCCESS":
+                success += 1
+            elif "errors" not in item:
                 success += 1
         return success
     except Exception as e:
@@ -119,24 +131,37 @@ def _http_batch_insert(
         fb = _get_fallback_url(WEAVIATE_URL)
         if fb != WEAVIATE_URL:
             try:
-                payload = {
-                    "objects": [
-                        {"class": WEAVIATE_RAG_CLASS, "properties": d, "vector": v}
-                        for d, v in zip(knowledge_list, vectors)
-                    ]
-                }
-                r = requests.post(f"{fb}/v1/objects/batch", json=payload, timeout=30)
+                if vectors and len(vectors) == len(knowledge_list):
+                    payload = {
+                        "objects": [
+                            {"class": WEAVIATE_RAG_CLASS, "properties": d, "vector": v}
+                            for d, v in zip(knowledge_list, vectors)
+                        ]
+                    }
+                else:
+                    payload = {
+                        "objects": [
+                            {"class": WEAVIATE_RAG_CLASS, "properties": d}
+                            for d in knowledge_list
+                        ]
+                    }
+                r = requests.post(f"{fb}/v1/batch/objects", json=payload, timeout=30)
                 if r.status_code not in (200, 202):
                     logger.error("[WEAVIATE-HTTP] 回退URL批量写入失败: %s %s", r.status_code, r.text)
                     return 0
                 body = r.json()
-                results = body.get("objects", []) or body.get("results", [])
+                if isinstance(body, list):
+                    results = body
+                else:
+                    results = body.get("objects") or body.get("results") or body.get("Object") or []
                 if not results:
                     return len(payload["objects"])
                 success = 0
                 for item in results:
-                    status = item.get("status") or item.get("result", {}).get("status")
-                    if (isinstance(status, str) and status.upper() == "SUCCESS") or ("errors" not in item):
+                    status = item.get("status") or (item.get("result") or {}).get("status")
+                    if isinstance(status, str) and status.upper() == "SUCCESS":
+                        success += 1
+                    elif "errors" not in item:
                         success += 1
                 return success
             except Exception as e2:
@@ -162,6 +187,58 @@ def _http_graphql(query: str) -> dict[str, Any]:
                 logger.error("[WEAVIATE-HTTP] 回退URL GraphQL 请求失败: %s", e2)
         return {}
 
+# ---------- Public API for Data Ingestion ----------
+
+KNOWLEDGE_CLASS_SCHEMA = {
+    "class": WEAVIATE_RAG_CLASS,
+    "description": "A class to store knowledge base articles (question-answer pairs).",
+    "properties": [
+        {"name": "question", "dataType": ["text"], "description": "The question part of the QA pair."},
+        {"name": "answer", "dataType": ["text"], "description": "The answer part of the QA pair."},
+        {"name": "category", "dataType": ["text"], "description": "Category of the knowledge."},
+        {"name": "source", "dataType": ["text"], "description": "Source of the knowledge (e.g., filename)."},
+        {"name": "keywords", "dataType": ["text[]"], "description": "Keywords associated with the knowledge."},
+    ],
+}
+if not WEAVIATE_AUTO_VECTORIZE:
+    KNOWLEDGE_CLASS_SCHEMA["vectorizer"] = "none"
+
+def initialize_weaviate() -> bool:
+    """
+    Initializes Weaviate by checking readiness and ensuring the schema class exists.
+    """
+    logger.info("[WEAVIATE] Initializing Weaviate...")
+    if not _http_is_ready(timeout=30):
+        logger.error("[WEAVIATE] Weaviate instance is not ready.")
+        return False
+    
+    logger.info("[WEAVIATE] Weaviate is ready.")
+    
+    schema = _http_get_schema()
+    if schema and "classes" in schema:
+        if any(c["class"] == WEAVIATE_RAG_CLASS for c in schema["classes"]):
+            logger.info(f"[WEAVIATE] Class '{WEAVIATE_RAG_CLASS}' already exists.")
+            return True
+    
+    logger.info(f"[WEAVIATE] Class '{WEAVIATE_RAG_CLASS}' not found. Creating it...")
+    if _http_create_class(KNOWLEDGE_CLASS_SCHEMA):
+        logger.info(f"[WEAVIATE] Class '{WEAVIATE_RAG_CLASS}' created successfully.")
+        return True
+    else:
+        logger.error(f"[WEAVIATE] Failed to create class '{WEAVIATE_RAG_CLASS}'.")
+        return False
+
+def batch_insert_knowledge(
+    knowledge_list: list[dict[str, Any]],
+    vectors: list[list[float]]
+) -> int:
+    """
+    Public function to batch insert knowledge. Wraps the internal HTTP function.
+    """
+    if not knowledge_list:
+        return 0
+    return _http_batch_insert(knowledge_list, vectors)
+
 
 # ---------- 导出给 RAG 使用 ----------
 def retrieve_context(query: Any, top_k: int = 3) -> list[str]:
@@ -184,37 +261,75 @@ def retrieve_context(query: Any, top_k: int = 3) -> list[str]:
                   nearVector: {{ vector: {json.dumps(list(query))} }}
                   limit: {int(top_k)}
                 ) {{
-                  content
+                  question
+                  answer
                   source
                 }}
               }}
             }}
             """
-        else:  # bm25
-            gql = f"""
+        else:
+            if WEAVIATE_AUTO_VECTORIZE:
+                gql = f"""
+                {{
+                  Get {{
+                    {WEAVIATE_RAG_CLASS}(
+                      nearText: {{ concepts: [{json.dumps(str(query))}] }}
+                      limit: {int(top_k)}
+                    ) {{
+                      question
+                      answer
+                      source
+                    }}
+                  }}
+                }}
+                """
+            else:
+                gql = f"""
+                {{
+                  Get {{
+                    {WEAVIATE_RAG_CLASS}(
+                      bm25: {{ query: {json.dumps(str(query))} }}
+                      limit: {int(top_k)}
+                    ) {{
+                      question
+                      answer
+                      source
+                    }}
+                  }}
+                }}
+                """
+
+        data = _http_graphql(gql)
+        hits = (((data or {}).get("data") or {}).get("Get") or {}).get(WEAVIATE_RAG_CLASS, []) or []
+        if WEAVIATE_AUTO_VECTORIZE and not isinstance(query, (list, tuple)) and not hits:
+            gql_bm25 = f"""
             {{
               Get {{
                 {WEAVIATE_RAG_CLASS}(
                   bm25: {{ query: {json.dumps(str(query))} }}
                   limit: {int(top_k)}
                 ) {{
-                  content
+                  question
+                  answer
                   source
                 }}
               }}
             }}
             """
-
-        data = _http_graphql(gql)
-        hits = (((data or {}).get("data") or {}).get("Get") or {}).get(WEAVIATE_RAG_CLASS, []) or []
+            data2 = _http_graphql(gql_bm25)
+            hits = (((data2 or {}).get("data") or {}).get("Get") or {}).get(WEAVIATE_RAG_CLASS, []) or []
         contexts: list[str] = []
         for h in hits:
-            content = h.get("content")
+            question = h.get("question")
+            answer = h.get("answer")
             source = h.get("source")
-            if content:
-                ctx = f"{content}"
+            if answer:
+                ctx = f"{answer}"
+                if question:
+                    ctx = f"{question}\n{answer}"
                 if source:
-                    ctx = f"{source}\n{content}"
+                    ctx = f"{source}\n{ctx}"
                 contexts.append(ctx)
         return contexts
     except Exception as e:

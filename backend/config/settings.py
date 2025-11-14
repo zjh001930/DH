@@ -21,8 +21,12 @@ SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:passw
 
 # --- Weaviate 配置 ---
 WEAVIATE_HOST = os.getenv("WEAVIATE_HOST", "weaviate:8080")
-WEAVIATE_URL = f"http://{WEAVIATE_HOST}"
-WEAVIATE_RAG_CLASS = "AssistantKnowledge" # RAG 知识库的 Weaviate 类名
+WEAVIATE_URL = os.getenv("WEAVIATE_URL", f"http://{WEAVIATE_HOST}")
+WEAVIATE_RAG_CLASS = os.getenv("WEAVIATE_RAG_CLASS", "AssistantKnowledge")
+WEAVIATE_AUTO_VECTORIZE = os.getenv("WEAVIATE_AUTO_VECTORIZE", "false").lower() == "true"
+
+# # --- 向量生成策略 ---
+# WEAVIATE_AUTO_VECTORIZE = os.getenv("WEAVIATE_AUTO_VECTORIZE", "false").lower() == "true"
 
 # --- 业务逻辑配置 ---
 INTENT_CONFIDENCE_THRESHOLD = 0.65

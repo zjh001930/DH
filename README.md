@@ -71,6 +71,82 @@ docker-compose ps
 docker-compose down
 ```
 
+## 🌐 异地部署（连接总系统 dhcf）
+
+> 在本机只运行前后端，依赖服务（PostgreSQL/Weaviate/Ollama）全部指向总系统的容器网络。
+
+### 1. 关闭本地依赖
+- 不要使用 `--profile local-deps`
+- 如已启动本地依赖，先停掉并删除：
+```bash
+docker-compose stop weaviate ollama_service postgres
+docker-compose rm -f weaviate ollama_service postgres
+```
+
+### 2. 配置环境变量（.env）
+- 关键项：
+```
+DATABASE_URL=postgresql://admin:admin123@poc-pg:5432/unified_db
+WEAVIATE_URL=http://poc-weaviate:8080
+WEAVIATE_RAG_CLASS=AssistantKnowledge
+WEAVIATE_AUTO_VECTORIZE=true
+OLLAMA_API_URL=http://poc-ollama:11434
+```
+- 如果需要通过宿主机端口访问（非同网段服务名），将 `WEAVIATE_URL` 或 `OLLAMA_API_URL` 改为 `http://host.docker.internal:<端口>`，并在 `docker-compose.yml` 的 `backend` 增加：
+```
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
+
+### 3. 网络与启动
+- 确保 `docker-compose.yml` 的 `backend` 已加入外部网络：
+```
+networks:
+  - default
+  - dhcf-poc-fixed_core-net
+```
+- 构建并重启后端/前端：
+```bash
+docker-compose build backend frontend
+docker-compose up -d --force-recreate backend frontend
+```
+
+### 4. 连通性验证（容器内）
+```bash
+# 配置读取
+docker exec -it ai_assistant_backend python -c "from config.settings import WEAVIATE_URL, OLLAMA_API_URL, WEAVIATE_AUTO_VECTORIZE; print(WEAVIATE_URL, OLLAMA_API_URL, WEAVIATE_AUTO_VECTORIZE)"
+# Weaviate 就绪
+docker exec -it ai_assistant_backend python -c "import requests,os; print(requests.get(os.environ['WEAVIATE_URL']+'/v1/.well-known/ready',timeout=5).status_code)"
+# Ollama 可达
+docker exec -it ai_assistant_backend python -c "import requests,os; print(requests.get(os.environ['OLLAMA_API_URL']+'/api/tags',timeout=5).status_code)"
+```
+
+### 5. 数据导入到总系统 Weaviate
+```bash
+docker exec -it ai_assistant_backend python -c "from db.vector_repo import initialize_weaviate; from ingest_data import DataIngester; initialize_weaviate(); DataIngester().ingest_rag_data()"
+# 验证计数
+docker exec -it ai_assistant_backend python -c "from db.vector_repo import get_knowledge_count; print(get_knowledge_count())"
+```
+
+### 6. 拉取生成模型（总系统的 Ollama）
+```bash
+# 方式一：HTTP API 触发
+docker exec -it ai_assistant_backend python -c "import requests,os; r=requests.post(os.environ['OLLAMA_API_URL']+'/api/pull',json={'name':os.environ.get('LLM_MODEL_NAME','qwen2.5:3b-instruct')},timeout=1200); print(r.status_code); print(r.text[:200])"
+# 方式二：直接在 Ollama 容器内
+docker exec -it poc-ollama ollama pull qwen2.5:3b-instruct
+```
+- 验证生成接口：
+```bash
+docker exec -it ai_assistant_backend python -c "import requests,os; r=requests.post(os.environ['OLLAMA_API_URL']+'/api/generate',json={'model':os.environ.get('LLM_MODEL_NAME','qwen2.5:3b-instruct'),'prompt':'你好','stream':False},timeout=60); print(r.status_code); print(r.text[:200])"
+```
+- 若资源不足，改 `.env` 为小模型：`LLM_MODEL_NAME=qwen2.5:1.8b-instruct` 或 `llama3.2:1b-instruct`，重启并拉取。
+
+### 7. 故障排除
+- Weaviate 连接 404/422：检查类名是否为总系统实际类；我们已在代码中开启 `nearText`→`bm25` 自动回退。
+- `host.docker.internal` 解析失败：在 `backend` 添加 `extra_hosts: ["host.docker.internal:host-gateway"]`，并用宿主端口。
+- `api/generate` 404：模型未拉取；执行第 6 步。
+- `api/generate` 500：资源不足；改用更小模型并拉取。
+
 ## 📖 使用指南
 
 - 在前端界面进行提问或任务指导：

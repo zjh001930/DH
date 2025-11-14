@@ -42,7 +42,9 @@ class DataIngester:
         self.initial_data_dir = os.path.join(self.data_dir, "initial_data")
         self.images_dir = os.path.join(self.data_dir, "images")
         
-        # Ollama 客户端
+        # 向量化策略
+        self.auto_vectorize = os.getenv("WEAVIATE_AUTO_VECTORIZE", "false").lower() == "true"
+        # Ollama 客户端（如启用自动向量化则可能不使用）
         self.ollama_client = OllamaClient()
         
         logger.info(f"[DATA_INGESTER] 初始化完成")
@@ -54,18 +56,20 @@ class DataIngester:
         """检查所有必要服务的状态"""
         logger.info("检查服务状态...")
         
-        # 检查 Ollama 服务
-        try:
-            # 使用 OllamaClient 测试连接
-            test_embedding = self.ollama_client.get_embedding("测试连接")
-            if test_embedding:
-                logger.info("✓ Ollama 服务连接正常")
-            else:
-                logger.error("✗ Ollama 服务连接失败")
+        # 检查 Ollama 服务（如启用自动向量化则跳过）
+        if self.auto_vectorize:
+            logger.info("跳过 Ollama 服务检查（使用 Weaviate 自动向量化）")
+        else:
+            try:
+                test_embedding = self.ollama_client.get_embedding("测试连接")
+                if test_embedding:
+                    logger.info("✓ Ollama 服务连接正常")
+                else:
+                    logger.error("✗ Ollama 服务连接失败")
+                    return False
+            except Exception as e:
+                logger.error(f"✗ Ollama 服务检查失败: {e}")
                 return False
-        except Exception as e:
-            logger.error(f"✗ Ollama 服务检查失败: {e}")
-            return False
         
         # 检查数据目录
         if not os.path.exists(self.data_dir):
@@ -157,29 +161,28 @@ class DataIngester:
             logger.warning("没有解析到有效的问答对")
             return False
         
-        # 生成向量嵌入
-        logger.info("生成向量嵌入...")
+        # 准备问答对/向量（自动向量化则不生成嵌入）
         vectors = []
         valid_qa_pairs = []
         
-        for i, qa in enumerate(qa_pairs):
-            try:
-                # 为问题和答案组合生成嵌入向量
-                text_for_embedding = f"问题: {qa['question']} 答案: {qa['answer']}"
-                embedding = self.ollama_client.get_embedding(text_for_embedding)
-                
-                if embedding:
-                    vectors.append(embedding)
-                    valid_qa_pairs.append(qa)
-                else:
-                    logger.warning(f"跳过第 {i+1} 个问答对（无法获取嵌入）")
-                
-                if (i + 1) % 10 == 0:
-                    logger.info(f"已生成嵌入 {i + 1}/{len(qa_pairs)}")
-                    
-            except Exception as e:
-                logger.error(f"生成第 {i+1} 个问答对嵌入失败: {e}")
-                continue
+        if self.auto_vectorize:
+            valid_qa_pairs = qa_pairs
+        else:
+            logger.info("生成向量嵌入...")
+            for i, qa in enumerate(qa_pairs):
+                try:
+                    text_for_embedding = f"问题: {qa['question']} 答案: {qa['answer']}"
+                    embedding = self.ollama_client.get_embedding(text_for_embedding)
+                    if embedding:
+                        vectors.append(embedding)
+                        valid_qa_pairs.append(qa)
+                    else:
+                        logger.warning(f"跳过第 {i+1} 个问答对（无法获取嵌入）")
+                    if (i + 1) % 10 == 0:
+                        logger.info(f"已生成嵌入 {i + 1}/{len(qa_pairs)}")
+                except Exception as e:
+                    logger.error(f"生成第 {i+1} 个问答对嵌入失败: {e}")
+                    continue
         
         if not valid_qa_pairs:
             logger.error("没有有效的问答对可以导入")
@@ -187,7 +190,7 @@ class DataIngester:
         
         # 批量导入到 Weaviate
         logger.info(f"批量导入 {len(valid_qa_pairs)} 个问答对到 Weaviate...")
-        success_count = batch_insert_knowledge(valid_qa_pairs, vectors)
+        success_count = batch_insert_knowledge(valid_qa_pairs, vectors if not self.auto_vectorize else [])
         
         logger.info(f"✓ RAG 数据导入完成: {success_count}/{len(qa_pairs)} 成功")
         return success_count > 0
